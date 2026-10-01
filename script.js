@@ -1,3 +1,7 @@
+/* =========================================
+QUESTIONS
+========================================= */
+
 const questions = [
 
 ```
@@ -214,6 +218,10 @@ const questions = [
 
 ];
 
+/* =========================================
+TYPEFACES
+========================================= */
+
 const typefaces = [
 
 ```
@@ -304,9 +312,20 @@ const typefaces = [
 
 ];
 
+/* =========================================
+VARIABLES
+========================================= */
+
 let selectedQuestions = [];
 let currentQuestion = 0;
 let isReading = false;
+
+let carouselIndex = 0;
+let carouselInterval;
+
+/* =========================================
+DOM ELEMENTS
+========================================= */
 
 const startScreen =
 document.getElementById("start-screen");
@@ -341,6 +360,13 @@ document.getElementById("result-description");
 const answerOptions =
 document.querySelectorAll(".answer-option");
 
+const carouselFont =
+document.getElementById("carousel-font");
+
+/* =========================================
+SHUFFLE
+========================================= */
+
 function shuffle(array) {
 
 ```
@@ -371,95 +397,326 @@ return shuffled;
 
 }
 
+/* =========================================
+TYPEFACE CAROUSEL
+========================================= */
+
+function showNextCarouselFont() {
+
+```
+if (!carouselFont) {
+    return;
+}
+
+
+carouselFont.classList.add("changing");
+
+
+setTimeout(() => {
+
+    carouselIndex++;
+
+    if (
+        carouselIndex >=
+        typefaces.length
+    ) {
+
+        carouselIndex = 0;
+
+    }
+
+
+    const font =
+        typefaces[carouselIndex];
+
+
+    /*
+        Remove old font classes
+    */
+
+    typefaces.forEach(typeface => {
+
+        carouselFont.classList.remove(
+            typeface.className
+        );
+
+    });
+
+
+    /*
+        Add new font class
+    */
+
+    carouselFont.classList.add(
+        font.className
+    );
+
+
+    /*
+        Change text
+    */
+
+    carouselFont.textContent =
+        font.name;
+
+
+    carouselFont.classList.remove(
+        "changing"
+    );
+
+}, 400);
+```
+
+}
+
+function startCarousel() {
+
+```
+if (carouselInterval) {
+    return;
+}
+
+
+carouselInterval =
+    setInterval(
+        showNextCarouselFont,
+        2200
+    );
+```
+
+}
+
+function stopCarousel() {
+
+```
+if (!carouselInterval) {
+    return;
+}
+
+
+clearInterval(
+    carouselInterval
+);
+
+carouselInterval = null;
+```
+
+}
+
+/* =========================================
+START NEW READING
+========================================= */
+
 function startReading() {
 
 ```
+console.log(
+    "Starting new reading"
+);
+
+
+/*
+    Stop carousel while reading
+*/
+
+stopCarousel();
+
+
+/*
+    Reset quiz
+*/
+
 currentQuestion = 0;
+
 isReading = false;
 
+
+/*
+    Pick 10 RANDOM questions
+    from the 21 total questions.
+*/
+
 selectedQuestions =
-    shuffle(questions).slice(0, 10);
+    shuffle(
+        questions
+    ).slice(0, 10);
 
-startScreen.classList.remove("active");
 
-resultScreen.classList.remove("active");
+/*
+    Hide start and result
+    / show quiz
+*/
 
-quizScreen.classList.add("active");
+startScreen.classList.remove(
+    "active"
+);
+
+resultScreen.classList.remove(
+    "active"
+);
+
+quizScreen.classList.add(
+    "active"
+);
+
+
+/*
+    Display question #1
+*/
 
 showQuestion();
 ```
 
 }
 
+/* =========================================
+SHOW QUESTION
+========================================= */
+
 function showQuestion() {
 
 ```
 const question =
-    selectedQuestions[currentQuestion];
+    selectedQuestions[
+        currentQuestion
+    ];
+
 
 if (!question) {
     return;
 }
 
+
+/*
+    Question number
+*/
+
 questionNumber.textContent =
     String(
         currentQuestion + 1
-    ).padStart(2, "0");
+    ).padStart(
+        2,
+        "0"
+    );
+
+
+/*
+    Question text
+*/
 
 questionText.textContent =
     question.question;
 
+
+/*
+    Reset status
+*/
+
 answerLabel.textContent =
     "Välj ett tecken";
 
-answerLabel.classList.remove("reading");
+answerLabel.classList.remove(
+    "reading"
+);
 
-answerOptions.forEach(option => {
 
-    const answer =
-        option.dataset.answer;
+/*
+    Fill the four answers
+*/
 
-    const answerText =
-        option.querySelector(".answer-text");
+answerOptions.forEach(
+    option => {
 
-    answerText.textContent =
-        question.answers[answer];
+        const answer =
+            option.dataset.answer;
 
-    option.classList.remove("selected");
+        const answerText =
+            option.querySelector(
+                ".answer-text"
+            );
 
-    option.disabled = false;
+        answerText.textContent =
+            question.answers[
+                answer
+            ];
 
-});
+
+        option.classList.remove(
+            "selected"
+        );
+
+        option.disabled =
+            false;
+
+    }
+);
 ```
 
 }
 
-function selectAnswer(option) {
+/* =========================================
+SELECT ANSWER
+========================================= */
+
+function selectAnswer(
+option
+) {
 
 ```
+/*
+    Prevent double clicking
+*/
+
 if (isReading) {
     return;
 }
 
+
 isReading = true;
 
-option.classList.add("selected");
+
+/*
+    Visual selection
+*/
+
+option.classList.add(
+    "selected"
+);
+
 
 answerOptions.forEach(
     otherOption => {
-        otherOption.disabled = true;
+
+        otherOption.disabled =
+            true;
+
     }
 );
+
 
 answerLabel.textContent =
     "Tecknet är registrerat…";
 
-answerLabel.classList.add("reading");
+answerLabel.classList.add(
+    "reading"
+);
 
+
+/*
+    Small mystical pause
+    before moving on.
+*/
 
 setTimeout(() => {
 
     currentQuestion++;
+
+
+    /*
+        If we've answered
+        all 10 questions:
+        show result.
+    */
 
     if (
         currentQuestion >=
@@ -468,7 +725,15 @@ setTimeout(() => {
 
         showRandomResult();
 
-    } else {
+    }
+
+
+    /*
+        Otherwise:
+        show next question.
+    */
+
+    else {
 
         isReading = false;
 
@@ -481,9 +746,18 @@ setTimeout(() => {
 
 }
 
+/* =========================================
+RANDOM RESULT
+========================================= */
+
 function showRandomResult() {
 
 ```
+/*
+    Pick ONE random typeface
+    from all available typefaces.
+*/
+
 const result =
     typefaces[
         Math.floor(
@@ -493,79 +767,196 @@ const result =
     ];
 
 
-typefaces.forEach(font => {
+console.log(
+    "Your typeface is:",
+    result.name
+);
 
-    resultFont.classList.remove(
-        font.className
-    );
 
-});
+/*
+    Remove all previous
+    font classes
+*/
 
+typefaces.forEach(
+    font => {
+
+        resultFont.classList.remove(
+            font.className
+        );
+
+    }
+);
+
+
+/*
+    Add selected font
+*/
 
 resultFont.classList.add(
     result.className
 );
 
 
+/*
+    Insert result
+*/
+
 resultFont.textContent =
     result.name;
+
 
 resultDescription.textContent =
     result.description;
 
 
-quizScreen.classList.remove("active");
+/*
+    Switch screen
+*/
 
-resultScreen.classList.add("active");
+quizScreen.classList.remove(
+    "active"
+);
+
+resultScreen.classList.add(
+    "active"
+);
+
 
 isReading = false;
 ```
 
 }
 
+/* =========================================
+RETURN TO START SCREEN
+========================================= */
+
 function returnToStart() {
 
 ```
-quizScreen.classList.remove("active");
+console.log(
+    "Returning to start screen"
+);
 
-resultScreen.classList.remove("active");
 
-startScreen.classList.add("active");
+/*
+    Hide everything
+*/
+
+quizScreen.classList.remove(
+    "active"
+);
+
+resultScreen.classList.remove(
+    "active"
+);
+
+
+/*
+    Show main screen
+*/
+
+startScreen.classList.add(
+    "active"
+);
+
+
+/*
+    Reset
+*/
 
 currentQuestion = 0;
 
 selectedQuestions = [];
 
 isReading = false;
+
+
+/*
+    Restart carousel
+*/
+
+startCarousel();
 ```
 
 }
+
+/* =========================================
+EVENT LISTENERS
+========================================= */
+
+/*
+STARTA LÄSNINGEN
+*/
 
 startButton.addEventListener(
 "click",
 startReading
 );
 
-answerOptions.forEach(option => {
+/*
+ANSWERS
+*/
+
+answerOptions.forEach(
+option => {
 
 ```
-option.addEventListener(
-    "click",
-    function() {
-        selectAnswer(this);
-    }
+    option.addEventListener(
+        "click",
+        function() {
+
+            selectAnswer(
+                this
+            );
+
+        }
+    );
+
+}
+```
+
 );
+
+/*
+GÖR EN NY LÄSNING
+
+```
+Goes back to the
+main/start screen.
 ```
 
-});
+*/
 
 restartButton.addEventListener(
 "click",
 returnToStart
 );
 
-startScreen.classList.add("active");
+/* =========================================
+INITIAL STATE
+========================================= */
 
-quizScreen.classList.remove("active");
+startScreen.classList.add(
+"active"
+);
 
-resultScreen.classList.remove("active");
+quizScreen.classList.remove(
+"active"
+);
+
+resultScreen.classList.remove(
+"active"
+);
+
+/*
+Start typeface carousel
+*/
+
+startCarousel();
+
+console.log(
+"Font Fortune is ready."
+);
+
