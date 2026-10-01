@@ -314,20 +314,11 @@ const typefaces = [
 
 
 /* =========================================
-   STATE
+   VARIABLES
 ========================================= */
 
 let selectedQuestions = [];
-
 let currentQuestion = 0;
-
-let score = {
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0
-};
-
 let isReading = false;
 
 
@@ -372,18 +363,6 @@ const answerOptions =
 
 
 /* =========================================
-   SAFETY CHECK
-========================================= */
-
-console.log(
-    "Spågumman laddad!",
-    questions.length,
-    "frågor hittade."
-);
-
-
-
-/* =========================================
    SHUFFLE
 ========================================= */
 
@@ -405,12 +384,10 @@ function shuffle(array) {
         [
             shuffled[i],
             shuffled[j]
-        ] =
-        [
+        ] = [
             shuffled[j],
             shuffled[i]
         ];
-
     }
 
     return shuffled;
@@ -419,27 +396,25 @@ function shuffle(array) {
 
 
 /* =========================================
-   START QUIZ
+   START NEW READING
 ========================================= */
 
-function startQuiz() {
+function startReading() {
 
-    console.log("Starta läsningen klickad!");
+    console.log("Starting new reading");
 
-    score = {
-        A: 0,
-        B: 0,
-        C: 0,
-        D: 0
-    };
+
+    /*
+        Reset quiz
+    */
 
     currentQuestion = 0;
-
     isReading = false;
 
 
     /*
-        Select 10 random questions
+        Pick 10 RANDOM questions
+        from the 21 total questions.
     */
 
     selectedQuestions =
@@ -447,7 +422,7 @@ function startQuiz() {
 
 
     /*
-        Change screen
+        Hide result / show quiz
     */
 
     startScreen.classList.remove("active");
@@ -458,11 +433,10 @@ function startQuiz() {
 
 
     /*
-        Show first question
+        Display question #1
     */
 
     showQuestion();
-
 }
 
 
@@ -478,26 +452,13 @@ function showQuestion() {
 
 
     if (!question) {
-
-        console.error(
-            "Ingen fråga hittades!"
-        );
-
         return;
-
     }
 
 
-    console.log(
-        "Visar fråga:",
-        currentQuestion + 1,
-        question.question
-    );
-
-
-    questionText.textContent =
-        question.question;
-
+    /*
+        Question number
+    */
 
     questionNumber.textContent =
         String(
@@ -505,14 +466,29 @@ function showQuestion() {
         ).padStart(2, "0");
 
 
+    /*
+        Question text
+    */
+
+    questionText.textContent =
+        question.question;
+
+
+    /*
+        Reset status
+    */
+
     answerLabel.textContent =
         "Välj ett tecken";
-
 
     answerLabel.classList.remove(
         "reading"
     );
 
+
+    /*
+        Fill the four answers
+    */
 
     answerOptions.forEach(option => {
 
@@ -527,6 +503,7 @@ function showQuestion() {
         answerText.textContent =
             question.answers[answer];
 
+
         option.classList.remove(
             "selected"
         );
@@ -540,30 +517,28 @@ function showQuestion() {
 
 
 /* =========================================
-   ANSWER QUESTION
+   SELECT ANSWER
 ========================================= */
 
-function answerQuestion(
-    answer,
+function selectAnswer(
     option
 ) {
+
+    /*
+        Prevent double clicking
+    */
 
     if (isReading) {
         return;
     }
 
 
-    console.log(
-        "Svar:",
-        answer
-    );
-
-
     isReading = true;
 
 
-    score[answer]++;
-
+    /*
+        Visual selection
+    */
 
     option.classList.add(
         "selected"
@@ -573,8 +548,7 @@ function answerQuestion(
     answerOptions.forEach(
         otherOption => {
 
-            otherOption.disabled =
-                true;
+            otherOption.disabled = true;
 
         }
     );
@@ -583,25 +557,41 @@ function answerQuestion(
     answerLabel.textContent =
         "Tecknet är registrerat…";
 
-
     answerLabel.classList.add(
         "reading"
     );
 
+
+    /*
+        Small mystical pause before
+        moving to the next question.
+    */
 
     setTimeout(() => {
 
         currentQuestion++;
 
 
+        /*
+            If we've answered all 10:
+            go to result.
+        */
+
         if (
             currentQuestion >=
             selectedQuestions.length
         ) {
 
-            showResult();
+            showRandomResult();
 
-        } else {
+        }
+
+        /*
+            Otherwise:
+            show next question.
+        */
+
+        else {
 
             isReading = false;
 
@@ -609,67 +599,41 @@ function answerQuestion(
 
         }
 
-    }, 850);
+    }, 700);
 
 }
 
 
 
 /* =========================================
-   CALCULATE RESULT
+   RANDOM RESULT
 ========================================= */
 
-function calculateResult() {
+function showRandomResult() {
 
     /*
-        TEMPORARY RESULT LOGIC
-
-        Detta byter vi senare till
-        den riktiga font-personligheten.
+        Pick ONE random typeface
+        from all available typefaces.
     */
 
-    const total =
-        score.A * 1 +
-        score.B * 2 +
-        score.C * 3 +
-        score.D * 4;
+    const result =
+        typefaces[
+            Math.floor(
+                Math.random() *
+                typefaces.length
+            )
+        ];
 
-
-    const index =
-        total % typefaces.length;
-
-
-    return typefaces[index];
-
-}
-
-
-
-/* =========================================
-   SHOW RESULT
-========================================= */
-
-function showResult() {
 
     console.log(
-        "Resultat:",
-        score
+        "Your typeface is:",
+        result.name
     );
 
 
-    const result =
-        calculateResult();
-
-
-    quizScreen.classList.remove(
-        "active"
-    );
-
-
-    resultScreen.classList.add(
-        "active"
-    );
-
+    /*
+        Remove all previous font classes
+    */
 
     typefaces.forEach(font => {
 
@@ -680,10 +644,18 @@ function showResult() {
     });
 
 
+    /*
+        Add the selected font
+    */
+
     resultFont.classList.add(
         result.className
     );
 
+
+    /*
+        Insert result
+    */
 
     resultFont.textContent =
         result.name;
@@ -692,6 +664,66 @@ function showResult() {
     resultDescription.textContent =
         result.description;
 
+
+    /*
+        Switch screen
+    */
+
+    quizScreen.classList.remove(
+        "active"
+    );
+
+    resultScreen.classList.add(
+        "active"
+    );
+
+
+    isReading = false;
+
+}
+
+
+
+/* =========================================
+   RETURN TO START SCREEN
+========================================= */
+
+function returnToStart() {
+
+    console.log(
+        "Returning to start screen"
+    );
+
+
+    /*
+        Hide everything
+    */
+
+    quizScreen.classList.remove(
+        "active"
+    );
+
+    resultScreen.classList.remove(
+        "active"
+    );
+
+
+    /*
+        Show main screen
+    */
+
+    startScreen.classList.add(
+        "active"
+    );
+
+
+    /*
+        Reset
+    */
+
+    currentQuestion = 0;
+
+    selectedQuestions = [];
 
     isReading = false;
 
@@ -703,34 +735,61 @@ function showResult() {
    EVENT LISTENERS
 ========================================= */
 
+
+/*
+    STARTA LÄSNINGEN
+*/
+
 startButton.addEventListener(
     "click",
-    startQuiz
+    startReading
 );
 
 
-restartButton.addEventListener(
-    "click",
-    startQuiz
-);
-
+/*
+    ANSWERS
+*/
 
 answerOptions.forEach(option => {
 
     option.addEventListener(
         "click",
-        () => {
+        function() {
 
-            const answer =
-                option.dataset.answer;
-
-            answerQuestion(
-                answer,
-                option
-            );
+            selectAnswer(this);
 
         }
     );
 
 });
+
+
+/*
+    GÖR EN NY LÄSNING
+
+    This goes ALL THE WAY BACK
+    to the main/start screen.
+*/
+
+restartButton.addEventListener(
+    "click",
+    returnToStart
+);
+
+
+
+/* =========================================
+   INITIAL STATE
+========================================= */
+
+startScreen.classList.add("active");
+
+quizScreen.classList.remove("active");
+
+resultScreen.classList.remove("active");
+
+
+console.log(
+    "Font Fortune is ready."
+);
 ```
