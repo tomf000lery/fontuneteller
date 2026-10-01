@@ -750,3 +750,8 @@ body {
     }
 
 }
+.logo-image {
+    width: 260px;
+    height: auto;
+    display: block;
+}
