@@ -1,8 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="sv">
-
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,18 +11,13 @@
 
     <title>Vilket typsnitt är du?</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
 <main class="fortune-machine">
-
 
     <!-- =====================================
          FLOATING LOGO
@@ -32,17 +26,6 @@
     <header class="machine-header">
 
         <div class="floating-logo">
-
-            <!--
-                BYT UT DETTA MOT DIN LOGGA
-
-                Exempel:
-
-                <img
-                    src="assets/logo.svg"
-                    alt="Vilket typsnitt är du?"
-                >
-            -->
 
             <div class="logo-placeholder">
                 DIN LOGGA
@@ -70,10 +53,10 @@
                 är du?
             </h1>
 
-
             <button
                 id="start-button"
                 class="start-button"
+                type="button"
             >
                 STARTA LÄSNINGEN
             </button>
@@ -95,9 +78,6 @@
 
         <div class="quiz">
 
-
-            <!-- PROGRESS -->
-
             <div class="progress">
 
                 <span id="question-number">
@@ -113,87 +93,57 @@
             </div>
 
 
-
-            <!-- QUESTION -->
-
             <h2 id="question-text">
                 Frågan kommer här
             </h2>
 
-
-
-            <!-- ANSWERS -->
 
             <div
                 id="answers"
                 class="answers"
             >
 
-
-                <!-- RED -->
-
                 <button
                     class="answer-option"
                     data-answer="A"
+                    type="button"
                 >
-
                     <span class="orb orb-red"></span>
-
                     <span class="answer-text"></span>
-
                 </button>
 
-
-
-                <!-- BLUE -->
 
                 <button
                     class="answer-option"
                     data-answer="B"
+                    type="button"
                 >
-
                     <span class="orb orb-blue"></span>
-
                     <span class="answer-text"></span>
-
                 </button>
 
-
-
-                <!-- GOLD -->
 
                 <button
                     class="answer-option"
                     data-answer="C"
+                    type="button"
                 >
-
                     <span class="orb orb-gold"></span>
-
                     <span class="answer-text"></span>
-
                 </button>
 
-
-
-                <!-- GREEN -->
 
                 <button
                     class="answer-option"
                     data-answer="D"
+                    type="button"
                 >
-
                     <span class="orb orb-green"></span>
-
                     <span class="answer-text"></span>
-
                 </button>
-
 
             </div>
 
-
-
-            <!-- READING STATUS -->
 
             <div
                 id="answer-label"
@@ -201,7 +151,6 @@
             >
                 Välj ett tecken
             </div>
-
 
         </div>
 
@@ -220,23 +169,17 @@
 
         <div class="result">
 
-
             <p class="result-intro">
                 TECKNEN HAR TALAT
             </p>
-
 
             <p class="result-label">
                 Ditt typsnitt är
             </p>
 
-
-            <h2
-                id="result-font"
-            >
+            <h2 id="result-font">
                 Futura
             </h2>
-
 
             <p
                 id="result-description"
@@ -245,19 +188,17 @@
                 Geometric, clean and progressive
             </p>
 
-
             <button
                 id="restart-button"
                 class="restart-button"
+                type="button"
             >
                 GÖR EN NY LÄSNING
             </button>
 
-
         </div>
 
     </section>
-
 
 </main>
 
@@ -265,6 +206,6 @@
 <script src="script.js"></script>
 
 </body>
-
 </html>
 ```
+
