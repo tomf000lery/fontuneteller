@@ -1,7 +1,3 @@
-/* =========================================
-RESET
-========================================= */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,57 +13,33 @@ height: 100%;
 body {
 background: #111;
 color: #f4f0e8;
-
-```
-font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+font-family: Arial, Helvetica, sans-serif;
 overflow: hidden;
-```
-
 }
-
-/* =========================================
-MAIN MACHINE
-========================================= */
 
 .fortune-machine {
 position: relative;
-
-```
 width: 100vw;
 height: 100vh;
-
 background: #111;
-
 overflow: hidden;
-```
-
 }
 
-/* =========================================
-HEADER / LOGO
-========================================= */
+/* HEADER / LOGO */
 
 .machine-header {
 position: absolute;
-
-```
 top: 0;
 left: 0;
-
 width: 100%;
 height: 42vh;
 
+```
 display: flex;
-
 justify-content: center;
 align-items: center;
 
 z-index: 20;
-
 pointer-events: none;
 ```
 
@@ -75,29 +47,18 @@ pointer-events: none;
 
 .floating-logo {
 display: flex;
-
-```
 align-items: center;
 justify-content: center;
 
-animation:
-    floatingLogo
-    4s
-    ease-in-out
-    infinite;
+```
+animation: floatingLogo 4s ease-in-out infinite;
 
-filter:
-    drop-shadow(
-        0 15px 20px
-        rgba(0,0,0,0.25)
-    );
+filter: drop-shadow(
+    0 15px 20px rgba(0,0,0,0.25)
+);
 ```
 
 }
-
-/* =========================================
-LOGO PLACEHOLDER
-========================================= */
 
 .logo-placeholder {
 width: 260px;
@@ -105,59 +66,44 @@ height: 180px;
 
 ```
 display: flex;
-
 align-items: center;
 justify-content: center;
 
-border:
-    1px dashed
-    rgba(255,255,255,0.25);
+border: 1px dashed rgba(255,255,255,0.25);
 
-color:
-    rgba(255,255,255,0.25);
+color: rgba(255,255,255,0.25);
 
 font-size: 0.7rem;
-
 letter-spacing: 0.2em;
 ```
 
 }
 
-/* =========================================
-LOGO FLOAT ANIMATION
-========================================= */
-
 @keyframes floatingLogo {
 
 ```
 0% {
-    transform:
-        translateY(0px);
+    transform: translateY(0px);
 }
 
 50% {
-    transform:
-        translateY(-14px);
+    transform: translateY(-14px);
 }
 
 100% {
-    transform:
-        translateY(0px);
+    transform: translateY(0px);
 }
 ```
 
 }
 
-/* =========================================
-SCREENS
-========================================= */
+/* SCREENS */
 
 .screen {
 position: absolute;
-
-```
 inset: 0;
 
+```
 display: none;
 
 align-items: center;
@@ -172,9 +118,7 @@ padding: 5vw;
 display: flex;
 }
 
-/* =========================================
-INTRO
-========================================= */
+/* INTRO */
 
 .intro {
 width: 100%;
@@ -182,7 +126,6 @@ height: 82vh;
 
 ```
 display: flex;
-
 flex-direction: column;
 
 align-items: center;
@@ -194,10 +137,6 @@ text-align: center;
 ```
 
 }
-
-/* =========================================
-INTRO TITLE
-========================================= */
 
 .intro-title {
 font-family:
@@ -219,99 +158,28 @@ font-size:
     );
 
 line-height: 0.88;
-
 letter-spacing: -0.055em;
 
-margin-bottom: 2.5rem;
+margin-bottom: 3.5rem;
 ```
 
 }
 
-/* =========================================
-TYPEFACE CAROUSEL
-========================================= */
-
-.font-carousel {
-width: 100%;
-
-```
-height: 150px;
-
-display: flex;
-
-align-items: center;
-justify-content: center;
-
-overflow: hidden;
-
-margin-bottom: 2.5rem;
-
-position: relative;
-```
-
-}
-
-.carousel-font {
-font-size:
-clamp(
-4rem,
-9vw,
-8rem
-);
-
-```
-line-height: 1;
-
-letter-spacing: -0.06em;
-
-font-weight: 400;
-
-opacity: 1;
-
-transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
-```
-
-}
-
-.carousel-font.changing {
-opacity: 0;
-
-```
-transform:
-    translateY(15px);
-```
-
-}
-
-/* =========================================
-START BUTTON
-========================================= */
+/* START BUTTON */
 
 .start-button {
-padding:
-1.25rem
-2.8rem;
+padding: 1.25rem 2.8rem;
 
 ```
-border:
-    1px solid
-    rgba(244,240,232,0.65);
-
+border: 1px solid rgba(244,240,232,0.65);
 border-radius: 100px;
 
 background: transparent;
-
 color: #f4f0e8;
 
-font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+font-family: Arial, Helvetica, sans-serif;
 
 font-size: 0.72rem;
-
 letter-spacing: 0.16em;
 
 cursor: pointer;
@@ -320,51 +188,33 @@ transition:
     background 0.4s ease,
     color 0.4s ease,
     transform 0.4s ease,
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+    box-shadow 0.4s ease;
 ```
 
 }
 
 .start-button:hover {
 background: #f4f0e8;
-
-```
 color: #111;
 
-border-color: #f4f0e8;
-
-transform:
-    scale(1.05);
+```
+transform: scale(1.05);
 
 box-shadow:
-    0 0 15px
-    rgba(244,240,232,0.25),
-
-    0 0 35px
-    rgba(244,240,232,0.18),
-
-    0 0 70px
-    rgba(244,240,232,0.10);
+    0 0 30px
+    rgba(244,240,232,0.15);
 ```
 
 }
 
 .start-button:active {
-transform:
-scale(0.98);
+transform: scale(0.98);
 }
 
-/* =========================================
-QUIZ
-========================================= */
+/* QUIZ */
 
 .quiz {
-width:
-min(
-1000px,
-90vw
-);
+width: min(1000px, 90vw);
 
 ```
 text-align: center;
@@ -374,9 +224,7 @@ padding-top: 8vh;
 
 }
 
-/* =========================================
-PROGRESS
-========================================= */
+/* PROGRESS */
 
 .progress {
 display: flex;
@@ -390,7 +238,6 @@ gap: 1rem;
 margin-bottom: 4rem;
 
 font-size: 0.7rem;
-
 letter-spacing: 0.18em;
 
 opacity: 0.45;
@@ -400,19 +247,16 @@ opacity: 0.45;
 
 .progress-line {
 width: 100px;
-
-```
 height: 1px;
 
+```
 background:
     rgba(255,255,255,0.4);
 ```
 
 }
 
-/* =========================================
-QUESTION
-========================================= */
+/* QUESTION */
 
 #question-text {
 max-width: 900px;
@@ -438,16 +282,10 @@ font-weight: 400;
 
 }
 
-/* =========================================
-ANSWERS
-========================================= */
+/* ANSWERS */
 
 .answers {
-width:
-min(
-650px,
-90vw
-);
+width: min(650px, 90vw);
 
 ```
 margin: 0 auto;
@@ -463,9 +301,7 @@ gap: 0.8rem;
 
 }
 
-/* =========================================
-ANSWER OPTION
-========================================= */
+/* ANSWER OPTION */
 
 .answer-option {
 width: 100%;
@@ -522,16 +358,13 @@ transform:
 
 }
 
-/* =========================================
-ORBS
-========================================= */
+/* ORBS */
 
 .answer-option .orb {
 position: relative;
 
 ```
-flex:
-    0 0 auto;
+flex: 0 0 auto;
 
 width: 22px;
 height: 22px;
@@ -569,29 +402,16 @@ transition:
 }
 
 .answer-option:hover .orb {
-transform:
-scale(1.18);
-
-```
-filter:
-    brightness(1.3);
-```
-
+transform: scale(1.18);
+filter: brightness(1.3);
 }
 
 .answer-option:hover .orb::after {
 opacity: 0.9;
-
-```
-transform:
-    scale(1.2);
-```
-
+transform: scale(1.2);
 }
 
-/* =========================================
-RED ORB
-========================================= */
+/* RED */
 
 .orb-red {
 background:
@@ -611,13 +431,10 @@ box-shadow:
 }
 
 .orb-red::after {
-background:
-#ff2020;
+background: #ff2020;
 }
 
-/* =========================================
-BLUE ORB
-========================================= */
+/* BLUE */
 
 .orb-blue {
 background:
@@ -637,13 +454,10 @@ box-shadow:
 }
 
 .orb-blue::after {
-background:
-#2675ff;
+background: #2675ff;
 }
 
-/* =========================================
-GOLD ORB
-========================================= */
+/* GOLD */
 
 .orb-gold {
 background:
@@ -663,13 +477,10 @@ box-shadow:
 }
 
 .orb-gold::after {
-background:
-#e0ad32;
+background: #e0ad32;
 }
 
-/* =========================================
-GREEN ORB
-========================================= */
+/* GREEN */
 
 .orb-green {
 background:
@@ -689,13 +500,10 @@ box-shadow:
 }
 
 .orb-green::after {
-background:
-#27bd4d;
+background: #27bd4d;
 }
 
-/* =========================================
-ANSWER TEXT
-========================================= */
+/* ANSWER TEXT */
 
 .answer-text {
 font-size:
@@ -727,9 +535,7 @@ transform:
 
 }
 
-/* =========================================
-SELECTED / READING ANIMATION
-========================================= */
+/* SELECTED */
 
 .answer-option.selected {
 background:
@@ -768,23 +574,19 @@ animation:
 
 ```
 0% {
-    transform:
-        scale(1);
+    transform: scale(1);
 }
 
 40% {
-    transform:
-        scale(1.45);
+    transform: scale(1.45);
 }
 
 70% {
-    transform:
-        scale(1.15);
+    transform: scale(1.15);
 }
 
 100% {
-    transform:
-        scale(1);
+    transform: scale(1);
 }
 ```
 
@@ -794,32 +596,24 @@ animation:
 
 ```
 0% {
-    transform:
-        scale(1);
-
+    transform: scale(1);
     opacity: 0.5;
 }
 
 50% {
-    transform:
-        scale(2);
-
+    transform: scale(2);
     opacity: 1;
 }
 
 100% {
-    transform:
-        scale(1);
-
+    transform: scale(1);
     opacity: 0.5;
 }
 ```
 
 }
 
-/* =========================================
-READING STATUS
-========================================= */
+/* READING STATUS */
 
 .answer-label {
 margin-top: 2rem;
@@ -845,16 +639,10 @@ transition:
 opacity: 0.65;
 }
 
-/* =========================================
-RESULT
-========================================= */
+/* RESULT */
 
 .result {
-width:
-min(
-1100px,
-90vw
-);
+width: min(1100px, 90vw);
 
 ```
 text-align: center;
@@ -910,9 +698,7 @@ font-weight: 400;
 
 }
 
-/* =========================================
-RESULT DESCRIPTION
-========================================= */
+/* RESULT DESCRIPTION */
 
 .result-description {
 max-width: 600px;
@@ -931,9 +717,7 @@ opacity: 0.65;
 
 }
 
-/* =========================================
-RESULT FONTS
-========================================= */
+/* RESULT FONTS */
 
 .font-futura {
 font-family:
@@ -1030,9 +814,7 @@ Helvetica,
 sans-serif;
 }
 
-/* =========================================
-RESTART
-========================================= */
+/* RESTART */
 
 .restart-button {
 padding:
@@ -1065,22 +847,17 @@ transition:
 }
 
 .restart-button:hover {
-background:
-#f4f0e8;
+background: #f4f0e8;
 
 ```
-color:
-    #111;
+color: #111;
 
-transform:
-    scale(1.04);
+transform: scale(1.04);
 ```
 
 }
 
-/* =========================================
-MOBILE
-========================================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -1089,18 +866,15 @@ MOBILE
     height: 38vh;
 }
 
-
 .logo-placeholder {
     width: 200px;
     height: 130px;
 }
 
-
 .intro {
     height: 86vh;
     padding-bottom: 7vh;
 }
-
 
 .intro-title {
     font-size:
@@ -1111,29 +885,10 @@ MOBILE
         );
 }
 
-
-.font-carousel {
-    height: 110px;
-
-    margin-bottom: 2rem;
-}
-
-
-.carousel-font {
-    font-size:
-        clamp(
-            3.5rem,
-            15vw,
-            5.5rem
-        );
-}
-
-
 .answers {
     width: 92vw;
     gap: 0.5rem;
 }
-
 
 .answer-option {
     padding:
@@ -1143,17 +898,14 @@ MOBILE
     gap: 1rem;
 }
 
-
 .answer-option .orb {
     width: 18px;
     height: 18px;
 }
 
-
 .answer-text {
     font-size: 0.9rem;
 }
-
 
 #question-text {
     margin-bottom: 4rem;
@@ -1161,4 +913,5 @@ MOBILE
 ```
 
 }
+
 
