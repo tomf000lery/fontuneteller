@@ -304,9 +304,32 @@ const typefaces = [
 
 ];
 
+/* STARTSIDANS TEXTER */
+
+const fontCycleTexts = [
+"Futura - geometric, clean and progressive",
+"Raceway - airy, sleek and structured",
+"Playfair Display - tradition with a flair",
+"Helvetica - The Swiss Army knife of fonts",
+"Gotham - bold and built for impact",
+"Montserrat - urban, stylish and geometric",
+"Didot - high fashion in font form",
+"Cooper Black - charming, friendly, playful",
+"Bodoni - luxurious and editorial",
+"Comic Sans - fun, embodiment of informality",
+"Chiller - alarming, strong presence",
+"Hobo - unusual, doesn’t have any straight lines",
+"Bubblegum - joyful and not edgy",
+"Arial - clean, modern, high readability"
+];
+
 let selectedQuestions = [];
 let currentQuestion = 0;
 let isReading = false;
+
+let currentFontText = 0;
+
+/* ELEMENT */
 
 const startScreen =
 document.getElementById("start-screen");
@@ -319,9 +342,6 @@ document.getElementById("result-screen");
 
 const startButton =
 document.getElementById("start-button");
-
-const restartButton =
-document.getElementById("restart-button");
 
 const questionText =
 document.getElementById("question-text");
@@ -338,8 +358,13 @@ document.getElementById("result-font");
 const resultDescription =
 document.getElementById("result-description");
 
+const fontCycle =
+document.getElementById("font-cycle");
+
 const answerOptions =
 document.querySelectorAll(".answer-option");
+
+/* SHUFFLE */
 
 function shuffle(array) {
 
@@ -371,6 +396,8 @@ return shuffled;
 
 }
 
+/* START */
+
 function startReading() {
 
 ```
@@ -390,6 +417,8 @@ showQuestion();
 ```
 
 }
+
+/* SHOW QUESTION */
 
 function showQuestion() {
 
@@ -433,6 +462,8 @@ answerOptions.forEach(option => {
 ```
 
 }
+
+/* SELECT ANSWER */
 
 function selectAnswer(option) {
 
@@ -481,6 +512,8 @@ setTimeout(() => {
 
 }
 
+/* RESULT */
+
 function showRandomResult() {
 
 ```
@@ -523,23 +556,41 @@ isReading = false;
 
 }
 
-function returnToStart() {
+/* FONT TEXT ROTATION */
+
+function rotateFontText() {
 
 ```
-quizScreen.classList.remove("active");
+if (!fontCycle) {
+    return;
+}
 
-resultScreen.classList.remove("active");
+fontCycle.classList.add("fade");
 
-startScreen.classList.add("active");
+setTimeout(() => {
 
-currentQuestion = 0;
+    currentFontText =
+        (currentFontText + 1) %
+        fontCycleTexts.length;
 
-selectedQuestions = [];
+    fontCycle.textContent =
+        fontCycleTexts[currentFontText];
 
-isReading = false;
+    fontCycle.classList.remove("fade");
+
+}, 450);
 ```
 
 }
+
+/* START FONT ROTATION */
+
+setInterval(
+rotateFontText,
+3000
+);
+
+/* EVENTS */
 
 startButton.addEventListener(
 "click",
@@ -559,14 +610,12 @@ option.addEventListener(
 
 });
 
-restartButton.addEventListener(
-"click",
-returnToStart
-);
+/* INITIAL STATE */
 
 startScreen.classList.add("active");
 
 quizScreen.classList.remove("active");
 
 resultScreen.classList.remove("active");
+
 
