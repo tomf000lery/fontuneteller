@@ -1,808 +1,551 @@
-/* ==========================================
-ALLA 21 FRÅGOR
-========================================== */
+/* =========================================
+   QUESTIONS
+========================================= */
 
 const questions = [
 
-```
-{
-    question: "Hur tror du att du uppfattas av andra?",
-    answers: {
-        A: "Pålitlig",
-        B: "Sofistikerad",
-        C: "Lekfull",
-        D: "Expressiv"
-    }
-},
+    {
+        question: "Hur tror du att du uppfattas av andra?",
+        answers: {
+            A: "Pålitlig",
+            B: "Sofistikerad",
+            C: "Lekfull",
+            D: "Expressiv"
+        }
+    },
 
-{
-    question: "Vad gör du när du kommer in i ett rum fullt av människor du inte känner?",
-    answers: {
-        A: "Står klistrad vid väggen",
-        B: "Tar initiativ, börjar prata, tar över rummet, lämnar ingen luft kvar åt någon.",
-        C: "Hittar någon intressant och går fram till den",
-        D: "Ringer sin kompis och frågar vad de gör."
-    }
-},
+    {
+        question: "Vad gör du när du kommer in i ett rum fullt av människor du inte känner?",
+        answers: {
+            A: "Står klistrad vid väggen",
+            B: "Tar initiativ, börjar prata, tar över rummet, lämnar ingen luft kvar åt någon.",
+            C: "Hittar någon intressant och går fram till den",
+            D: "Ringer sin kompis och frågar vad de gör."
+        }
+    },
 
-{
-    question: "Hur reagerar du på regler?",
-    answers: {
-        A: "Regler finns av en anledning",
-        B: "Jag följer dem om de är vettiga",
-        C: "Jag tycker om att tänja på dem",
-        D: "Jag föredrar att skapa mina egna"
-    }
-},
+    {
+        question: "Hur reagerar du på regler?",
+        answers: {
+            A: "Regler finns av en anledning",
+            B: "Jag följer dem om de är vettiga",
+            C: "Jag tycker om att tänja på dem",
+            D: "Jag föredrar att skapa mina egna"
+        }
+    },
 
-{
-    question: "Vilket ord beskriver dig bäst?",
-    answers: {
-        A: "Bold",
-        B: "Kernad",
-        C: "Uttrycksfull",
-        D: "Klassisk"
-    }
-},
+    {
+        question: "Vilket ord beskriver dig bäst?",
+        answers: {
+            A: "Bold",
+            B: "Kernad",
+            C: "Uttrycksfull",
+            D: "Klassisk"
+        }
+    },
 
-{
-    question: "Hur ser ditt skrivbord ut?",
-    answers: {
-        A: "Organiserat och strukturerat",
-        B: "Rent och minimalistiskt",
-        C: "Kreativt kaos",
-        D: "Snyggt och genomtänkt"
-    }
-},
+    {
+        question: "Hur ser ditt skrivbord ut?",
+        answers: {
+            A: "Organiserat och strukturerat",
+            B: "Rent och minimalistiskt",
+            C: "Kreativt kaos",
+            D: "Snyggt och genomtänkt"
+        }
+    },
 
-{
-    question: "Vad är viktigast när du väljer kläder?",
-    answers: {
-        A: "Funktion",
-        B: "Passform",
-        C: "Personlighet",
-        D: "Stil"
-    }
-},
+    {
+        question: "Vad är viktigast när du väljer kläder?",
+        answers: {
+            A: "Funktion",
+            B: "Passform",
+            C: "Personlighet",
+            D: "Stil"
+        }
+    },
 
-{
-    question: "Hur hanterar du förändringar?",
-    answers: {
-        A: "Jag föredrar det välbekanta",
-        B: "Jag anpassar mig snabbt",
-        C: "Jag älskar förändring",
-        D: "Jag accepterar allt det här livet har att visa"
-    }
-},
+    {
+        question: "Hur hanterar du förändringar?",
+        answers: {
+            A: "Jag föredrar det välbekanta",
+            B: "Jag anpassar mig snabbt",
+            C: "Jag älskar förändring",
+            D: "Jag accepterar allt det här livet har att visa"
+        }
+    },
 
-{
-    question: "Vad gör du när du inte vet vad du ska välja?",
-    answers: {
-        A: "Tar det säkra valet",
-        B: "Frågar någon annan",
-        C: "Går på magkänslan",
-        D: "Jämför alla alternativ"
-    }
-},
+    {
+        question: "Vad gör du när du inte vet vad du ska välja?",
+        answers: {
+            A: "Tar det säkra valet",
+            B: "Frågar någon annan",
+            C: "Går på magkänslan",
+            D: "Jämför alla alternativ"
+        }
+    },
 
-{
-    question: "Vad stör dig mest?",
-    answers: {
-        A: "Dålig läsbarhet",
-        B: "Onödiga detaljer",
-        C: "Saknad av personlighet",
-        D: "Ogenomtänkt kerning"
-    }
-},
+    {
+        question: "Vad stör dig mest?",
+        answers: {
+            A: "Dålig läsbarhet",
+            B: "Onödiga detaljer",
+            C: "Saknad av personlighet",
+            D: "Ogenomtänkt kerning"
+        }
+    },
 
-{
-    question: "Om du fick välja en superkraft, vilken skulle du ta?",
-    answers: {
-        A: "Flyga",
-        B: "Kontrollera tid och rum",
-        C: "Bemästra Glyphs",
-        D: "Spruta eld ifrån händerna"
-    }
-},
+    {
+        question: "Om du fick välja en superkraft, vilken skulle du ta?",
+        answers: {
+            A: "Flyga",
+            B: "Kontrollera tid och rum",
+            C: "Bemästra Glyphs",
+            D: "Spruta eld ifrån händerna"
+        }
+    },
 
-{
-    question: "Vad är viktigast för dig?",
-    answers: {
-        A: "Trygghet",
-        B: "Frihet",
-        C: "Kreativitet",
-        D: "Kvalitet"
-    }
-},
+    {
+        question: "Vad är viktigast för dig?",
+        answers: {
+            A: "Trygghet",
+            B: "Frihet",
+            C: "Kreativitet",
+            D: "Kvalitet"
+        }
+    },
 
-{
-    question: "Hur fattar du beslut?",
-    answers: {
-        A: "Genom noggrann analys av mina erfarenheter och andra beprövade metoder",
-        B: "Känsla",
-        C: "Snabbt och fort",
-        D: "Jag gör inte sånt"
-    }
-},
+    {
+        question: "Hur fattar du beslut?",
+        answers: {
+            A: "Genom noggrann analys av mina erfarenheter och andra beprövade metoder",
+            B: "Känsla",
+            C: "Snabbt och fort",
+            D: "Jag gör inte sånt"
+        }
+    },
 
-{
-    question: "Vilken typ av komplimang uppskattar du mest?",
-    answers: {
-        A: "Du är någon man kan lita på.",
-        B: "Du är så rolig.",
-        C: "Du är så bra på kerning.",
-        D: "Du är så smart."
-    }
-},
+    {
+        question: "Vilken typ av komplimang uppskattar du mest?",
+        answers: {
+            A: "Du är någon man kan lita på.",
+            B: "Du är så rolig.",
+            C: "Du är så bra på kerning.",
+            D: "Du är så smart."
+        }
+    },
 
-{
-    question: "Om du var en musikgenre skulle du vara?",
-    answers: {
-        A: "Rock n roll",
-        B: "Blues",
-        C: "Experimentell och oförutsägbar som du endast hittar på Soundcloud",
-        D: "Disco funk"
-    }
-},
+    {
+        question: "Om du var en musikgenre skulle du vara?",
+        answers: {
+            A: "Rock n roll",
+            B: "Blues",
+            C: "Experimentell och oförutsägbar som du endast hittar på Soundcloud",
+            D: "Disco funk"
+        }
+    },
 
-{
-    question: "Vad gör du när ett projekt börjar gå åt fel håll?",
-    answers: {
-        A: "Går tillbaka till planen",
-        B: "Tar kontroll",
-        C: "Testar en helt ny idé",
-        D: "Tar pension"
-    }
-},
+    {
+        question: "Vad gör du när ett projekt börjar gå åt fel håll?",
+        answers: {
+            A: "Går tillbaka till planen",
+            B: "Tar kontroll",
+            C: "Testar en helt ny idé",
+            D: "Tar pension"
+        }
+    },
 
-{
-    question: "Hur nära är du till bokstäver?",
-    answers: {
-        A: "Nära nog på och på tryggt avstånd",
-        B: "Jag älskar dem",
-        C: "Jag gillar vissa av dem",
-        D: "51ffr0r är 6ä11tr3"
-    }
-},
+    {
+        question: "Hur nära är du till bokstäver?",
+        answers: {
+            A: "Nära nog på och på tryggt avstånd",
+            B: "Jag älskar dem",
+            C: "Jag gillar vissa av dem",
+            D: "51ffr0r är 6ä11tr3"
+        }
+    },
 
-{
-    question: "Vilken av dessa dras du mest till?",
-    answers: {
-        A: "Röd",
-        B: "Blå",
-        C: "Grön",
-        D: "Lila"
-    }
-},
+    {
+        question: "Vilken av dessa dras du mest till?",
+        answers: {
+            A: "Röd",
+            B: "Blå",
+            C: "Grön",
+            D: "Lila"
+        }
+    },
 
-{
-    question: "Vad skulle du aldrig vilja vara?",
-    answers: {
-        A: "Opålitlig",
-        B: "Osynlig",
-        C: "En typsnittsdesigner",
-        D: "Slarvig"
-    }
-},
+    {
+        question: "Vad skulle du aldrig vilja vara?",
+        answers: {
+            A: "Opålitlig",
+            B: "Osynlig",
+            C: "En typsnittsdesigner",
+            D: "Slarvig"
+        }
+    },
 
-{
-    question: "När var sist du gjorde något helt spontant?",
-    answers: {
-        A: "Aldrig hänt",
-        B: "Inte så längesen",
-        C: "Någon gång men kan inte minnas när",
-        D: "Allt jag gör är spontant"
-    }
-},
+    {
+        question: "När var sist du gjorde något helt spontant?",
+        answers: {
+            A: "Aldrig hänt",
+            B: "Inte så längesen",
+            C: "Någon gång men kan inte minnas när",
+            D: "Allt jag gör är spontant"
+        }
+    },
 
-{
-    question: "Vilket påstående om dig är mest korrekt?",
-    answers: {
-        A: "Jag gillar saker som är tidlösa och genomtänkta.",
-        B: "Jag vill helst göra saker på mitt eget sätt.",
-        C: "Jag dras till det moderna och nytänkande.",
-        D: "Jag kan lägga orimligt mycket tid på små detaljer."
-    }
-},
+    {
+        question: "Vilket påstående om dig är mest korrekt?",
+        answers: {
+            A: "Jag gillar saker som är tidlösa och genomtänkta.",
+            B: "Jag vill helst göra saker på mitt eget sätt.",
+            C: "Jag dras till det moderna och nytänkande.",
+            D: "Jag kan lägga orimligt mycket tid på små detaljer."
+        }
+    },
 
-{
-    question: "Vilken miljö trivs du bäst i?",
-    answers: {
-        A: "Ett bibliotek",
-        B: "Ett kontor",
-        C: "Hemma",
-        D: "Ett café"
+    {
+        question: "Vilken miljö trivs du bäst i?",
+        answers: {
+            A: "Ett bibliotek",
+            B: "Ett kontor",
+            C: "Hemma",
+            D: "Ett café"
+        }
     }
-}
-```
 
 ];
 
-/* ==========================================
-ALLA 14 TYPSNITT
-========================================== */
+
+/* =========================================
+   TYPEFACES
+
+   TEMPORÄRA RESULTAT
+
+   Byt ut dessa mot dina riktiga 16
+   typsnitt senare.
+========================================= */
 
 const typefaces = [
 
-```
-{
-    name: "Futura",
-    className: "font-futura",
-    description: "geometric, clean and progressive"
-},
+    {
+        name: "Helvetica",
+        description: "Du söker klarhet, balans och saker som fungerar. Din energi är rak, självsäker och tidlös."
+    },
 
-{
-    name: "Raceway",
-    className: "font-raceway",
-    description: "airy, sleek and structured"
-},
+    {
+        name: "Garamond",
+        description: "Du bär på en klassisk energi. Du uppskattar detaljer, historia och saker som får åldras med värdighet."
+    },
 
-{
-    name: "Playfair Display",
-    className: "font-playfair",
-    description: "tradition with a flair"
-},
+    {
+        name: "Futura",
+        description: "Du blickar framåt. Geometrisk, rationell och samtidigt lite besatt av att göra saker på ditt eget sätt."
+    },
 
-{
-    name: "Helvetica",
-    className: "font-helvetica",
-    description: "The Swiss Army knife of fonts"
-},
+    {
+        name: "Bodoni",
+        description: "Du vet vad du gillar och du är inte rädd för att visa det. Elegant, dramatisk och med mycket personlighet."
+    },
 
-{
-    name: "Gotham",
-    className: "font-gotham",
-    description: "bold and built for impact"
-},
+    {
+        name: "Comic Sans",
+        description: "Du vägrar ta livet — eller typografi — på för stort allvar."
+    },
 
-{
-    name: "Montserrat",
-    className: "font-montserrat",
-    description: "urban, stylish and geometric"
-},
+    {
+        name: "Times New Roman",
+        description: "Du är en överlevare. Du har sett trender komma och gå och står fortfarande kvar."
+    },
 
-{
-    name: "Didot",
-    className: "font-didot",
-    description: "high fashion in font form"
-},
+    {
+        name: "Cooper Black",
+        description: "Varm, social och omöjlig att ignorera. Du lämnar gärna lite extra plats åt personligheten."
+    },
 
-{
-    name: "Cooper Black",
-    className: "font-cooper",
-    description: "charming, friendly, playful"
-},
+    {
+        name: "Arial",
+        description: "Du behöver inte komplicera saker. När något fungerar, varför ändra det?"
+    },
 
-{
-    name: "Bodoni",
-    className: "font-bodoni",
-    description: "luxurious and editorial"
-},
+    {
+        name: "Didot",
+        description: "Du uppskattar precision, elegans och en perfekt balans mellan dramatik och kontroll."
+    },
 
-{
-    name: "Comic Sans",
-    className: "font-comic",
-    description: "fun, embodiment of informality"
-},
+    {
+        name: "Courier",
+        description: "Du gillar struktur, system och saker som känns lite mekaniska."
+    },
 
-{
-    name: "Chiller",
-    className: "font-chiller",
-    description: "alarming, strong presence"
-},
+    {
+        name: "Impact",
+        description: "Du har saker att säga och du tänker inte säga dem tyst."
+    },
 
-{
-    name: "Hobo",
-    className: "font-hobo",
-    description: "unusual, doesn’t have any straight lines"
-},
+    {
+        name: "Papyrus",
+        description: "Du går din egen väg. Ibland vet ingen riktigt varför — inklusive du."
+    },
 
-{
-    name: "Bubblegum",
-    className: "font-bubblegum",
-    description: "joyful and not edgy"
-},
+    {
+        name: "Baskerville",
+        description: "Genomtänkt, intelligent och med en stark känsla för tradition."
+    },
 
-{
-    name: "Arial",
-    className: "font-arial",
-    description: "clean, modern, high readability"
-}
-```
+    {
+        name: "Univers",
+        description: "Du uppskattar ordning utan att behöva berätta för någon att du gör det."
+    },
+
+    {
+        name: "Avenir",
+        description: "Du är modern utan att vara besatt av att vara modern."
+    },
+
+    {
+        name: "Wingdings",
+        description: "Ingen förstår dig helt. Och det är precis så du vill ha det."
+    }
 
 ];
 
-/* ==========================================
-VARIABLER
-========================================== */
+
+/* =========================================
+   VARIABLES
+========================================= */
 
 let selectedQuestions = [];
 
 let currentQuestion = 0;
 
-let isReading = false;
+let score = {
+    A: 0,
+    B: 0,
+    C: 0,
+    D: 0
+};
 
-/* ==========================================
-ELEMENT
-========================================== */
 
-const startScreen =
-document.getElementById(
-"start-screen"
-);
+/* =========================================
+   DOM
+========================================= */
 
-const quizScreen =
-document.getElementById(
-"quiz-screen"
-);
+const startScreen = document.getElementById("start-screen");
+const quizScreen = document.getElementById("quiz-screen");
+const resultScreen = document.getElementById("result-screen");
 
-const resultScreen =
-document.getElementById(
-"result-screen"
-);
+const startButton = document.getElementById("start-button");
+const restartButton = document.getElementById("restart-button");
 
-const startButton =
-document.getElementById(
-"start-button"
-);
+const questionText = document.getElementById("question-text");
+const questionNumber = document.getElementById("question-number");
 
-const restartButton =
-document.getElementById(
-"restart-button"
-);
+const answerLabel = document.getElementById("answer-label");
 
-const questionText =
-document.getElementById(
-"question-text"
-);
+const resultFont = document.getElementById("result-font");
+const resultDescription = document.getElementById("result-description");
 
-const questionNumber =
-document.getElementById(
-"question-number"
-);
+const orbs = document.querySelectorAll(".orb");
 
-const resultFont =
-document.getElementById(
-"result-font"
-);
 
-const resultDescription =
-document.getElementById(
-"result-description"
-);
-
-const answerOptions =
-document.querySelectorAll(
-".answer-option"
-);
-
-/* ==========================================
-SLUMPA
-========================================== */
+/* =========================================
+   UTILITY
+========================================= */
 
 function shuffle(array) {
 
-```
-const shuffled =
-    [...array];
-
-
-for (
-    let i = shuffled.length - 1;
-    i > 0;
-    i--
-) {
-
-    const j =
-        Math.floor(
-            Math.random() *
-            (i + 1)
-        );
-
-
-    [
-        shuffled[i],
-        shuffled[j]
-    ] = [
-        shuffled[j],
-        shuffled[i]
-    ];
+    return [...array].sort(() => Math.random() - 0.5);
 
 }
 
 
-return shuffled;
-```
+/* =========================================
+   START QUIZ
+========================================= */
+
+function startQuiz() {
+
+    // Reset score
+
+    score = {
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0
+    };
+
+    currentQuestion = 0;
+
+    // Select 10 random questions
+
+    selectedQuestions = shuffle(questions).slice(0, 10);
+
+    // Show first question
+
+    startScreen.classList.remove("active");
+
+    resultScreen.classList.remove("active");
+
+    quizScreen.classList.add("active");
+
+    showQuestion();
 
 }
 
-/* ==========================================
-STARTA LÄSNING
-========================================== */
 
-function startReading() {
-
-```
-currentQuestion = 0;
-
-isReading = false;
-
-
-/*
-   Välj 10 av de 21 frågorna
-   slumpmässigt.
-*/
-
-selectedQuestions =
-    shuffle(
-        questions
-    ).slice(
-        0,
-        10
-    );
-
-
-startScreen.classList.remove(
-    "active"
-);
-
-
-resultScreen.classList.remove(
-    "active"
-);
-
-
-quizScreen.classList.add(
-    "active"
-);
-
-
-showQuestion();
-```
-
-}
-
-/* ==========================================
-VISA FRÅGA
-========================================== */
+/* =========================================
+   SHOW QUESTION
+========================================= */
 
 function showQuestion() {
 
-```
-const question =
-    selectedQuestions[
-        currentQuestion
-    ];
+    const question = selectedQuestions[currentQuestion];
 
+    questionText.textContent = question.question;
 
-if (!question) {
-    return;
-}
+    questionNumber.textContent =
+        String(currentQuestion + 1).padStart(2, "0");
 
-
-/*
-   Uppdatera räknaren
-   01 → 02 → 03 osv.
-*/
-
-questionNumber.textContent =
-    String(
-        currentQuestion + 1
-    ).padStart(
-        2,
-        "0"
-    );
-
-
-/*
-   Visa frågan
-*/
-
-questionText.textContent =
-    question.question;
-
-
-/*
-   Fyll svarsalternativen
-*/
-
-answerOptions.forEach(
-    option => {
-
-        const answer =
-            option.dataset.answer;
-
-
-        const answerText =
-            option.querySelector(
-                ".answer-text"
-            );
-
-
-        answerText.textContent =
-            question.answers[
-                answer
-            ];
-
-
-        option.classList.remove(
-            "selected"
-        );
-
-
-        option.disabled =
-            false;
-
-    }
-);
-```
+    answerLabel.textContent = "Välj ett tecken";
 
 }
 
-/* ==========================================
-VÄLJ SVAR
-========================================== */
 
-function selectAnswer(option) {
+/* =========================================
+   ANSWER
+========================================= */
 
-```
-/*
-   Förhindra dubbelklick
-*/
+function answerQuestion(answer) {
 
-if (isReading) {
-    return;
-}
+    // Add score
 
+    score[answer]++;
 
-isReading = true;
+    // Optional visual feedback
 
+    answerLabel.textContent = "Tecknet är registrerat…";
 
-/*
-   Visa vilket svar
-   användaren klickade på.
-*/
+    // Small delay gives the interaction
+    // a more ceremonial feeling
 
-option.classList.add(
-    "selected"
-);
-
-
-/*
-   Stäng av alla svar
-   medan nästa fråga laddas.
-*/
-
-answerOptions.forEach(
-    otherOption => {
-
-        otherOption.disabled =
-            true;
-
-    }
-);
-
-
-/*
-   Kort paus så att
-   orb-animationen syns.
-*/
-
-setTimeout(
-    () => {
+    setTimeout(() => {
 
         currentQuestion++;
 
+        if (currentQuestion >= selectedQuestions.length) {
 
-        /*
-           Efter fråga 10
-           går vi till resultatet.
-        */
+            showResult();
 
-        if (
-            currentQuestion >=
-            selectedQuestions.length
-        ) {
+        } else {
 
-            showRandomResult();
-
-            return;
-        }
-
-
-        /*
-           Annars nästa fråga.
-        */
-
-        isReading = false;
-
-        showQuestion();
-
-    },
-    700
-);
-```
-
-}
-
-/* ==========================================
-VISA SLUMPMÄSSIGT RESULTAT
-========================================== */
-
-function showRandomResult() {
-
-```
-/*
-   Resultatet är helt oberoende
-   av vilka svar användaren valt.
-*/
-
-const result =
-    typefaces[
-        Math.floor(
-            Math.random() *
-            typefaces.length
-        )
-    ];
-
-
-/*
-   Ta bort tidigare typsnittsklasser.
-*/
-
-typefaces.forEach(
-    font => {
-
-        resultFont.classList.remove(
-            font.className
-        );
-
-    }
-);
-
-
-/*
-   Lägg till det nya typsnittet.
-*/
-
-resultFont.classList.add(
-    result.className
-);
-
-
-/*
-   Visa typsnittsnamnet.
-*/
-
-resultFont.textContent =
-    result.name;
-
-
-/*
-   Visa beskrivningen.
-*/
-
-resultDescription.textContent =
-    result.description;
-
-
-/*
-   Byt sida.
-*/
-
-quizScreen.classList.remove(
-    "active"
-);
-
-
-resultScreen.classList.add(
-    "active"
-);
-
-
-isReading = false;
-```
-
-}
-
-/* ==========================================
-TILLBAKA TILL START
-========================================== */
-
-function returnToStart() {
-
-```
-/*
-   Dölj frågorna.
-*/
-
-quizScreen.classList.remove(
-    "active"
-);
-
-
-/*
-   Dölj resultatet.
-*/
-
-resultScreen.classList.remove(
-    "active"
-);
-
-
-/*
-   Visa startsidan.
-*/
-
-startScreen.classList.add(
-    "active"
-);
-
-
-/*
-   Nollställ quizet.
-*/
-
-currentQuestion = 0;
-
-selectedQuestions = [];
-
-isReading = false;
-```
-
-}
-
-/* ==========================================
-KNAPPAR
-========================================== */
-
-startButton.addEventListener(
-"click",
-startReading
-);
-
-restartButton.addEventListener(
-"click",
-returnToStart
-);
-
-/* ==========================================
-SVARS-KNAPPAR
-========================================== */
-
-answerOptions.forEach(
-option => {
-
-```
-    option.addEventListener(
-        "click",
-        function() {
-
-            selectAnswer(
-                this
-            );
+            showQuestion();
 
         }
+
+    }, 450);
+
+}
+
+
+/* =========================================
+   CALCULATE RESULT
+========================================= */
+
+function calculateResult() {
+
+    /*
+        Find the answer with the highest score.
+    */
+
+    const highestScore = Math.max(
+        score.A,
+        score.B,
+        score.C,
+        score.D
     );
 
+    const winners = Object.keys(score)
+        .filter(key => score[key] === highestScore);
+
+    /*
+        If there is a tie, randomly select
+        between the tied answers.
+    */
+
+    const winningLetter =
+        winners[Math.floor(Math.random() * winners.length)];
+
+
+    /*
+        Convert the A/B/C/D personality
+        into one of 16 possible typefaces.
+
+        This is TEMPORARY.
+
+        Later we can make a much more sophisticated
+        scoring system.
+    */
+
+    const seed =
+        score.A * 1 +
+        score.B * 2 +
+        score.C * 3 +
+        score.D * 4;
+
+    const index = seed % typefaces.length;
+
+    return typefaces[index];
+
 }
-```
 
+
+/* =========================================
+   SHOW RESULT
+========================================= */
+
+function showResult() {
+
+    const result = calculateResult();
+
+    quizScreen.classList.remove("active");
+
+    resultScreen.classList.add("active");
+
+    resultFont.textContent = result.name;
+
+    resultDescription.textContent =
+        result.description;
+
+}
+
+
+/* =========================================
+   EVENT LISTENERS
+========================================= */
+
+startButton.addEventListener(
+    "click",
+    startQuiz
 );
 
-/* ==========================================
-INITIALT LÄGE
-========================================== */
 
-startScreen.classList.add(
-"active"
+restartButton.addEventListener(
+    "click",
+    startQuiz
 );
 
-quizScreen.classList.remove(
-"active"
-);
 
-resultScreen.classList.remove(
-"active"
-);
+orbs.forEach(orb => {
+
+    orb.addEventListener("click", () => {
+
+        const answer =
+            orb.dataset.answer;
+
+        answerQuestion(answer);
+
+    });
+
+});
 
