@@ -1,3 +1,7 @@
+/* ==========================================
+ALLA 21 FRÅGOR
+========================================== */
+
 const questions = [
 
 ```
@@ -214,25 +218,29 @@ const questions = [
 
 ];
 
+/* ==========================================
+ALLA 14 TYPSNITT
+========================================== */
+
 const typefaces = [
 
 ```
 {
     name: "Futura",
     className: "font-futura",
-    description: "Geometric, clean and progressive"
+    description: "geometric, clean and progressive"
 },
 
 {
     name: "Raceway",
     className: "font-raceway",
-    description: "Airy, sleek and structured"
+    description: "airy, sleek and structured"
 },
 
 {
     name: "Playfair Display",
     className: "font-playfair",
-    description: "Tradition with a flair"
+    description: "tradition with a flair"
 },
 
 {
@@ -244,132 +252,140 @@ const typefaces = [
 {
     name: "Gotham",
     className: "font-gotham",
-    description: "Bold and built for impact"
+    description: "bold and built for impact"
 },
 
 {
     name: "Montserrat",
     className: "font-montserrat",
-    description: "Urban, stylish and geometric"
+    description: "urban, stylish and geometric"
 },
 
 {
     name: "Didot",
     className: "font-didot",
-    description: "High fashion in font form"
+    description: "high fashion in font form"
 },
 
 {
     name: "Cooper Black",
     className: "font-cooper",
-    description: "Charming, friendly, playful"
+    description: "charming, friendly, playful"
 },
 
 {
     name: "Bodoni",
     className: "font-bodoni",
-    description: "Luxurious and editorial"
+    description: "luxurious and editorial"
 },
 
 {
     name: "Comic Sans",
     className: "font-comic",
-    description: "Fun, embodiment of informality"
+    description: "fun, embodiment of informality"
 },
 
 {
     name: "Chiller",
     className: "font-chiller",
-    description: "Alarming, strong presence"
+    description: "alarming, strong presence"
 },
 
 {
     name: "Hobo",
     className: "font-hobo",
-    description: "Unusual, doesn’t have any straight lines"
+    description: "unusual, doesn’t have any straight lines"
 },
 
 {
     name: "Bubblegum",
     className: "font-bubblegum",
-    description: "Joyful and not edgy"
+    description: "joyful and not edgy"
 },
 
 {
     name: "Arial",
     className: "font-arial",
-    description: "Clean, modern, high readability"
+    description: "clean, modern, high readability"
 }
 ```
 
 ];
 
-/* STARTSIDANS TEXTER */
-
-const fontCycleTexts = [
-"Futura - geometric, clean and progressive",
-"Raceway - airy, sleek and structured",
-"Playfair Display - tradition with a flair",
-"Helvetica - The Swiss Army knife of fonts",
-"Gotham - bold and built for impact",
-"Montserrat - urban, stylish and geometric",
-"Didot - high fashion in font form",
-"Cooper Black - charming, friendly, playful",
-"Bodoni - luxurious and editorial",
-"Comic Sans - fun, embodiment of informality",
-"Chiller - alarming, strong presence",
-"Hobo - unusual, doesn’t have any straight lines",
-"Bubblegum - joyful and not edgy",
-"Arial - clean, modern, high readability"
-];
+/* ==========================================
+VARIABLER
+========================================== */
 
 let selectedQuestions = [];
+
 let currentQuestion = 0;
+
 let isReading = false;
 
-let currentFontText = 0;
-
-/* ELEMENT */
+/* ==========================================
+ELEMENT
+========================================== */
 
 const startScreen =
-document.getElementById("start-screen");
+document.getElementById(
+"start-screen"
+);
 
 const quizScreen =
-document.getElementById("quiz-screen");
+document.getElementById(
+"quiz-screen"
+);
 
 const resultScreen =
-document.getElementById("result-screen");
+document.getElementById(
+"result-screen"
+);
 
 const startButton =
-document.getElementById("start-button");
+document.getElementById(
+"start-button"
+);
+
+const restartButton =
+document.getElementById(
+"restart-button"
+);
 
 const questionText =
-document.getElementById("question-text");
+document.getElementById(
+"question-text"
+);
 
 const questionNumber =
-document.getElementById("question-number");
-
-const answerLabel =
-document.getElementById("answer-label");
+document.getElementById(
+"question-number"
+);
 
 const resultFont =
-document.getElementById("result-font");
+document.getElementById(
+"result-font"
+);
 
 const resultDescription =
-document.getElementById("result-description");
-
-const fontCycle =
-document.getElementById("font-cycle");
+document.getElementById(
+"result-description"
+);
 
 const answerOptions =
-document.querySelectorAll(".answer-option");
+document.querySelectorAll(
+".answer-option"
+);
 
-/* SHUFFLE */
+/* ==========================================
+SLUMPA
+========================================== */
 
 function shuffle(array) {
 
 ```
-const shuffled = [...array];
+const shuffled =
+    [...array];
+
 
 for (
     let i = shuffled.length - 1;
@@ -379,8 +395,10 @@ for (
 
     const j =
         Math.floor(
-            Math.random() * (i + 1)
+            Math.random() *
+            (i + 1)
         );
+
 
     [
         shuffled[i],
@@ -389,134 +407,236 @@ for (
         shuffled[j],
         shuffled[i]
     ];
+
 }
+
 
 return shuffled;
 ```
 
 }
 
-/* START */
+/* ==========================================
+STARTA LÄSNING
+========================================== */
 
 function startReading() {
 
 ```
 currentQuestion = 0;
+
 isReading = false;
 
+
+/*
+   Välj 10 av de 21 frågorna
+   slumpmässigt.
+*/
+
 selectedQuestions =
-    shuffle(questions).slice(0, 10);
+    shuffle(
+        questions
+    ).slice(
+        0,
+        10
+    );
 
-startScreen.classList.remove("active");
 
-resultScreen.classList.remove("active");
+startScreen.classList.remove(
+    "active"
+);
 
-quizScreen.classList.add("active");
+
+resultScreen.classList.remove(
+    "active"
+);
+
+
+quizScreen.classList.add(
+    "active"
+);
+
 
 showQuestion();
 ```
 
 }
 
-/* SHOW QUESTION */
+/* ==========================================
+VISA FRÅGA
+========================================== */
 
 function showQuestion() {
 
 ```
 const question =
-    selectedQuestions[currentQuestion];
+    selectedQuestions[
+        currentQuestion
+    ];
+
 
 if (!question) {
     return;
 }
 
+
+/*
+   Uppdatera räknaren
+   01 → 02 → 03 osv.
+*/
+
 questionNumber.textContent =
     String(
         currentQuestion + 1
-    ).padStart(2, "0");
+    ).padStart(
+        2,
+        "0"
+    );
+
+
+/*
+   Visa frågan
+*/
 
 questionText.textContent =
     question.question;
 
-answerLabel.textContent =
-    "Välj ett tecken";
 
-answerLabel.classList.remove("reading");
+/*
+   Fyll svarsalternativen
+*/
 
-answerOptions.forEach(option => {
+answerOptions.forEach(
+    option => {
 
-    const answer =
-        option.dataset.answer;
+        const answer =
+            option.dataset.answer;
 
-    const answerText =
-        option.querySelector(".answer-text");
 
-    answerText.textContent =
-        question.answers[answer];
+        const answerText =
+            option.querySelector(
+                ".answer-text"
+            );
 
-    option.classList.remove("selected");
 
-    option.disabled = false;
+        answerText.textContent =
+            question.answers[
+                answer
+            ];
 
-});
+
+        option.classList.remove(
+            "selected"
+        );
+
+
+        option.disabled =
+            false;
+
+    }
+);
 ```
 
 }
 
-/* SELECT ANSWER */
+/* ==========================================
+VÄLJ SVAR
+========================================== */
 
 function selectAnswer(option) {
 
 ```
+/*
+   Förhindra dubbelklick
+*/
+
 if (isReading) {
     return;
 }
 
+
 isReading = true;
 
-option.classList.add("selected");
+
+/*
+   Visa vilket svar
+   användaren klickade på.
+*/
+
+option.classList.add(
+    "selected"
+);
+
+
+/*
+   Stäng av alla svar
+   medan nästa fråga laddas.
+*/
 
 answerOptions.forEach(
     otherOption => {
-        otherOption.disabled = true;
+
+        otherOption.disabled =
+            true;
+
     }
 );
 
-answerLabel.textContent =
-    "Tecknet är registrerat…";
 
-answerLabel.classList.add("reading");
+/*
+   Kort paus så att
+   orb-animationen syns.
+*/
+
+setTimeout(
+    () => {
+
+        currentQuestion++;
 
 
-setTimeout(() => {
+        /*
+           Efter fråga 10
+           går vi till resultatet.
+        */
 
-    currentQuestion++;
+        if (
+            currentQuestion >=
+            selectedQuestions.length
+        ) {
 
-    if (
-        currentQuestion >=
-        selectedQuestions.length
-    ) {
+            showRandomResult();
 
-        showRandomResult();
+            return;
+        }
 
-    } else {
+
+        /*
+           Annars nästa fråga.
+        */
 
         isReading = false;
 
         showQuestion();
 
-    }
-
-}, 700);
+    },
+    700
+);
 ```
 
 }
 
-/* RESULT */
+/* ==========================================
+VISA SLUMPMÄSSIGT RESULTAT
+========================================== */
 
 function showRandomResult() {
 
 ```
+/*
+   Resultatet är helt oberoende
+   av vilka svar användaren valt.
+*/
+
 const result =
     typefaces[
         Math.floor(
@@ -526,96 +646,163 @@ const result =
     ];
 
 
-typefaces.forEach(font => {
+/*
+   Ta bort tidigare typsnittsklasser.
+*/
 
-    resultFont.classList.remove(
-        font.className
-    );
+typefaces.forEach(
+    font => {
 
-});
+        resultFont.classList.remove(
+            font.className
+        );
 
+    }
+);
+
+
+/*
+   Lägg till det nya typsnittet.
+*/
 
 resultFont.classList.add(
     result.className
 );
 
 
+/*
+   Visa typsnittsnamnet.
+*/
+
 resultFont.textContent =
     result.name;
+
+
+/*
+   Visa beskrivningen.
+*/
 
 resultDescription.textContent =
     result.description;
 
 
-quizScreen.classList.remove("active");
+/*
+   Byt sida.
+*/
 
-resultScreen.classList.add("active");
+quizScreen.classList.remove(
+    "active"
+);
+
+
+resultScreen.classList.add(
+    "active"
+);
+
 
 isReading = false;
 ```
 
 }
 
-/* FONT TEXT ROTATION */
+/* ==========================================
+TILLBAKA TILL START
+========================================== */
 
-function rotateFontText() {
+function returnToStart() {
 
 ```
-if (!fontCycle) {
-    return;
-}
+/*
+   Dölj frågorna.
+*/
 
-fontCycle.classList.add("fade");
-
-setTimeout(() => {
-
-    currentFontText =
-        (currentFontText + 1) %
-        fontCycleTexts.length;
-
-    fontCycle.textContent =
-        fontCycleTexts[currentFontText];
-
-    fontCycle.classList.remove("fade");
-
-}, 450);
-```
-
-}
-
-/* START FONT ROTATION */
-
-setInterval(
-rotateFontText,
-3000
+quizScreen.classList.remove(
+    "active"
 );
 
-/* EVENTS */
+
+/*
+   Dölj resultatet.
+*/
+
+resultScreen.classList.remove(
+    "active"
+);
+
+
+/*
+   Visa startsidan.
+*/
+
+startScreen.classList.add(
+    "active"
+);
+
+
+/*
+   Nollställ quizet.
+*/
+
+currentQuestion = 0;
+
+selectedQuestions = [];
+
+isReading = false;
+```
+
+}
+
+/* ==========================================
+KNAPPAR
+========================================== */
 
 startButton.addEventListener(
 "click",
 startReading
 );
 
-answerOptions.forEach(option => {
-
-```
-option.addEventListener(
-    "click",
-    function() {
-        selectAnswer(this);
-    }
+restartButton.addEventListener(
+"click",
+returnToStart
 );
+
+/* ==========================================
+SVARS-KNAPPAR
+========================================== */
+
+answerOptions.forEach(
+option => {
+
+```
+    option.addEventListener(
+        "click",
+        function() {
+
+            selectAnswer(
+                this
+            );
+
+        }
+    );
+
+}
 ```
 
-});
+);
 
-/* INITIAL STATE */
+/* ==========================================
+INITIALT LÄGE
+========================================== */
 
-startScreen.classList.add("active");
+startScreen.classList.add(
+"active"
+);
 
-quizScreen.classList.remove("active");
+quizScreen.classList.remove(
+"active"
+);
 
-resultScreen.classList.remove("active");
-
+resultScreen.classList.remove(
+"active"
+);
 
