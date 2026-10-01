@@ -1,4 +1,4 @@
-```javascript
+javascript
 /* =========================================
    QUESTIONS
 ========================================= */
@@ -792,4 +792,3 @@ resultScreen.classList.remove("active");
 console.log(
     "Font Fortune is ready."
 );
-```
