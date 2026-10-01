@@ -15,15 +15,17 @@ body {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background: #111;
-    color: #f5f2e9;
+    color: #f4f0e8;
+
+    font-family: Arial, Helvetica, sans-serif;
+
     overflow: hidden;
 }
 
 
 /* =========================================
-   MACHINE
+   MAIN MACHINE
 ========================================= */
 
 .fortune-machine {
@@ -32,32 +34,101 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background: #151515;
+    background: #111;
 
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
 }
 
 
 /* =========================================
-   HEADER / LOGO
+   HEADER
 ========================================= */
 
 .machine-header {
-    height: 14vh;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 42vh;
 
     display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   FLOATING LOGO
+========================================= */
+
+.floating-logo {
+
+    display: flex;
+
     align-items: center;
     justify-content: center;
 
-    position: relative;
-    z-index: 10;
+    animation: floatingLogo 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 15px 20px rgba(0,0,0,0.25));
 }
 
-.logo {
-    font-size: 1.2rem;
-    letter-spacing: 0.15em;
-    font-weight: 700;
+
+/*
+    Byt ut .logo-placeholder mot din riktiga
+    <img> senare.
+*/
+
+.logo-placeholder {
+
+    width: 260px;
+    height: 180px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed rgba(255,255,255,0.25);
+
+    color: rgba(255,255,255,0.25);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.2em;
+}
+
+
+/*
+    LOGO-ANIMATION
+
+    Väldigt långsam så den känns mer
+    "svävande" än "animerad".
+*/
+
+@keyframes floatingLogo {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+
 }
 
 
@@ -66,9 +137,10 @@ body {
 ========================================= */
 
 .screen {
+
     position: absolute;
 
-    inset: 14vh 0 0 0;
+    inset: 0;
 
     display: none;
 
@@ -76,6 +148,7 @@ body {
     justify-content: center;
 
     padding: 5vw;
+
 }
 
 .screen.active {
@@ -84,93 +157,123 @@ body {
 
 
 /* =========================================
-   START SCREEN
+   INTRO
 ========================================= */
 
 .intro {
-    width: min(700px, 90vw);
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    /*
+        Eftersom loggan ligger ovanför
+        behöver vi skapa luft.
+    */
+
+    height: 82vh;
+
+    padding-bottom: 8vh;
 
     text-align: center;
 }
 
-.eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
 
-    opacity: 0.55;
+/* =========================================
+   INTRO TITLE
+========================================= */
 
-    margin-bottom: 2rem;
-}
+.intro-title {
 
-.intro h1 {
-    font-size: clamp(3rem, 8vw, 8rem);
+    /*
+        Detta är medvetet en annan känsla
+        än resten av UI:t.
 
-    line-height: 0.85;
+        Vi använder en serif med lite
+        "occult / fortune teller"-känsla.
 
-    letter-spacing: -0.05em;
+        När du skickar dina assets kan vi
+        byta denna mot en riktig displayfont.
+    */
 
-    margin-bottom: 3rem;
-}
+    font-family:
+        "Bodoni 72",
+        "Didot",
+        "Bodoni MT",
+        "Times New Roman",
+        serif;
 
-.intro-text {
-    max-width: 480px;
+    font-weight: 400;
 
-    margin: 0 auto 2rem;
+    font-style: italic;
 
-    font-size: 1.1rem;
-    line-height: 1.5;
-}
+    font-size: clamp(3.2rem, 7vw, 7rem);
 
-.instruction {
-    opacity: 0.55;
+    line-height: 0.88;
 
-    line-height: 1.5;
+    letter-spacing: -0.055em;
 
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
+
+    text-wrap: balance;
 }
 
 
 /* =========================================
-   BUTTONS
+   START BUTTON
 ========================================= */
 
-button {
-    border: none;
-    background: none;
-    color: inherit;
+.start-button {
 
-    font-family: inherit;
+    padding: 1.25rem 2.8rem;
 
-    cursor: pointer;
-}
-
-.start-button,
-.restart-button {
-
-    padding: 1.2rem 2.5rem;
-
-    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid rgba(244,240,232,0.65);
 
     border-radius: 100px;
 
-    letter-spacing: 0.15em;
+    background: transparent;
 
-    font-size: 0.8rem;
+    color: #f4f0e8;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.16em;
+
+    cursor: pointer;
 
     transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
+        background 0.4s ease,
+        color 0.4s ease,
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
-.start-button:hover,
-.restart-button:hover {
 
-    background: #f5f2e9;
+.start-button:hover {
+
+    background: #f4f0e8;
 
     color: #111;
 
-    transform: scale(1.04);
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 30px rgba(244,240,232,0.15);
+}
+
+
+.start-button:active {
+
+    transform: scale(0.98);
+
 }
 
 
@@ -179,9 +282,12 @@ button {
 ========================================= */
 
 .quiz {
+
     width: min(1000px, 90vw);
 
     text-align: center;
+
+    padding-top: 8vh;
 }
 
 
@@ -200,12 +306,13 @@ button {
 
     margin-bottom: 4rem;
 
-    font-size: 0.75rem;
+    font-size: 0.7rem;
 
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
 
-    opacity: 0.5;
+    opacity: 0.45;
 }
+
 
 .progress-line {
 
@@ -223,7 +330,7 @@ button {
 
 #question-text {
 
-    max-width: 800px;
+    max-width: 900px;
 
     margin: 0 auto 5rem;
 
@@ -231,12 +338,14 @@ button {
 
     line-height: 0.95;
 
-    letter-spacing: -0.04em;
+    letter-spacing: -0.045em;
+
+    font-weight: 400;
 }
 
 
 /* =========================================
-   ANSWER ORBS
+   ORBS
 ========================================= */
 
 .answers {
@@ -250,24 +359,25 @@ button {
 }
 
 
-/* Orb base */
-
 .orb {
 
     position: relative;
 
     width: clamp(55px, 8vw, 100px);
+
     aspect-ratio: 1;
+
+    border: none;
 
     border-radius: 50%;
 
+    cursor: pointer;
+
     transition:
-        transform 0.3s ease,
-        filter 0.3s ease;
+        transform 0.35s ease,
+        filter 0.35s ease;
 }
 
-
-/* Orb glow */
 
 .orb::after {
 
@@ -275,7 +385,7 @@ button {
 
     position: absolute;
 
-    inset: -15px;
+    inset: -18px;
 
     border-radius: 50%;
 
@@ -283,37 +393,44 @@ button {
 
     filter: blur(20px);
 
-    transition: opacity 0.3s ease;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
 }
 
 
 .orb:hover {
 
-    transform: scale(1.15);
+    transform: scale(1.18);
 
-    filter: brightness(1.3);
+    filter: brightness(1.25);
 }
+
 
 .orb:hover::after {
 
     opacity: 0.8;
+
+    transform: scale(1.15);
 }
 
 
-/* RED */
+/* =========================================
+   RED
+========================================= */
 
 .orb-red {
 
     background:
         radial-gradient(
             circle at 35% 30%,
-            #ff8b8b,
+            #ff9d9d,
             #e32626 45%,
-            #7b0000 100%
+            #730000 100%
         );
 
     box-shadow:
-        0 0 25px rgba(255, 30, 30, 0.7);
+        0 0 30px rgba(255,30,30,0.65);
 }
 
 .orb-red::after {
@@ -321,20 +438,22 @@ button {
 }
 
 
-/* BLUE */
+/* =========================================
+   BLUE
+========================================= */
 
 .orb-blue {
 
     background:
         radial-gradient(
             circle at 35% 30%,
-            #8bd6ff,
+            #9ddcff,
             #2675e8 45%,
             #002c7a 100%
         );
 
     box-shadow:
-        0 0 25px rgba(30, 120, 255, 0.7);
+        0 0 30px rgba(30,120,255,0.65);
 }
 
 .orb-blue::after {
@@ -342,7 +461,9 @@ button {
 }
 
 
-/* GOLD */
+/* =========================================
+   GOLD
+========================================= */
 
 .orb-gold {
 
@@ -355,7 +476,7 @@ button {
         );
 
     box-shadow:
-        0 0 25px rgba(255, 200, 50, 0.7);
+        0 0 30px rgba(255,200,50,0.65);
 }
 
 .orb-gold::after {
@@ -363,7 +484,9 @@ button {
 }
 
 
-/* GREEN */
+/* =========================================
+   GREEN
+========================================= */
 
 .orb-green {
 
@@ -376,7 +499,7 @@ button {
         );
 
     box-shadow:
-        0 0 25px rgba(40, 200, 80, 0.7);
+        0 0 30px rgba(40,200,80,0.65);
 }
 
 .orb-green::after {
@@ -394,13 +517,13 @@ button {
 
     min-height: 1.5em;
 
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 
     letter-spacing: 0.15em;
 
     text-transform: uppercase;
 
-    opacity: 0.4;
+    opacity: 0.35;
 }
 
 
@@ -410,43 +533,58 @@ button {
 
 .result {
 
-    width: min(900px, 90vw);
+    width: min(1100px, 90vw);
 
     text-align: center;
 }
 
+
 .result-intro {
 
-    font-size: 1rem;
+    font-size: 0.7rem;
 
-    opacity: 0.6;
+    letter-spacing: 0.2em;
 
-    margin-bottom: 4rem;
+    opacity: 0.45;
+
+    margin-bottom: 3rem;
 }
+
 
 .result-label {
 
-    font-size: 0.9rem;
-
-    text-transform: uppercase;
+    font-size: 0.85rem;
 
     letter-spacing: 0.15em;
+
+    text-transform: uppercase;
 
     opacity: 0.5;
 
     margin-bottom: 1rem;
 }
 
+
+/*
+    VIKTIG:
+
+    JS kommer sätta en klass här som
+    .font-futura, .font-helvetica osv.
+*/
+
 #result-font {
 
-    font-size: clamp(5rem, 15vw, 15rem);
+    font-size: clamp(5rem, 14vw, 13rem);
 
     line-height: 0.8;
 
     letter-spacing: -0.06em;
 
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+
+    font-weight: 400;
 }
+
 
 .result-description {
 
@@ -454,9 +592,111 @@ button {
 
     margin: 0 auto 3rem;
 
-    font-size: 1.1rem;
+    font-size: 1rem;
 
     line-height: 1.5;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   RESULT FONT STYLES
+========================================= */
+
+.font-futura {
+    font-family: Futura, "Century Gothic", sans-serif;
+}
+
+.font-raceway {
+    font-family: Raceway, "Arial Narrow", sans-serif;
+}
+
+.font-playfair {
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+.font-helvetica {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.font-gotham {
+    font-family: Gotham, Arial, sans-serif;
+}
+
+.font-montserrat {
+    font-family: Montserrat, Arial, sans-serif;
+}
+
+.font-didot {
+    font-family: Didot, "Bodoni MT", serif;
+}
+
+.font-cooper {
+    font-family: "Cooper Black", Cooper, serif;
+}
+
+.font-bodoni {
+    font-family: Bodoni, "Bodoni MT", Didot, serif;
+}
+
+.font-comic {
+    font-family: "Comic Sans MS", cursive;
+}
+
+.font-chiller {
+    font-family: Chiller, fantasy;
+}
+
+.font-hobo {
+    font-family: Hobo, fantasy;
+}
+
+.font-bubblegum {
+    font-family: Bubblegum, cursive;
+}
+
+.font-arial {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+.restart-button {
+
+    padding: 1.2rem 2.5rem;
+
+    border: 1px solid rgba(255,255,255,0.5);
+
+    border-radius: 100px;
+
+    color: #f4f0e8;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.15em;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.restart-button:hover {
+
+    background: #f4f0e8;
+
+    color: #111;
+
+    transform: scale(1.04);
 }
 
 
@@ -467,23 +707,46 @@ button {
 @media (max-width: 600px) {
 
     .machine-header {
-        height: 12vh;
+        height: 38vh;
     }
 
-    .screen {
-        inset: 12vh 0 0 0;
+    .logo-placeholder {
+
+        width: 200px;
+        height: 130px;
+
     }
 
-    #question-text {
-        margin-bottom: 4rem;
+    .intro {
+
+        height: 86vh;
+
+        padding-bottom: 7vh;
+
+    }
+
+    .intro-title {
+
+        font-size: clamp(3rem, 14vw, 5rem);
+
     }
 
     .answers {
+
         gap: 1.5rem;
+
     }
 
-    .progress {
-        margin-bottom: 3rem;
+    .orb {
+
+        width: 60px;
+
+    }
+
+    #question-text {
+
+        margin-bottom: 4rem;
+
     }
 
 }
