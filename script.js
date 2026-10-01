@@ -219,93 +219,92 @@ const questions = [
 
 /* =========================================
    TYPEFACES
-
-   TEMPORÄRA RESULTAT
-
-   Byt ut dessa mot dina riktiga 16
-   typsnitt senare.
 ========================================= */
 
 const typefaces = [
 
     {
-        name: "Helvetica",
-        description: "Du söker klarhet, balans och saker som fungerar. Din energi är rak, självsäker och tidlös."
-    },
-
-    {
-        name: "Garamond",
-        description: "Du bär på en klassisk energi. Du uppskattar detaljer, historia och saker som får åldras med värdighet."
-    },
-
-    {
         name: "Futura",
-        description: "Du blickar framåt. Geometrisk, rationell och samtidigt lite besatt av att göra saker på ditt eget sätt."
+        className: "font-futura",
+        description: "Geometric, clean and progressive"
     },
 
     {
-        name: "Bodoni",
-        description: "Du vet vad du gillar och du är inte rädd för att visa det. Elegant, dramatisk och med mycket personlighet."
+        name: "Raceway",
+        className: "font-raceway",
+        description: "Airy, sleek and structured"
     },
 
     {
-        name: "Comic Sans",
-        description: "Du vägrar ta livet — eller typografi — på för stort allvar."
+        name: "Playfair Display",
+        className: "font-playfair",
+        description: "Tradition with a flair"
     },
 
     {
-        name: "Times New Roman",
-        description: "Du är en överlevare. Du har sett trender komma och gå och står fortfarande kvar."
+        name: "Helvetica",
+        className: "font-helvetica",
+        description: "The Swiss Army knife of fonts"
     },
 
     {
-        name: "Cooper Black",
-        description: "Varm, social och omöjlig att ignorera. Du lämnar gärna lite extra plats åt personligheten."
+        name: "Gotham",
+        className: "font-gotham",
+        description: "Bold and built for impact"
     },
 
     {
-        name: "Arial",
-        description: "Du behöver inte komplicera saker. När något fungerar, varför ändra det?"
+        name: "Montserrat",
+        className: "font-montserrat",
+        description: "Urban, stylish and geometric"
     },
 
     {
         name: "Didot",
-        description: "Du uppskattar precision, elegans och en perfekt balans mellan dramatik och kontroll."
+        className: "font-didot",
+        description: "High fashion in font form"
     },
 
     {
-        name: "Courier",
-        description: "Du gillar struktur, system och saker som känns lite mekaniska."
+        name: "Cooper Black",
+        className: "font-cooper",
+        description: "Charming, friendly, playful"
     },
 
     {
-        name: "Impact",
-        description: "Du har saker att säga och du tänker inte säga dem tyst."
+        name: "Bodoni",
+        className: "font-bodoni",
+        description: "Luxurious and editorial"
     },
 
     {
-        name: "Papyrus",
-        description: "Du går din egen väg. Ibland vet ingen riktigt varför — inklusive du."
+        name: "Comic Sans",
+        className: "font-comic",
+        description: "Fun, embodiment of informality"
     },
 
     {
-        name: "Baskerville",
-        description: "Genomtänkt, intelligent och med en stark känsla för tradition."
+        name: "Chiller",
+        className: "font-chiller",
+        description: "Alarming, strong presence"
     },
 
     {
-        name: "Univers",
-        description: "Du uppskattar ordning utan att behöva berätta för någon att du gör det."
+        name: "Hobo",
+        className: "font-hobo",
+        description: "Unusual, doesn’t have any straight lines"
     },
 
     {
-        name: "Avenir",
-        description: "Du är modern utan att vara besatt av att vara modern."
+        name: "Bubblegum",
+        className: "font-bubblegum",
+        description: "Joyful and not edgy"
     },
 
     {
-        name: "Wingdings",
-        description: "Ingen förstår dig helt. Och det är precis så du vill ha det."
+        name: "Arial",
+        className: "font-arial",
+        description: "Clean, modern, high readability"
     }
 
 ];
@@ -331,31 +330,48 @@ let score = {
    DOM
 ========================================= */
 
-const startScreen = document.getElementById("start-screen");
-const quizScreen = document.getElementById("quiz-screen");
-const resultScreen = document.getElementById("result-screen");
+const startScreen =
+    document.getElementById("start-screen");
 
-const startButton = document.getElementById("start-button");
-const restartButton = document.getElementById("restart-button");
+const quizScreen =
+    document.getElementById("quiz-screen");
 
-const questionText = document.getElementById("question-text");
-const questionNumber = document.getElementById("question-number");
+const resultScreen =
+    document.getElementById("result-screen");
 
-const answerLabel = document.getElementById("answer-label");
+const startButton =
+    document.getElementById("start-button");
 
-const resultFont = document.getElementById("result-font");
-const resultDescription = document.getElementById("result-description");
+const restartButton =
+    document.getElementById("restart-button");
 
-const orbs = document.querySelectorAll(".orb");
+const questionText =
+    document.getElementById("question-text");
+
+const questionNumber =
+    document.getElementById("question-number");
+
+const answerLabel =
+    document.getElementById("answer-label");
+
+const resultFont =
+    document.getElementById("result-font");
+
+const resultDescription =
+    document.getElementById("result-description");
+
+const orbs =
+    document.querySelectorAll(".orb");
 
 
 /* =========================================
-   UTILITY
+   SHUFFLE
 ========================================= */
 
 function shuffle(array) {
 
-    return [...array].sort(() => Math.random() - 0.5);
+    return [...array]
+        .sort(() => Math.random() - 0.5);
 
 }
 
@@ -366,8 +382,6 @@ function shuffle(array) {
 
 function startQuiz() {
 
-    // Reset score
-
     score = {
         A: 0,
         B: 0,
@@ -377,11 +391,14 @@ function startQuiz() {
 
     currentQuestion = 0;
 
-    // Select 10 random questions
+    /*
+        Pick 10 random questions
+        from the 21.
+    */
 
-    selectedQuestions = shuffle(questions).slice(0, 10);
+    selectedQuestions =
+        shuffle(questions).slice(0, 10);
 
-    // Show first question
 
     startScreen.classList.remove("active");
 
@@ -390,7 +407,6 @@ function startQuiz() {
     quizScreen.classList.add("active");
 
     showQuestion();
-
 }
 
 
@@ -400,15 +416,18 @@ function startQuiz() {
 
 function showQuestion() {
 
-    const question = selectedQuestions[currentQuestion];
+    const question =
+        selectedQuestions[currentQuestion];
 
-    questionText.textContent = question.question;
+    questionText.textContent =
+        question.question;
 
     questionNumber.textContent =
-        String(currentQuestion + 1).padStart(2, "0");
+        String(currentQuestion + 1)
+            .padStart(2, "0");
 
-    answerLabel.textContent = "Välj ett tecken";
-
+    answerLabel.textContent =
+        "Välj ett tecken";
 }
 
 
@@ -418,22 +437,21 @@ function showQuestion() {
 
 function answerQuestion(answer) {
 
-    // Add score
-
     score[answer]++;
 
-    // Optional visual feedback
+    answerLabel.textContent =
+        "Tecknet är registrerat…";
 
-    answerLabel.textContent = "Tecknet är registrerat…";
-
-    // Small delay gives the interaction
-    // a more ceremonial feeling
 
     setTimeout(() => {
 
         currentQuestion++;
 
-        if (currentQuestion >= selectedQuestions.length) {
+
+        if (
+            currentQuestion >=
+            selectedQuestions.length
+        ) {
 
             showResult();
 
@@ -449,51 +467,30 @@ function answerQuestion(answer) {
 
 
 /* =========================================
-   CALCULATE RESULT
+   RESULT
 ========================================= */
 
 function calculateResult() {
 
     /*
-        Find the answer with the highest score.
+        TEMPORÄR RESULTATLOGIK.
+
+        Detta kommer senare ersättas med
+        en riktig typografisk personlighets-
+        algoritm där varje svar påverkar
+        olika egenskaper.
     */
 
-    const highestScore = Math.max(
-        score.A,
-        score.B,
-        score.C,
-        score.D
-    );
-
-    const winners = Object.keys(score)
-        .filter(key => score[key] === highestScore);
-
-    /*
-        If there is a tie, randomly select
-        between the tied answers.
-    */
-
-    const winningLetter =
-        winners[Math.floor(Math.random() * winners.length)];
-
-
-    /*
-        Convert the A/B/C/D personality
-        into one of 16 possible typefaces.
-
-        This is TEMPORARY.
-
-        Later we can make a much more sophisticated
-        scoring system.
-    */
-
-    const seed =
+    const total =
         score.A * 1 +
         score.B * 2 +
         score.C * 3 +
         score.D * 4;
 
-    const index = seed % typefaces.length;
+
+    const index =
+        total % typefaces.length;
+
 
     return typefaces[index];
 
@@ -506,13 +503,40 @@ function calculateResult() {
 
 function showResult() {
 
-    const result = calculateResult();
+    const result =
+        calculateResult();
+
 
     quizScreen.classList.remove("active");
 
     resultScreen.classList.add("active");
 
-    resultFont.textContent = result.name;
+
+    /*
+        Ta bort gamla font-klasser
+    */
+
+    typefaces.forEach(font => {
+
+        resultFont.classList.remove(
+            font.className
+        );
+
+    });
+
+
+    /*
+        Lägg till rätt fontklass
+    */
+
+    resultFont.classList.add(
+        result.className
+    );
+
+
+    resultFont.textContent =
+        result.name;
+
 
     resultDescription.textContent =
         result.description;
@@ -521,7 +545,7 @@ function showResult() {
 
 
 /* =========================================
-   EVENT LISTENERS
+   BUTTON EVENTS
 ========================================= */
 
 startButton.addEventListener(
@@ -536,16 +560,22 @@ restartButton.addEventListener(
 );
 
 
+/* =========================================
+   ORB EVENTS
+========================================= */
+
 orbs.forEach(orb => {
 
-    orb.addEventListener("click", () => {
+    orb.addEventListener(
+        "click",
+        () => {
 
-        const answer =
-            orb.dataset.answer;
+            const answer =
+                orb.dataset.answer;
 
-        answerQuestion(answer);
+            answerQuestion(answer);
 
-    });
+        }
+    );
 
 });
-
