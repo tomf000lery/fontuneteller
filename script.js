@@ -1,7 +1,3 @@
-/* =========================================
-QUESTIONS
-========================================= */
-
 const questions = [
 
 ```
@@ -218,10 +214,6 @@ const questions = [
 
 ];
 
-/* =========================================
-TYPEFACES
-========================================= */
-
 const typefaces = [
 
 ```
@@ -312,17 +304,9 @@ const typefaces = [
 
 ];
 
-/* =========================================
-VARIABLES
-========================================= */
-
 let selectedQuestions = [];
 let currentQuestion = 0;
 let isReading = false;
-
-/* =========================================
-DOM ELEMENTS
-========================================= */
 
 const startScreen =
 document.getElementById("start-screen");
@@ -357,10 +341,6 @@ document.getElementById("result-description");
 const answerOptions =
 document.querySelectorAll(".answer-option");
 
-/* =========================================
-SHUFFLE
-========================================= */
-
 function shuffle(array) {
 
 ```
@@ -391,51 +371,25 @@ return shuffled;
 
 }
 
-/* =========================================
-START NEW READING
-========================================= */
-
 function startReading() {
 
 ```
-console.log("Starting new reading");
-
-/*
-    Reset quiz
-*/
-
 currentQuestion = 0;
 isReading = false;
-
-/*
-    Pick 10 RANDOM questions
-    from the 21 total questions.
-*/
 
 selectedQuestions =
     shuffle(questions).slice(0, 10);
 
-/*
-    Hide other screens
-    and show quiz.
-*/
-
 startScreen.classList.remove("active");
-resultScreen.classList.remove("active");
-quizScreen.classList.add("active");
 
-/*
-    Display question #1
-*/
+resultScreen.classList.remove("active");
+
+quizScreen.classList.add("active");
 
 showQuestion();
 ```
 
 }
-
-/* =========================================
-SHOW QUESTION
-========================================= */
 
 function showQuestion() {
 
@@ -447,36 +401,18 @@ if (!question) {
     return;
 }
 
-/*
-    Question number
-*/
-
 questionNumber.textContent =
     String(
         currentQuestion + 1
     ).padStart(2, "0");
 
-/*
-    Question text
-*/
-
 questionText.textContent =
     question.question;
-
-/*
-    Reset status
-*/
 
 answerLabel.textContent =
     "Välj ett tecken";
 
-answerLabel.classList.remove(
-    "reading"
-);
-
-/*
-    Fill the four answers
-*/
+answerLabel.classList.remove("reading");
 
 answerOptions.forEach(option => {
 
@@ -484,16 +420,12 @@ answerOptions.forEach(option => {
         option.dataset.answer;
 
     const answerText =
-        option.querySelector(
-            ".answer-text"
-        );
+        option.querySelector(".answer-text");
 
     answerText.textContent =
         question.answers[answer];
 
-    option.classList.remove(
-        "selected"
-    );
+    option.classList.remove("selected");
 
     option.disabled = false;
 
@@ -502,69 +434,32 @@ answerOptions.forEach(option => {
 
 }
 
-/* =========================================
-SELECT ANSWER
-========================================= */
-
 function selectAnswer(option) {
 
 ```
-/*
-    Prevent double clicking
-*/
-
 if (isReading) {
     return;
 }
 
 isReading = true;
 
-/*
-    Visual selection
-*/
-
-option.classList.add(
-    "selected"
-);
-
-/*
-    Disable all answers
-    while reading.
-*/
+option.classList.add("selected");
 
 answerOptions.forEach(
     otherOption => {
-
         otherOption.disabled = true;
-
     }
 );
-
-/*
-    Reading message
-*/
 
 answerLabel.textContent =
     "Tecknet är registrerat…";
 
-answerLabel.classList.add(
-    "reading"
-);
+answerLabel.classList.add("reading");
 
-/*
-    Small pause before
-    moving to the next question.
-*/
 
 setTimeout(() => {
 
     currentQuestion++;
-
-    /*
-        If all 10 questions
-        have been answered,
-        show the result.
-    */
 
     if (
         currentQuestion >=
@@ -573,14 +468,7 @@ setTimeout(() => {
 
         showRandomResult();
 
-    }
-
-    /*
-        Otherwise show
-        the next question.
-    */
-
-    else {
+    } else {
 
         isReading = false;
 
@@ -593,18 +481,9 @@ setTimeout(() => {
 
 }
 
-/* =========================================
-RANDOM RESULT
-========================================= */
-
 function showRandomResult() {
 
 ```
-/*
-    Pick ONE random typeface
-    from ALL available typefaces.
-*/
-
 const result =
     typefaces[
         Math.floor(
@@ -613,15 +492,6 @@ const result =
         )
     ];
 
-console.log(
-    "Your typeface is:",
-    result.name
-);
-
-/*
-    Remove all previous
-    font classes.
-*/
 
 typefaces.forEach(font => {
 
@@ -631,17 +501,11 @@ typefaces.forEach(font => {
 
 });
 
-/*
-    Add selected font class.
-*/
 
 resultFont.classList.add(
     result.className
 );
 
-/*
-    Display result.
-*/
 
 resultFont.textContent =
     result.name;
@@ -649,58 +513,24 @@ resultFont.textContent =
 resultDescription.textContent =
     result.description;
 
-/*
-    Switch to result screen.
-*/
 
-quizScreen.classList.remove(
-    "active"
-);
+quizScreen.classList.remove("active");
 
-resultScreen.classList.add(
-    "active"
-);
+resultScreen.classList.add("active");
 
 isReading = false;
 ```
 
 }
 
-/* =========================================
-RETURN TO START SCREEN
-========================================= */
-
 function returnToStart() {
 
 ```
-console.log(
-    "Returning to start screen"
-);
+quizScreen.classList.remove("active");
 
-/*
-    Hide quiz and result.
-*/
+resultScreen.classList.remove("active");
 
-quizScreen.classList.remove(
-    "active"
-);
-
-resultScreen.classList.remove(
-    "active"
-);
-
-/*
-    Show main screen.
-*/
-
-startScreen.classList.add(
-    "active"
-);
-
-/*
-    Reset everything
-    for the next reading.
-*/
+startScreen.classList.add("active");
 
 currentQuestion = 0;
 
@@ -711,22 +541,10 @@ isReading = false;
 
 }
 
-/* =========================================
-EVENT LISTENERS
-========================================= */
-
-/*
-STARTA LÄSNINGEN
-*/
-
 startButton.addEventListener(
 "click",
 startReading
 );
-
-/*
-ANSWERS
-*/
 
 answerOptions.forEach(option => {
 
@@ -734,40 +552,20 @@ answerOptions.forEach(option => {
 option.addEventListener(
     "click",
     function() {
-
         selectAnswer(this);
-
     }
 );
 ```
 
 });
 
-/*
-GÖR EN NY LÄSNING
-
-```
-This goes ALL THE WAY BACK
-to the main/start screen.
-```
-
-*/
-
 restartButton.addEventListener(
 "click",
 returnToStart
 );
-
-/* =========================================
-INITIAL STATE
-========================================= */
 
 startScreen.classList.add("active");
 
 quizScreen.classList.remove("active");
 
 resultScreen.classList.remove("active");
-
-console.log(
-"Font Fortune is ready."
-);
