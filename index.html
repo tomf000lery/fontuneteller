@@ -2,366 +2,320 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Fontune Teller</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&display=swap"
-        rel="stylesheet"
-    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="fortune-machine">
+    <main class="fortune-machine">
 
-    <!-- ==================================================
-         TOP ORNAMENT BANNER
-    =================================================== -->
+        <!-- =========================================
+             TOP ORNAMENT
+        ========================================== -->
 
-    <div class="ornament-banner ornament-top" aria-hidden="true">
-        <div class="ornament-track">
-
-            <div class="ornament-set">
-                <span>✦</span>
-                <span>☽</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☾</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☽</span>
-                <span>✧</span>
-                <span>♢</span>
+        <div class="ornament-band ornament-top" aria-hidden="true">
+            <div class="ornament-track">
+                <span>✦ ◇ ☽ ◇ ✦ ❖ ✦ ◇ ☽ ◇ ✦ ❖</span>
+                <span>✦ ◇ ☽ ◇ ✦ ❖ ✦ ◇ ☽ ◇ ✦ ❖</span>
             </div>
-
-            <div class="ornament-set">
-                <span>✦</span>
-                <span>☽</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☾</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☽</span>
-                <span>✧</span>
-                <span>♢</span>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- ==================================================
-         BOTTOM ORNAMENT BANNER
-    =================================================== -->
-
-    <div class="ornament-banner ornament-bottom" aria-hidden="true">
-        <div class="ornament-track">
-
-            <div class="ornament-set">
-                <span>✦</span>
-                <span>☾</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☽</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☾</span>
-                <span>✧</span>
-                <span>♢</span>
-            </div>
-
-            <div class="ornament-set">
-                <span>✦</span>
-                <span>☾</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☽</span>
-                <span>✧</span>
-                <span>♢</span>
-                <span>✦</span>
-                <span>☾</span>
-                <span>✧</span>
-                <span>♢</span>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- ==================================================
-         START SCREEN
-    =================================================== -->
-
-    <section id="start-screen" class="screen active">
-
-        <div class="landing">
-
-            <p class="welcome-text">
-                Welcome to
-            </p>
-
-            <img
-                src="logga.gif"
-                alt="Fontune Teller"
-                class="logo-image"
-            >
-
-            <button
-                id="scroll-button"
-                class="magic-arrow"
-                aria-label="Continue"
-            >
-                <span class="arrow-swirl">〰</span>
-                <span class="arrow-head">↓</span>
-                <span class="arrow-swirl arrow-swirl-bottom">〰</span>
-            </button>
-
         </div>
 
-    </section>
+
+        <!-- =========================================
+             BOTTOM ORNAMENT
+        ========================================== -->
+
+        <div class="ornament-band ornament-bottom" aria-hidden="true">
+            <div class="ornament-track">
+                <span>❖ ✦ ◇ ☽ ◇ ✦ ❖ ✦ ◇ ☽ ◇</span>
+                <span>❖ ✦ ◇ ☽ ◇ ✦ ❖ ✦ ◇ ☽ ◇</span>
+            </div>
+        </div>
 
 
-    <!-- ==================================================
-         INTRO SCREEN
-    =================================================== -->
+        <!-- =========================================
+             HEADER / LOGO
+        ========================================== -->
 
-    <section id="intro-screen" class="screen">
+        <header class="machine-header">
 
-        <div class="crystal-stage">
+            <div class="floating-logo">
 
-            <div class="crystal-ball">
+                <img
+                    src="logga.gif"
+                    alt="Fontune Teller"
+                    class="logo-image"
+                >
 
-                <div class="crystal-glow"></div>
+            </div>
 
-                <div class="intro-copy">
+        </header>
 
-                    <p>
-                        How <strong>bold</strong> of you to step into
-                        the world of <strong>Type</strong>scope.
-                    </p>
 
-                    <p>
-                        Step inside and have your
-                        <strong>font</strong>une told.
-                    </p>
+        <!-- =========================================
+             START SCREEN
+        ========================================== -->
 
-                    <p>
-                        Let the <strong>glyphs</strong> guide you.
-                    </p>
+        <section
+            id="start-screen"
+            class="screen active"
+        >
 
-                    <p>
-                        Let the stars <strong>align</strong>.
-                    </p>
+            <div class="landing-content">
 
-                    <p>
-                        Only <strong>type</strong> will tell.
-                    </p>
+                <p class="welcome-text">
+                    Welcome to
+                </p>
 
-                    <p>
-                        What <strong>type</strong> of
-                        <strong>character</strong> you are.
-                    </p>
+                <img
+                    src="logga.gif"
+                    alt="Fontune Teller"
+                    class="landing-logo"
+                >
 
-                    <p>
-                        Are you more of a
-                        <strong>modular</strong> laid-back
-                        <strong>italic</strong>
-                        or perhaps an <strong>upright</strong>
-                        and <strong>variable sans serif</strong>?
-                    </p>
+                <button
+                    id="scroll-button"
+                    class="magic-arrow"
+                    aria-label="Enter Fontune Teller"
+                >
+                    <span class="arrow-symbol">↓</span>
+                </button>
 
-                    <p>
-                        This is not your
-                        <strong>regular</strong> <strong>read</strong>ing.
-                    </p>
+            </div>
 
-                    <p>
-                        Who <strong>kerns</strong> if you're a Libra
-                        or a Capri-what-now?
-                    </p>
+        </section>
 
-                    <p>
-                        What matters most is knowing which
-                        <strong>typeface</strong> you are.
-                    </p>
 
-                    <p>
-                        Only a <strong>legible</strong>
-                        <strong>font</strong>-<strong>read</strong>ing
-                        will tell you what you need to know about yourself.
-                    </p>
+        <!-- =========================================
+             INTRO / CRYSTAL BALL
+        ========================================== -->
 
-                    <p>
-                        Answer the spirits' questions,
-                        and the <strong>shape</strong> will take
-                        <strong>form</strong>.
-                    </p>
+        <section
+            id="intro-screen"
+            class="screen"
+        >
+
+            <div class="intro-container">
+
+                <div class="crystal-ball">
+
+                    <div class="crystal-glow"></div>
+
+                    <div class="intro-copy">
+
+                        <p>
+                            How <strong>bold</strong> of you to step into
+                            the world of <strong>Fontune Teller</strong>.
+                        </p>
+
+                        <p>
+                            Step inside and have your
+                            <strong>font</strong>une told.
+                        </p>
+
+                        <p>
+                            Let the <strong>glyphs</strong> guide you.
+                        </p>
+
+                        <p>
+                            Let the stars <strong>align</strong>.
+                        </p>
+
+                        <p>
+                            Only <strong>type</strong> will tell.
+                        </p>
+
+                        <p>
+                            What <strong>type</strong> of
+                            <strong>character</strong> you are.
+                        </p>
+
+                        <p>
+                            Are you more of a
+                            <strong>modular</strong> laid-back
+                            <strong>italic</strong>
+                            or perhaps an
+                            <strong>upright</strong> and
+                            <strong>variable sans serif</strong>?
+                        </p>
+
+                        <p>
+                            This is not your <strong>regular</strong>
+                            <strong>read</strong>ing.
+                        </p>
+
+                        <p>
+                            Who <strong>kerns</strong> if you're a Libra
+                            or a Capri-what-now?
+                        </p>
+
+                        <p>
+                            What matters most is knowing which
+                            <strong>typeface</strong> you are.
+                        </p>
+
+                        <p>
+                            Only a <strong>legible</strong>
+                            <strong>font</strong>-<strong>read</strong>ing
+                            will tell you what you need to know about yourself.
+                        </p>
+
+                        <p>
+                            Answer the spirits' questions,
+                            and the <strong>shape</strong> will take
+                            <strong>form</strong>.
+                        </p>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            <button
-                id="start-button"
-                class="magic-button"
-            >
-                Begin the reading
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         QUIZ SCREEN
-    =================================================== -->
-
-    <section id="quiz-screen" class="screen">
-
-        <div class="quiz">
-
-            <div class="progress">
-
-                <span id="question-number">
-                    01
-                </span>
-
-                <span class="progress-line"></span>
-
-                <span>
-                    10
-                </span>
-
-            </div>
-
-
-            <h2 id="question-text">
-                Question
-            </h2>
-
-
-            <div
-                id="answers"
-                class="answers"
-            >
 
                 <button
-                    class="answer-button answer-a"
-                    data-answer="A"
+                    id="start-button"
+                    class="pill-button"
                 >
-                    <span class="answer-symbol">I</span>
-                    <span class="answer-text"></span>
-                </button>
-
-                <button
-                    class="answer-button answer-b"
-                    data-answer="B"
-                >
-                    <span class="answer-symbol">II</span>
-                    <span class="answer-text"></span>
-                </button>
-
-                <button
-                    class="answer-button answer-c"
-                    data-answer="C"
-                >
-                    <span class="answer-symbol">III</span>
-                    <span class="answer-text"></span>
-                </button>
-
-                <button
-                    class="answer-button answer-d"
-                    data-answer="D"
-                >
-                    <span class="answer-symbol">IV</span>
-                    <span class="answer-text"></span>
+                    Begin the reading
                 </button>
 
             </div>
 
-
-            <div
-                id="answer-label"
-                class="answer-label"
-            >
-                Choose your sign
-            </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- ==================================================
-         RESULT SCREEN
-    =================================================== -->
+        <!-- =========================================
+             QUIZ SCREEN
+        ========================================== -->
 
-    <section id="result-screen" class="screen">
+        <section
+            id="quiz-screen"
+            class="screen"
+        >
 
-        <div class="result">
+            <div class="quiz-container">
 
-            <p class="result-intro">
-                THE SIGNS HAVE REVEALED YOUR TYPE
-            </p>
+                <div class="progress">
 
-            <div class="result-ball">
+                    <span id="question-number">
+                        01
+                    </span>
 
-                <div class="result-ball-glow"></div>
+                    <span class="progress-line"></span>
 
-                <div class="result-content">
+                    <span>
+                        10
+                    </span>
 
-                    <p class="result-label">
-                        Your type is
-                    </p>
+                </div>
 
-                    <h2 id="result-font">
-                        Futura
-                    </h2>
 
-                    <p
-                        id="result-description"
-                        class="result-description"
+                <h2 id="question-text">
+                    Question
+                </h2>
+
+
+                <div
+                    id="answers"
+                    class="answers"
+                >
+
+                    <button
+                        class="answer-button"
+                        data-answer="A"
                     >
-                        Geometric, clean and progressive
-                    </p>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text"></span>
+                    </button>
+
+                    <button
+                        class="answer-button"
+                        data-answer="B"
+                    >
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text"></span>
+                    </button>
+
+                    <button
+                        class="answer-button"
+                        data-answer="C"
+                    >
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text"></span>
+                    </button>
+
+                    <button
+                        class="answer-button"
+                        data-answer="D"
+                    >
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text"></span>
+                    </button>
 
                 </div>
 
             </div>
 
-            <button
-                id="restart-button"
-                class="magic-button"
-            >
-                Do a new font reading
-            </button>
+        </section>
 
-        </div>
 
-    </section>
+        <!-- =========================================
+             RESULT SCREEN
+        ========================================== -->
 
-</main>
+        <section
+            id="result-screen"
+            class="screen"
+        >
 
-<script src="script.js"></script>
+            <div class="result-container">
+
+                <p class="result-intro">
+                    The signs have revealed your type
+                </p>
+
+
+                <div class="result-crystal-ball">
+
+                    <div class="result-glow"></div>
+
+                    <div class="result-content">
+
+                        <p class="result-label">
+                            Your type is
+                        </p>
+
+                        <h2 id="result-font">
+                            Futura
+                        </h2>
+
+                        <p id="result-description">
+                            Geometric, clean and progressive
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="restart-button"
+                    class="pill-button"
+                >
+                    Do a new font reading
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
