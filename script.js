@@ -1,7 +1,6 @@
-```javascript
-/* =========================================
+/* =========================================================
    QUESTIONS
-========================================= */
+========================================================= */
 
 const questions = [
 
@@ -128,10 +127,10 @@ const questions = [
     {
         question: "What type of compliment do you appreciate the most?",
         answers: {
-            A: "You’re someone I can rely on.",
-            B: "You’re so funny.",
-            C: "You’re so good at kerning.",
-            D: "You’re so smart."
+            A: "“You’re someone I can rely on.”",
+            B: "“You’re so funny.”",
+            C: "“You’re so good at kerning.”",
+            D: "“You’re so smart.”"
         }
     },
 
@@ -196,7 +195,7 @@ const questions = [
     },
 
     {
-        question: "If you were faced with a tiger you would?",
+        question: "If you were in faced with a tiger you would?",
         answers: {
             A: "Pat the tiger.",
             B: "Flykick the tiger",
@@ -218,9 +217,9 @@ const questions = [
 ];
 
 
-/* =========================================
+/* =========================================================
    TYPEFACES
-========================================= */
+========================================================= */
 
 const typefaces = [
 
@@ -311,9 +310,9 @@ const typefaces = [
 ];
 
 
-/* =========================================
-   STATE
-========================================= */
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let selectedQuestions = [];
 
@@ -326,10 +325,12 @@ let score = {
     D: 0
 };
 
+let answerLocked = false;
 
-/* =========================================
+
+/* =========================================================
    DOM
-========================================= */
+========================================================= */
 
 const startScreen =
     document.getElementById("start-screen");
@@ -343,22 +344,26 @@ const quizScreen =
 const resultScreen =
     document.getElementById("result-screen");
 
-
 const scrollButton =
     document.getElementById("scroll-button");
 
-const startButton =
-    document.getElementById("start-button");
+const beginButton =
+    document.getElementById("begin-button");
 
 const restartButton =
     document.getElementById("restart-button");
-
 
 const questionText =
     document.getElementById("question-text");
 
 const questionNumber =
     document.getElementById("question-number");
+
+const answerLabel =
+    document.getElementById("answer-label");
+
+const answersContainer =
+    document.getElementById("answers");
 
 const resultFont =
     document.getElementById("result-font");
@@ -367,13 +372,9 @@ const resultDescription =
     document.getElementById("result-description");
 
 
-const answerButtons =
-    document.querySelectorAll(".answer-button");
-
-
-/* =========================================
-   SCREEN NAVIGATION
-========================================= */
+/* =========================================================
+   SCREEN MANAGEMENT
+========================================================= */
 
 function showScreen(screen) {
 
@@ -384,29 +385,45 @@ function showScreen(screen) {
         });
 
     screen.classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
 }
 
 
-/* =========================================
+/* =========================================================
    SHUFFLE
-========================================= */
+========================================================= */
 
 function shuffle(array) {
 
-    return [...array]
-        .sort(() => Math.random() - 0.5);
+    const copy = [...array];
 
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            copy[i],
+            copy[j]
+        ] =
+        [
+            copy[j],
+            copy[i]
+        ];
+    }
+
+    return copy;
 }
 
 
-/* =========================================
-   LANDING → INTRO
-========================================= */
+/* =========================================================
+   START SCREEN → INTRO
+========================================================= */
 
 scrollButton.addEventListener(
     "click",
@@ -418,9 +435,9 @@ scrollButton.addEventListener(
 );
 
 
-/* =========================================
+/* =========================================================
    START QUIZ
-========================================= */
+========================================================= */
 
 function startQuiz() {
 
@@ -433,32 +450,38 @@ function startQuiz() {
 
     currentQuestion = 0;
 
+    answerLocked = false;
+
 
     /*
-        Select exactly 10 random questions
-        from the complete question pool.
+        Pick 10 random questions
+        from the complete set of 21.
     */
 
     selectedQuestions =
-        shuffle(questions).slice(0, 10);
+        shuffle(questions)
+            .slice(0, 10);
 
 
     showScreen(quizScreen);
 
     showQuestion();
-
 }
 
 
-startButton.addEventListener(
+/* =========================================================
+   BEGIN READING
+========================================================= */
+
+beginButton.addEventListener(
     "click",
     startQuiz
 );
 
 
-/* =========================================
+/* =========================================================
    SHOW QUESTION
-========================================= */
+========================================================= */
 
 function showQuestion() {
 
@@ -472,110 +495,206 @@ function showQuestion() {
     }
 
 
-    questionText.textContent =
-        question.question;
+    answerLocked = false;
 
+
+    /* QUESTION NUMBER */
 
     questionNumber.textContent =
         String(currentQuestion + 1)
             .padStart(2, "0");
 
 
-    answerButtons.forEach(button => {
+    /* QUESTION */
 
-        const answer =
-            button.dataset.answer;
+    questionText.textContent =
+        question.question;
 
-        const text =
-            button.querySelector(".answer-text");
 
-        text.textContent =
-            question.answers[answer];
+    /* LABEL */
 
-        button.disabled = false;
+    answerLabel.textContent =
+        "Choose your sign";
 
-        button.style.opacity = "1";
 
-    });
+    /* CLEAR OLD ANSWERS */
 
+    answersContainer.innerHTML = "";
+
+
+    /* CREATE ANSWERS */
+
+    Object.entries(
+        question.answers
+    ).forEach(
+        ([letter, text], index) => {
+
+            const option =
+                document.createElement("button");
+
+            option.type = "button";
+
+            option.className =
+                "answer-option";
+
+
+            /* ORB */
+
+            const orb =
+                document.createElement("span");
+
+            orb.className =
+                "answer-orb";
+
+
+            if (letter === "A") {
+                orb.classList.add("orb-red");
+            }
+
+            if (letter === "B") {
+                orb.classList.add("orb-blue");
+            }
+
+            if (letter === "C") {
+                orb.classList.add("orb-gold");
+            }
+
+            if (letter === "D") {
+                orb.classList.add("orb-green");
+            }
+
+
+            /* COPY */
+
+            const copy =
+                document.createElement("span");
+
+            copy.className =
+                "answer-copy";
+
+
+            const letterElement =
+                document.createElement("span");
+
+            letterElement.className =
+                "answer-letter";
+
+            letterElement.textContent =
+                letter;
+
+
+            const textElement =
+                document.createElement("span");
+
+            textElement.className =
+                "answer-text";
+
+            textElement.textContent =
+                text;
+
+
+            copy.appendChild(
+                letterElement
+            );
+
+            copy.appendChild(
+                textElement
+            );
+
+
+            option.appendChild(
+                orb
+            );
+
+            option.appendChild(
+                copy
+            );
+
+
+            option.addEventListener(
+                "click",
+                () => {
+
+                    answerQuestion(letter);
+
+                }
+            );
+
+
+            answersContainer.appendChild(
+                option
+            );
+
+        }
+    );
 }
 
 
-/* =========================================
+/* =========================================================
    ANSWER QUESTION
-========================================= */
+========================================================= */
 
 function answerQuestion(answer) {
 
-    /*
-        Prevent double-clicking while
-        moving to the next question.
-    */
+    if (answerLocked) {
+        return;
+    }
 
-    answerButtons.forEach(button => {
-        button.disabled = true;
-    });
+    answerLocked = true;
 
+
+    /* Add to score */
 
     score[answer]++;
 
 
-    currentQuestion++;
+    /* Feedback */
+
+    answerLabel.textContent =
+        "The sign has been registered…";
 
 
-    setTimeout(() => {
+    /*
+        Small pause makes the transition feel
+        intentional and magical.
+    */
 
-        if (
-            currentQuestion >=
-            selectedQuestions.length
-        ) {
+    setTimeout(
+        () => {
 
-            showResult();
+            currentQuestion++;
 
-        } else {
 
-            showQuestion();
+            if (
+                currentQuestion >=
+                selectedQuestions.length
+            ) {
 
-        }
+                showResult();
 
-    }, 250);
+            } else {
 
+                showQuestion();
+
+            }
+
+        },
+        400
+    );
 }
 
 
-/* =========================================
-   ANSWER BUTTON EVENTS
-========================================= */
-
-answerButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const answer =
-                button.dataset.answer;
-
-            answerQuestion(answer);
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   RESULT CALCULATION
-========================================= */
+/* =========================================================
+   CALCULATE RESULT
+========================================================= */
 
 function calculateResult() {
 
     /*
-        Temporary scoring logic.
+        Temporary scoring system.
 
-        A weighted answer gives the result
-        a little more variety while keeping
-        the quiz simple.
+        Every answer contributes differently
+        to the final typeface index.
     */
 
     const total =
@@ -590,13 +709,12 @@ function calculateResult() {
 
 
     return typefaces[index];
-
 }
 
 
-/* =========================================
+/* =========================================================
    SHOW RESULT
-========================================= */
+========================================================= */
 
 function showResult() {
 
@@ -608,20 +726,22 @@ function showResult() {
 
 
     /*
-        Remove previous font classes.
+        Remove all previous font classes.
     */
 
-    typefaces.forEach(font => {
+    typefaces.forEach(
+        font => {
 
-        resultFont.classList.remove(
-            font.className
-        );
+            resultFont.classList.remove(
+                font.className
+            );
 
-    });
+        }
+    );
 
 
     /*
-        Add result font class.
+        Add the selected typeface class.
     */
 
     resultFont.classList.add(
@@ -636,12 +756,30 @@ function showResult() {
     resultDescription.textContent =
         result.description;
 
+
+    /*
+        Restart result animations.
+    */
+
+    resultFont.style.animation = "none";
+    resultDescription.style.animation = "none";
+
+
+    void resultFont.offsetWidth;
+
+
+    resultFont.style.animation =
+        "resultReveal 2s ease forwards";
+
+
+    resultDescription.style.animation =
+        "fadeIn 1.5s ease 0.8s forwards";
 }
 
 
-/* =========================================
+/* =========================================================
    RESTART
-========================================= */
+========================================================= */
 
 restartButton.addEventListener(
     "click",
@@ -653,25 +791,69 @@ restartButton.addEventListener(
 );
 
 
-/* =========================================
-   KEYBOARD ACCESSIBILITY
-========================================= */
+/* =========================================================
+   RESULT ANIMATION
+========================================================= */
 
-document.addEventListener(
-    "keydown",
-    event => {
+const resultStyle =
+    document.createElement("style");
 
-        if (
-            event.key === "Enter" &&
-            document.activeElement?.classList.contains(
-                "answer-button"
-            )
-        ) {
+resultStyle.textContent = `
 
-            document.activeElement.click();
+    @keyframes resultReveal {
 
+        0% {
+            opacity: 0;
+            transform:
+                scale(0.35)
+                rotate(-8deg);
+            filter:
+                blur(18px)
+                brightness(2);
+            text-shadow:
+                0 0 80px
+                rgba(255,255,255,1);
         }
 
+        45% {
+            opacity: 1;
+            transform:
+                scale(1.15)
+                rotate(3deg);
+            filter:
+                blur(0)
+                brightness(1.6);
+            text-shadow:
+                0 0 50px
+                rgba(220,150,255,0.9);
+        }
+
+        75% {
+            transform:
+                scale(0.96)
+                rotate(-1deg);
+        }
+
+        100% {
+            opacity: 1;
+            transform:
+                scale(1)
+                rotate(0);
+            filter:
+                blur(0)
+                brightness(1);
+            text-shadow:
+                0 0 30px
+                rgba(230,180,255,0.35);
+        }
     }
+
+    #result-description {
+        opacity: 0;
+    }
+
+`;
+
+document.head.appendChild(
+    resultStyle
 );
-```
