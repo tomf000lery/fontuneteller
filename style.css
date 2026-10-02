@@ -1,2060 +1,1291 @@
-/* =====================================================
-   BODONI BOOK ITALIC
-===================================================== */
-
-@font-face {
-    font-family: "Bodoni Book Italic";
-
-    src:
-        url("fonts/Bodoni-Book-Italic.woff2")
-        format("woff2");
-
-    font-style: italic;
-    font-weight: 400;
-
-    font-display: swap;
-}
-
-
-/* =====================================================
-   RESET
-===================================================== */
+/* =========================================
+FONTUNE TELLER
+GLOBAL RESET
+========================================= */
 
 * {
-    box-sizing: border-box;
-
-    margin: 0;
-    padding: 0;
-}
-
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-
-    background: #080609;
+width: 100%;
+height: 100%;
 }
-
 
 body {
+background: #080608;
+color: #f4f0e8;
+font-family:
+"Bodoni 72",
+"Bodoni 72 Book",
+"Bodoni MT",
+Didot,
+"Times New Roman",
+serif;
 
-    color: #f4f0e8;
+```
+overflow: hidden;
+```
 
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        "Didot",
-        "Bodoni MT",
-        Georgia,
-        serif;
-
-    font-style: italic;
-
-    overflow: hidden;
 }
 
+/* =========================================
+MAIN
+========================================= */
 
-/* =====================================================
-   MAIN
-===================================================== */
+.fortune-machine {
+position: relative;
+width: 100vw;
+height: 100vh;
 
-.typeoscope {
+```
+background:
+    radial-gradient(
+        circle at center,
+        #17101b 0%,
+        #0b080d 48%,
+        #050405 100%
+    );
 
-    position: relative;
+overflow: hidden;
+```
 
-    width: 100vw;
-    height: 100vh;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            #17121b 0%,
-            #0b080d 45%,
-            #050405 100%
-        );
-
-    transition:
-        background 2.5s ease;
 }
 
-
-/* =====================================================
-   SCREEN SYSTEM
-===================================================== */
-
-.screen {
-
-    position: absolute;
-
-    inset: 0;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    padding:
-        clamp(70px, 8vw, 120px)
-        5vw;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.9s ease;
-}
-
-
-.screen.active {
-
-    display: flex;
-
-    opacity: 1;
-
-    pointer-events: auto;
-}
-
-
-/* =====================================================
-   ORNAMENT RAILS
-===================================================== */
-
-.ornament-rail {
-
-    position: absolute;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 42px;
-
-    overflow: hidden;
-
-    z-index: 100;
-
-    pointer-events: none;
-
-    color:
-        rgba(226, 203, 247, 0.75);
-
-    text-shadow:
-
-        0 0 5px
-        rgba(206, 137, 255, 0.5),
-
-        0 0 15px
-        rgba(152, 72, 255, 0.35),
-
-        0 0 35px
-        rgba(100, 30, 180, 0.2);
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            black 20%,
-            black 80%,
-            transparent
-        );
-
-    -webkit-mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            black 20%,
-            black 80%,
-            transparent
-        );
-}
-
-
-.ornament-top {
-    top: 0;
-}
-
-
-.ornament-bottom {
-    bottom: 0;
-}
-
+/* =========================================
+TOP / BOTTOM ORNAMENTS
+========================================= */
 
 .ornament-track {
+position: fixed;
 
-    display: flex;
+```
+left: 0;
+width: 100%;
 
-    width: max-content;
+height: 42px;
 
-    height: 100%;
+overflow: hidden;
 
-    align-items: center;
+z-index: 100;
 
-    animation:
-        ornamentLeft
-        55s
-        linear
-        infinite;
+pointer-events: none;
 
-    will-change: transform;
+display: flex;
+align-items: center;
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(5,4,6,0.95),
+        rgba(20,10,25,0.8),
+        rgba(5,4,6,0.95)
+    );
+
+border-top: 1px solid rgba(210,170,255,0.18);
+border-bottom: 1px solid rgba(210,170,255,0.18);
+
+box-shadow:
+    0 0 25px rgba(160,80,255,0.12);
+```
+
 }
 
-
-.ornament-track.reverse {
-
-    animation:
-        ornamentRight
-        63s
-        linear
-        infinite;
+.ornament-track-top {
+top: 0;
 }
 
-
-.ornament-track span {
-
-    display: block;
-
-    flex-shrink: 0;
-
-    width: max-content;
-
-    white-space: nowrap;
-
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        "Didot",
-        Georgia,
-        serif;
-
-    font-size:
-        clamp(
-            1rem,
-            1.6vw,
-            1.4rem
-        );
-
-    font-style: italic;
-
-    letter-spacing: 0.65rem;
-
-    padding-right: 3rem;
+.ornament-track-bottom {
+bottom: 0;
 }
 
+.ornament-row {
+display: flex;
 
-@keyframes ornamentLeft {
+```
+width: max-content;
 
-    from {
-        transform:
-            translate3d(0, 0, 0);
-    }
+white-space: nowrap;
 
-    to {
-        transform:
-            translate3d(-50%, 0, 0);
-    }
+animation:
+    ornamentMove 38s linear infinite;
+```
+
 }
 
+.ornament-row span {
+display: inline-block;
 
-@keyframes ornamentRight {
+```
+padding-right: 0;
 
-    from {
-        transform:
-            translate3d(-50%, 0, 0);
-    }
+color: #cda8ff;
 
-    to {
-        transform:
-            translate3d(0, 0, 0);
-    }
+font-size: 1.15rem;
+
+letter-spacing: 0.22em;
+
+text-shadow:
+    0 0 5px rgba(202,145,255,0.8),
+    0 0 14px rgba(153,72,255,0.5);
+```
+
 }
 
-
-.ornament-top::after,
-.ornament-bottom::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(190, 130, 255, 0.3),
-            rgba(255, 230, 255, 0.7),
-            rgba(190, 130, 255, 0.3),
-            transparent
-        );
-
-    box-shadow:
-        0 0 10px
-        rgba(160, 70, 255, 0.4);
+.ornament-row-reverse {
+animation:
+ornamentMoveReverse 42s linear infinite;
 }
 
+@keyframes ornamentMove {
 
-.ornament-top::after {
-    bottom: 3px;
+```
+from {
+    transform: translateX(0);
 }
 
+to {
+    transform: translateX(-50%);
+}
+```
 
-.ornament-bottom::after {
-    top: 3px;
 }
 
+@keyframes ornamentMoveReverse {
 
-/* =====================================================
-   HEADER / LOGO
-===================================================== */
+```
+from {
+    transform: translateX(-50%);
+}
+
+to {
+    transform: translateX(0);
+}
+```
+
+}
+
+/* =========================================
+HEADER / LOGO
+========================================= */
 
 .machine-header {
+position: absolute;
 
-    position: absolute;
+```
+top: 42px;
+left: 0;
 
-    top: 5vh;
+width: 100%;
+height: 35vh;
 
-    left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
 
-    width: 100%;
+z-index: 20;
 
-    display: flex;
+pointer-events: none;
+```
 
-    justify-content: center;
-
-    align-items: center;
-
-    z-index: 40;
-
-    pointer-events: none;
 }
-
 
 .floating-logo {
+display: flex;
+justify-content: center;
+align-items: center;
 
-    display: flex;
+```
+animation:
+    floatingLogo 4s ease-in-out infinite;
 
-    justify-content: center;
-    align-items: center;
+filter:
+    drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+```
 
-    animation:
-        floatingLogo
-        5s
-        ease-in-out
-        infinite;
-
-    filter:
-        drop-shadow(
-            0 15px 30px
-            rgba(0,0,0,0.5)
-        );
 }
-
 
 .logo-image {
-
-    width:
-        clamp(
-            170px,
-            22vw,
-            280px
-        );
-
-    height: auto;
-
-    display: block;
+width: 260px;
+height: auto;
+display: block;
 }
-
 
 @keyframes floatingLogo {
 
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-12px);
-    }
+```
+0% {
+    transform: translateY(0);
 }
 
-
-/* =====================================================
-   WELCOME
-===================================================== */
-
-.welcome-content {
-
-    position: relative;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 2rem;
-
-    text-align: center;
+50% {
+    transform: translateY(-12px);
 }
 
+100% {
+    transform: translateY(0);
+}
+```
 
-.welcome-small {
-
-    font-size:
-        clamp(
-            2rem,
-            5vw,
-            4.5rem
-        );
-
-    line-height: 1;
-
-    opacity: 0;
-
-    animation:
-        fadeIn
-        1.5s
-        ease
-        0.8s
-        forwards;
 }
 
+/* =========================================
+SCREENS
+========================================= */
+
+.screen {
+position: absolute;
+
+```
+inset: 0;
+
+display: none;
+
+align-items: center;
+justify-content: center;
+
+padding:
+    70px
+    5vw
+    60px;
+
+z-index: 5;
+```
+
+}
+
+.screen.active {
+display: flex;
+}
+
+/* =========================================
+START SCREEN
+========================================= */
+
+.intro {
+width: 100%;
+height: 100%;
+
+```
+display: flex;
+flex-direction: column;
+
+justify-content: center;
+align-items: center;
+
+text-align: center;
+
+padding-top: 120px;
+```
+
+}
+
+.welcome-text {
+font-size: clamp(1.8rem, 4vw, 4rem);
+
+```
+font-style: italic;
+
+letter-spacing: -0.04em;
+
+margin-bottom: 1rem;
+```
+
+}
+
+.intro-logo-space {
+margin-bottom: 3rem;
+}
+
+.fontune-title {
+font-size:
+clamp(4rem, 10vw, 10rem);
+
+```
+font-style: italic;
+
+line-height: 0.8;
+
+letter-spacing: -0.065em;
+
+color: #f4f0e8;
+
+text-shadow:
+    0 0 20px rgba(255,255,255,0.08),
+    0 0 60px rgba(175,95,255,0.15);
+```
+
+}
+
+/* =========================================
+ARROW
+========================================= */
 
 .scroll-button {
+border: none;
 
-    width: 70px;
-    height: 70px;
+```
+background: transparent;
 
-    border: none;
+color: #f4f0e8;
 
-    background: transparent;
+font-family:
+    "Bodoni 72",
+    "Bodoni 72 Book",
+    "Bodoni MT",
+    Didot,
+    serif;
 
-    color: #f4f0e8;
+font-size: 4rem;
 
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        Didot,
-        Georgia,
-        serif;
+font-style: italic;
 
-    font-style: italic;
+line-height: 1;
 
-    font-size: 4rem;
+cursor: pointer;
 
-    line-height: 1;
+animation:
+    arrowFloat 2s ease-in-out infinite;
 
-    cursor: pointer;
+transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+```
 
-    opacity: 0;
-
-    animation:
-        arrowReveal
-        1.5s
-        ease
-        2s
-        forwards,
-        arrowFloat
-        2.2s
-        ease-in-out
-        3.5s
-        infinite;
-
-    text-shadow:
-        0 0 10px
-        rgba(255,255,255,0.35),
-
-        0 0 30px
-        rgba(170,100,255,0.4);
-
-    transition:
-        text-shadow 0.4s ease,
-        color 0.4s ease;
 }
-
 
 .scroll-button:hover {
+color: #d8a7ff;
 
-    color: white;
+```
+transform: scale(1.15);
+```
 
-    text-shadow:
-        0 0 10px white,
-        0 0 30px #bb77ff,
-        0 0 60px #6f2ad9;
 }
-
-
-@keyframes arrowReveal {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 
 @keyframes arrowFloat {
 
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(9px);
-    }
+```
+0%,
+100% {
+    transform: translateY(0);
 }
 
+50% {
+    transform: translateY(10px);
+}
+```
 
-/* =====================================================
-   INTRO
-===================================================== */
-
-.intro-screen {
-
-    overflow-y: auto;
-
-    scrollbar-width: none;
 }
 
+/* =========================================
+INTRO READING
+========================================= */
 
-.intro-screen::-webkit-scrollbar {
-    display: none;
+.intro-reading {
+width: min(850px, 92vw);
+
+```
+display: flex;
+flex-direction: column;
+
+align-items: center;
+```
+
 }
 
+/* =========================================
+CRYSTAL BALL
+========================================= */
 
-.fortune-container {
+.crystal-ball {
+position: relative;
 
-    position: relative;
+```
+border-radius: 50%;
 
-    width:
-        min(
-            900px,
-            92vw
-        );
+background:
+    radial-gradient(
+        circle at 35% 28%,
+        rgba(255,255,255,0.22),
+        rgba(140,70,200,0.15) 16%,
+        rgba(40,15,60,0.8) 55%,
+        rgba(5,3,8,0.98) 100%
+    );
 
-    display: flex;
+border:
+    1px solid rgba(216,170,255,0.35);
 
-    flex-direction: column;
+box-shadow:
+    inset 0 0 50px rgba(180,90,255,0.15),
+    0 0 35px rgba(150,70,255,0.18),
+    0 0 100px rgba(80,30,130,0.2);
+```
 
-    align-items: center;
-
-    gap: 2rem;
-
-    padding:
-        7rem
-        5rem
-        5rem;
 }
 
+.ball-glow {
+position: absolute;
 
-.fortune-glow {
+```
+inset: 10%;
 
-    position: absolute;
+border-radius: 50%;
 
-    width: 65%;
+background:
+    radial-gradient(
+        circle,
+        rgba(204,140,255,0.16),
+        transparent 65%
+    );
 
-    aspect-ratio: 1;
+filter: blur(15px);
 
-    border-radius: 50%;
+animation:
+    ballPulse 4s ease-in-out infinite;
+```
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(125, 48, 190, 0.2),
-            transparent 70%
-        );
-
-    filter: blur(40px);
-
-    pointer-events: none;
 }
 
+@keyframes ballPulse {
 
-.fortune-glass {
-
-    position: relative;
-
-    width: min(700px, 90vw);
-
-    max-height: 62vh;
-
-    overflow-y: auto;
-
-    padding:
-        3rem
-        clamp(2rem, 5vw, 4rem);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(82, 46, 112, 0.4),
-            rgba(19, 12, 25, 0.9) 60%,
-            rgba(5, 4, 6, 0.95)
-        );
-
-    border:
-        1px solid
-        rgba(230, 205, 255, 0.18);
-
-    box-shadow:
-
-        inset 0 0 80px
-        rgba(150, 75, 210, 0.15),
-
-        0 0 80px
-        rgba(115, 40, 180, 0.2);
-
-    scrollbar-width: none;
+```
+0%,
+100% {
+    opacity: 0.5;
+    transform: scale(0.95);
 }
 
+50% {
+    opacity: 1;
+    transform: scale(1.05);
+}
+```
 
-.fortune-glass::-webkit-scrollbar {
-    display: none;
 }
 
+.intro-ball {
+width: min(620px, 80vw);
+height: min(620px, 80vw);
 
-.fortune-copy {
+```
+max-height: 65vh;
 
-    position: relative;
+overflow: auto;
 
-    z-index: 2;
+scrollbar-width: none;
+```
 
-    text-align: center;
-
-    font-size:
-        clamp(
-            1rem,
-            1.5vw,
-            1.35rem
-        );
-
-    line-height: 1.4;
 }
 
-
-.fortune-copy p {
-
-    margin-bottom: 1.1rem;
-
-    opacity: 0.85;
+.intro-ball::-webkit-scrollbar {
+display: none;
 }
 
+.ball-content {
+position: relative;
 
-.fortune-copy strong {
+```
+z-index: 2;
 
-    color: #fff;
+padding:
+    12%
+    13%;
 
-    text-shadow:
-        0 0 10px
-        rgba(220, 170, 255, 0.4);
+text-align: center;
+
+font-size:
+    clamp(0.85rem, 1.3vw, 1.15rem);
+
+line-height: 1.35;
+
+font-style: italic;
+```
+
 }
 
-
-.fortune-stars {
-
-    text-align: center;
-
-    color:
-        rgba(231, 199, 255, 0.7);
-
-    margin-bottom: 2rem;
-
-    letter-spacing: 0.5rem;
+.ball-content p {
+margin-bottom: 0.7rem;
 }
 
-
-.fortune-stars.bottom {
-
-    margin-top: 2rem;
-
-    margin-bottom: 0;
+.ball-content strong {
+font-weight: 700;
 }
 
-
-/* =====================================================
-   MAGIC BUTTON
-===================================================== */
+/* =========================================
+BUTTON
+========================================= */
 
 .magic-button {
+margin-top: 2.5rem;
 
-    position: relative;
+```
+padding:
+    1rem
+    2.3rem;
 
-    padding:
-        1rem 2rem;
+border:
+    1px solid rgba(244,240,232,0.55);
 
-    border:
-        1px solid
-        rgba(245, 230, 255, 0.5);
+border-radius: 100px;
 
-    border-radius: 999px;
+background:
+    rgba(255,255,255,0.02);
 
-    background:
-        rgba(10, 7, 13, 0.35);
+color: #f4f0e8;
 
-    color: #f5edf9;
+font-family:
+    "Bodoni 72",
+    "Bodoni 72 Book",
+    "Bodoni MT",
+    Didot,
+    serif;
 
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        Didot,
-        Georgia,
-        serif;
+font-size: 1rem;
 
-    font-style: italic;
+font-style: italic;
 
-    font-size: 1rem;
+cursor: pointer;
 
-    cursor: pointer;
+transition:
+    all 0.4s ease;
+```
 
-    box-shadow:
-        0 0 20px
-        rgba(170, 100, 255, 0.08);
-
-    transition:
-        transform 0.4s ease,
-        background 0.4s ease,
-        box-shadow 0.4s ease;
 }
-
 
 .magic-button:hover {
+background: #f4f0e8;
 
-    transform:
-        scale(1.05);
+```
+color: #090609;
 
-    background:
-        rgba(240, 220, 255, 0.12);
+transform: scale(1.05);
 
-    box-shadow:
-        0 0 30px
-        rgba(170, 100, 255, 0.35);
+box-shadow:
+    0 0 30px rgba(220,170,255,0.25);
+```
+
 }
 
-
-/* =====================================================
-   QUIZ
-===================================================== */
+/* =========================================
+QUIZ
+========================================= */
 
 .quiz {
+width: min(1100px, 94vw);
 
-    width:
-        min(
-            1100px,
-            92vw
-        );
+```
+text-align: center;
 
-    text-align: center;
+padding-top: 4vh;
+```
 
-    padding:
-        4rem 0 2rem;
 }
 
+/* =========================================
+PROGRESS
+========================================= */
 
 .progress {
+display: flex;
 
-    display: flex;
+```
+align-items: center;
+justify-content: center;
 
-    align-items: center;
+gap: 1rem;
 
-    justify-content: center;
+margin-bottom: 3rem;
 
-    gap: 1rem;
+font-size: 0.85rem;
 
-    margin-bottom: 3rem;
+font-style: italic;
 
-    font-size: 0.9rem;
+letter-spacing: 0.1em;
 
-    opacity: 0.55;
+opacity: 0.55;
+```
+
 }
-
 
 .progress-line {
+width: 100px;
 
-    width: 100px;
+```
+height: 1px;
 
-    height: 1px;
+background:
+    rgba(255,255,255,0.4);
+```
 
-    background:
-        rgba(255,255,255,0.4);
 }
 
-
-/* =====================================================
-   QUESTION
-===================================================== */
+/* =========================================
+QUESTION
+========================================= */
 
 #question-text {
+max-width: 1000px;
 
-    max-width: 950px;
+```
+margin:
+    0 auto
+    3.5rem;
 
-    margin:
-        0 auto
-        3.5rem;
+font-family:
+    "Bodoni 72",
+    "Bodoni 72 Book",
+    "Bodoni MT",
+    Didot,
+    "Times New Roman",
+    serif;
 
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        Didot,
-        Georgia,
-        serif;
+font-size:
+    clamp(2.4rem, 5vw, 5.5rem);
 
-    font-style: italic;
+line-height: 0.9;
 
-    font-weight: 400;
+letter-spacing: -0.055em;
 
-    font-size:
-        clamp(
-            2.3rem,
-            5vw,
-            5.2rem
-        );
+font-weight: 400;
 
-    line-height: 0.92;
+font-style: italic;
+```
 
-    letter-spacing:
-        -0.045em;
-
-    transition:
-        opacity 0.3s ease;
 }
 
-
-/* =====================================================
-   ANSWER GRID
-===================================================== */
+/* =========================================
+ANSWERS
+========================================= */
 
 .answers {
+width: min(900px, 95vw);
 
-    display: grid;
+```
+margin: 0 auto;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+display: grid;
 
-    gap:
-        1.5rem
-        clamp(1rem, 4vw, 4rem);
+grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
-    width: min(900px, 100%);
+gap:
+    1rem
+    1.2rem;
+```
 
-    margin:
-        0 auto;
 }
-
-
-/* =====================================================
-   ANSWER OPTION
-===================================================== */
 
 .answer-option {
+position: relative;
 
-    display: grid;
+```
+min-height: 95px;
 
-    grid-template-columns:
-        auto 1fr;
+padding:
+    1.3rem
+    1.5rem;
 
-    align-items: center;
+display: flex;
 
-    gap: 1.4rem;
+align-items: center;
 
-    min-width: 0;
+text-align: left;
 
-    padding:
-        1rem;
+gap: 1rem;
 
-    border: none;
+border:
+    1px solid rgba(244,240,232,0.18);
 
-    background: transparent;
+border-radius: 3px;
 
-    color: #f4f0e8;
+background:
+    rgba(255,255,255,0.025);
 
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        Didot,
-        Georgia,
-        serif;
+color: #f4f0e8;
 
-    font-style: italic;
+font-family:
+    "Bodoni 72",
+    "Bodoni 72 Book",
+    "Bodoni MT",
+    Didot,
+    serif;
 
-    text-align: left;
+cursor: pointer;
 
-    cursor: pointer;
+transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+```
 
-    transition:
-        transform 0.4s ease;
 }
-
 
 .answer-option:hover {
+transform: translateY(-4px);
 
-    transform:
-        translateY(-5px);
+```
+border-color:
+    rgba(216,170,255,0.65);
+
+background:
+    rgba(170,100,230,0.08);
+
+box-shadow:
+    0 0 25px rgba(150,70,255,0.12);
+```
+
 }
 
-
-.answer-option:hover .orb {
-
-    transform:
-        scale(1.12);
-
-    filter:
-        brightness(1.2)
-        saturate(1.15);
+.answer-option:active {
+transform: scale(0.98);
 }
 
+.answer-letter {
+flex-shrink: 0;
+
+```
+width: 34px;
+height: 34px;
+
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+border:
+    1px solid rgba(216,170,255,0.4);
+
+color: #d8a7ff;
+
+font-size: 0.9rem;
+
+font-style: italic;
+```
+
+}
 
 .answer-text {
+font-size:
+clamp(1rem, 1.5vw, 1.3rem);
 
-    font-size:
-        clamp(
-            1rem,
-            1.5vw,
-            1.3rem
-        );
+```
+line-height: 1.15;
 
-    line-height: 1.2;
+font-style: italic;
+```
 
-    transition:
-        text-shadow 0.4s ease;
 }
 
-
-.answer-option:hover .answer-text {
-
-    text-shadow:
-        0 0 15px
-        rgba(255,255,255,0.25);
-}
-
-
-/* =====================================================
-   MAGIC ORBS
-===================================================== */
-
-.orb {
-
-    position: relative;
-
-    display: block;
-
-    flex-shrink: 0;
-
-    width:
-        clamp(
-            65px,
-            8vw,
-            100px
-        );
-
-    aspect-ratio: 1;
-
-    border-radius: 50%;
-
-    transition:
-        transform 0.5s ease,
-        filter 0.5s ease;
-
-    isolation: isolate;
-}
-
-
-/*
-    Outer aura
-*/
-
-.orb::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -30%;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            currentColor,
-            transparent 65%
-        );
-
-    opacity: 0.25;
-
-    filter:
-        blur(18px);
-
-    z-index: -2;
-
-    animation:
-        orbAura
-        4s
-        ease-in-out
-        infinite;
-}
-
-
-/*
-    Glass highlight
-*/
-
-.orb::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 7%;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 28% 20%,
-            rgba(255,255,255,0.9),
-            rgba(255,255,255,0.2) 12%,
-            transparent 25%
-        );
-
-    opacity: 0.8;
-
-    mix-blend-mode: screen;
-
-    pointer-events: none;
-}
-
-
-/* =====================================================
-   RED ORB
-===================================================== */
-
-.orb-red {
-
-    color: #ff2e45;
-
-    background:
-        radial-gradient(
-            circle at 32% 24%,
-            #fff5f5 0%,
-            #ffb5bc 8%,
-            #ff465c 25%,
-            #d41434 52%,
-            #5b061a 82%,
-            #17030b 100%
-        );
-
-    box-shadow:
-
-        inset
-        -15px
-        -18px
-        25px
-        rgba(30,0,10,0.7),
-
-        inset
-        8px
-        8px
-        20px
-        rgba(255,255,255,0.35),
-
-        0 0 25px
-        rgba(255,40,70,0.8),
-
-        0 0 65px
-        rgba(220,20,60,0.35);
-}
-
-
-/* =====================================================
-   BLUE ORB
-===================================================== */
-
-.orb-blue {
-
-    color: #368cff;
-
-    background:
-        radial-gradient(
-            circle at 32% 24%,
-            #ffffff 0%,
-            #b7e8ff 8%,
-            #4eb5ff 25%,
-            #2375ed 52%,
-            #062b80 82%,
-            #02091c 100%
-        );
-
-    box-shadow:
-
-        inset
-        -15px
-        -18px
-        25px
-        rgba(0,10,40,0.7),
-
-        inset
-        8px
-        8px
-        20px
-        rgba(255,255,255,0.35),
-
-        0 0 25px
-        rgba(40,130,255,0.8),
-
-        0 0 65px
-        rgba(30,100,255,0.35);
-}
-
-
-/* =====================================================
-   GOLD ORB
-===================================================== */
-
-.orb-gold {
-
-    color: #ffc83d;
-
-    background:
-        radial-gradient(
-            circle at 32% 24%,
-            #fffde4 0%,
-            #fff4a0 8%,
-            #ffd84c 25%,
-            #d99b20 52%,
-            #704800 82%,
-            #1d1000 100%
-        );
-
-    box-shadow:
-
-        inset
-        -15px
-        -18px
-        25px
-        rgba(45,25,0,0.7),
-
-        inset
-        8px
-        8px
-        20px
-        rgba(255,255,255,0.4),
-
-        0 0 25px
-        rgba(255,200,50,0.8),
-
-        0 0 65px
-        rgba(230,160,20,0.35);
-}
-
-
-/* =====================================================
-   GREEN ORB
-===================================================== */
-
-.orb-green {
-
-    color: #42e875;
-
-    background:
-        radial-gradient(
-            circle at 32% 24%,
-            #f1fff4 0%,
-            #b0ffc0 8%,
-            #42db70 25%,
-            #179747 52%,
-            #075b29 82%,
-            #011b0a 100%
-        );
-
-    box-shadow:
-
-        inset
-        -15px
-        -18px
-        25px
-        rgba(0,30,10,0.7),
-
-        inset
-        8px
-        8px
-        20px
-        rgba(255,255,255,0.35),
-
-        0 0 25px
-        rgba(50,230,100,0.8),
-
-        0 0 65px
-        rgba(30,190,80,0.35);
-}
-
-
-@keyframes orbAura {
-
-    0%,
-    100% {
-        transform:
-            scale(0.9);
-
-        opacity: 0.2;
-    }
-
-    50% {
-        transform:
-            scale(1.08);
-
-        opacity: 0.38;
-    }
-}
-
-
-/* =====================================================
-   ANSWER LABEL
-===================================================== */
-
-.answer-label {
-
-    margin-top: 2.5rem;
-
-    min-height: 1.5em;
-
-    font-size: 0.9rem;
-
-    opacity: 0.45;
-}
-
-
-/* =====================================================
-   RESULT
-===================================================== */
+/* =========================================
+RESULT
+========================================= */
 
 .result {
+width: min(1100px, 94vw);
 
-    width:
-        min(
-            1000px,
-            94vw
-        );
+```
+display: flex;
+flex-direction: column;
 
-    display: flex;
+align-items: center;
 
-    flex-direction: column;
+text-align: center;
+```
 
-    align-items: center;
-
-    text-align: center;
 }
 
+.result-intro {
+position: relative;
 
-.result-heading {
+```
+z-index: 5;
 
-    max-width: 900px;
+margin-bottom: 2rem;
 
-    margin-bottom:
-        clamp(
-            1rem,
-            3vh,
-            2rem
-        );
+max-width: 900px;
 
-    font-family:
-        "Bodoni Book Italic",
-        "Bodoni 72",
-        Didot,
-        Georgia,
-        serif;
+font-family:
+    "Bodoni 72",
+    "Bodoni 72 Book",
+    "Bodoni MT",
+    Didot,
+    serif;
 
-    font-style: italic;
+font-size:
+    clamp(2rem, 5vw, 5rem);
 
-    font-size:
-        clamp(
-            2.2rem,
-            5vw,
-            5.5rem
-        );
+line-height: 0.9;
 
-    line-height: 0.9;
+font-style: italic;
 
-    z-index: 10;
+letter-spacing: -0.05em;
 
-    opacity: 0;
+animation:
+    fadeInText 1.5s ease forwards;
+```
 
-    animation:
-        resultTextReveal
-        1.4s
-        ease
-        0.4s
-        forwards;
 }
 
+.result-ball {
+width:
+min(620px, 75vw);
 
-/* =====================================================
-   RESULT ORACLE
-===================================================== */
+```
+height:
+    min(620px, 75vw);
 
-.result-oracle {
+display: flex;
 
-    position: relative;
+align-items: center;
+justify-content: center;
 
-    width:
-        min(
-            600px,
-            78vw
-        );
+animation:
+    resultBallReveal 2s ease forwards;
+```
 
-    aspect-ratio: 1;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(106, 62, 145, 0.5),
-            rgba(40, 20, 55, 0.75) 35%,
-            rgba(8, 5, 10, 0.95) 75%
-        );
-
-    border:
-        1px solid
-        rgba(240, 220, 255, 0.18);
-
-    box-shadow:
-
-        inset
-        0 0 100px
-        rgba(190,100,255,0.15),
-
-        0 0 100px
-        rgba(100,40,170,0.25);
-
-    overflow: visible;
 }
-
-
-.result-oracle::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -5%;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(220,180,255,0.12);
-
-    box-shadow:
-        0 0 50px
-        rgba(150,80,230,0.2);
-
-    animation:
-        oraclePulse
-        5s
-        ease-in-out
-        infinite;
-}
-
 
 .result-content {
+position: relative;
 
-    position: relative;
+```
+z-index: 2;
 
-    z-index: 5;
+text-align: center;
 
-    width: 85%;
+padding: 10%;
+```
+
 }
-
 
 .result-label {
+font-size: 0.9rem;
 
-    margin-bottom: 0.5rem;
+```
+letter-spacing: 0.12em;
 
-    font-size:
-        clamp(
-            0.9rem,
-            1.5vw,
-            1.2rem
-        );
+text-transform: uppercase;
 
-    opacity: 0.55;
+opacity: 0.55;
+
+margin-bottom: 1rem;
+```
+
 }
-
 
 #result-font {
+font-family:
+"Bodoni 72",
+"Bodoni 72 Book",
+"Bodoni MT",
+Didot,
+serif;
 
-    margin: 0;
+```
+font-size:
+    clamp(4rem, 11vw, 10rem);
 
-    font-size:
-        clamp(
-            4rem,
-            10vw,
-            9rem
-        );
+line-height: 0.8;
 
-    line-height: 0.85;
+letter-spacing: -0.06em;
 
-    letter-spacing: -0.06em;
+margin-bottom: 2rem;
 
-    font-weight: 400;
+font-weight: 400;
 
-    opacity: 0;
+font-style: italic;
 
-    transform:
-        scale(0.2);
+animation:
+    magicalResult 2s ease forwards;
+```
 
-    filter:
-        blur(20px);
-
-    animation:
-        fontReveal
-        2.5s
-        cubic-bezier(.16,1,.3,1)
-        1.2s
-        forwards;
 }
-
 
 .result-description {
+max-width: 500px;
 
-    margin-top: 1.5rem;
+```
+margin: 0 auto;
 
-    font-size:
-        clamp(
-            1rem,
-            1.8vw,
-            1.35rem
-        );
+font-size:
+    clamp(1rem, 1.5vw, 1.3rem);
 
-    line-height: 1.2;
+line-height: 1.35;
 
-    opacity: 0;
+font-style: italic;
 
-    animation:
-        resultDescriptionReveal
-        1.5s
-        ease
-        2.5s
-        forwards;
+opacity: 0;
+
+animation:
+    fadeInText 1.5s ease 1.2s forwards;
+```
+
 }
 
-
-.result-stars {
-
-    position: absolute;
-
-    top: 12%;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    white-space: nowrap;
-
-    color:
-        rgba(238, 210, 255, 0.65);
-
-    letter-spacing: 0.7rem;
-}
-
-
-.result-stars-bottom {
-
-    top: auto;
-
-    bottom: 12%;
-}
-
-
-@keyframes oraclePulse {
-
-    0%,
-    100% {
-        transform:
-            scale(1);
-
-        opacity: 0.6;
-    }
-
-    50% {
-        transform:
-            scale(1.04);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes fontReveal {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(0.2)
-            rotate(-8deg);
-
-        filter:
-            blur(25px);
-    }
-
-    40% {
-
-        opacity: 0.8;
-
-        transform:
-            scale(1.12)
-            rotate(3deg);
-
-        filter:
-            blur(5px);
-    }
-
-    70% {
-
-        opacity: 1;
-
-        transform:
-            scale(0.97)
-            rotate(-1deg);
-
-        filter:
-            blur(0);
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0);
-
-        filter:
-            blur(0);
-    }
-}
-
-
-@keyframes resultTextReveal {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(20px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-@keyframes resultDescriptionReveal {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px);
-    }
-
-    to {
-
-        opacity: 0.7;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-/* =====================================================
-   RESULT TYPEFACES
-===================================================== */
+/* =========================================
+RESULT FONT CLASSES
+========================================= */
 
 .font-futura {
-
-    font-family:
-        Futura,
-        "Century Gothic",
-        sans-serif;
+font-family: Futura, "Century Gothic", sans-serif !important;
 }
-
 
 .font-raceway {
-
-    font-family:
-        Raceway,
-        "Arial Narrow",
-        sans-serif;
+font-family: Raceway, "Arial Narrow", sans-serif !important;
 }
-
 
 .font-playfair {
-
-    font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
+font-family: "Playfair Display", Georgia, serif !important;
 }
-
 
 .font-helvetica {
-
-    font-family:
-        Helvetica,
-        Arial,
-        sans-serif;
+font-family: Helvetica, Arial, sans-serif !important;
 }
-
 
 .font-gotham {
-
-    font-family:
-        Gotham,
-        Arial,
-        sans-serif;
+font-family: Gotham, Arial, sans-serif !important;
 }
-
 
 .font-montserrat {
-
-    font-family:
-        Montserrat,
-        Arial,
-        sans-serif;
+font-family: Montserrat, Arial, sans-serif !important;
 }
-
 
 .font-didot {
-
-    font-family:
-        Didot,
-        "Bodoni MT",
-        serif;
+font-family: Didot, "Bodoni MT", serif !important;
 }
-
 
 .font-cooper {
-
-    font-family:
-        "Cooper Black",
-        Cooper,
-        serif;
+font-family: "Cooper Black", Cooper, serif !important;
 }
-
 
 .font-bodoni {
-
-    font-family:
-        Bodoni,
-        "Bodoni MT",
-        Didot,
-        serif;
+font-family: Bodoni, "Bodoni MT", Didot, serif !important;
 }
-
 
 .font-comic {
-
-    font-family:
-        "Comic Sans MS",
-        cursive;
+font-family: "Comic Sans MS", cursive !important;
 }
-
 
 .font-chiller {
-
-    font-family:
-        Chiller,
-        fantasy;
+font-family: Chiller, fantasy !important;
 }
-
 
 .font-hobo {
-
-    font-family:
-        Hobo,
-        fantasy;
+font-family: Hobo, fantasy !important;
 }
-
 
 .font-bubblegum {
-
-    font-family:
-        Bubblegum,
-        cursive;
+font-family: Bubblegum, cursive !important;
 }
-
 
 .font-arial {
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+font-family: Arial, Helvetica, sans-serif !important;
 }
 
+/* =========================================
+RESULT ANIMATIONS
+========================================= */
 
-/* =====================================================
-   RESTART
-===================================================== */
+@keyframes fadeInText {
 
-.restart-button {
+```
+from {
+    opacity: 0;
+    transform: translateY(20px);
+}
 
-    margin-top:
-        clamp(
-            1rem,
-            3vh,
-            2rem
-        );
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+```
 
+}
+
+@keyframes magicalResult {
+
+```
+0% {
     opacity: 0;
 
-    animation:
-        resultTextReveal
-        1.2s
-        ease
-        3.2s
-        forwards;
+    transform:
+        scale(0.45)
+        rotate(-8deg);
+
+    filter:
+        blur(25px);
+
+    text-shadow:
+        0 0 0 transparent;
 }
 
+45% {
+    opacity: 0.5;
 
-/* =====================================================
-   MOBILE
-===================================================== */
+    transform:
+        scale(1.12)
+        rotate(3deg);
+
+    filter:
+        blur(5px);
+}
+
+75% {
+    transform:
+        scale(0.96)
+        rotate(-1deg);
+
+    filter:
+        blur(0);
+
+    text-shadow:
+        0 0 40px rgba(220,170,255,0.9);
+}
+
+100% {
+    opacity: 1;
+
+    transform:
+        scale(1)
+        rotate(0);
+
+    filter:
+        blur(0);
+
+    text-shadow:
+        0 0 15px rgba(220,170,255,0.35);
+}
+```
+
+}
+
+@keyframes resultBallReveal {
+
+```
+from {
+    opacity: 0;
+
+    transform:
+        scale(0.8);
+
+    filter:
+        brightness(0.3)
+        blur(10px);
+}
+
+to {
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+    filter:
+        brightness(1)
+        blur(0);
+}
+```
+
+}
+
+/* =========================================
+MOBILE
+========================================= */
 
 @media (max-width: 700px) {
 
-    .ornament-rail {
-
-        height: 30px;
-    }
-
-
-    .ornament-track span {
-
-        font-size: 0.9rem;
-
-        letter-spacing:
-            0.35rem;
-
-        padding-right:
-            1.5rem;
-    }
-
-
-    .machine-header {
-
-        top: 4vh;
-    }
-
-
-    .logo-image {
-
-        width:
-            clamp(
-                140px,
-                42vw,
-                210px
-            );
-    }
-
-
-    .screen {
-
-        padding:
-            55px
-            5vw;
-    }
-
-
-    .fortune-container {
-
-        width: 100%;
-
-        padding:
-            3.5rem
-            0
-            2rem;
-    }
-
-
-    .fortune-glass {
-
-        width: 90vw;
-
-        max-height: 67vh;
-
-        padding:
-            3rem 2rem;
-    }
-
-
-    .fortune-copy {
-
-        font-size:
-            clamp(
-                0.9rem,
-                3.5vw,
-                1.05rem
-            );
-
-        line-height: 1.35;
-    }
-
-
-    .magic-button {
-
-        font-size: 0.9rem;
-
-        padding:
-            0.9rem 1.5rem;
-    }
-
-
-    .quiz {
-
-        padding-top:
-            2rem;
-    }
-
-
-    .progress {
-
-        margin-bottom:
-            2rem;
-    }
-
-
-    #question-text {
-
-        font-size:
-            clamp(
-                2rem,
-                9vw,
-                3.2rem
-            );
-
-        margin-bottom:
-            2rem;
-    }
-
-
-    .answers {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            0.4rem;
-
-        max-height:
-            48vh;
-
-        overflow-y: auto;
-
-        scrollbar-width: none;
-    }
-
-
-    .answers::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    .answer-option {
-
-        grid-template-columns:
-            58px 1fr;
-
-        gap:
-            1rem;
-
-        padding:
-            0.5rem 0.2rem;
-    }
-
-
-    .orb {
-
-        width: 58px;
-    }
-
-
-    .answer-text {
-
-        font-size:
-            1rem;
-
-        line-height:
-            1.15;
-    }
-
-
-    .answer-label {
-
-        margin-top:
-            1.2rem;
-    }
-
-
-    .result-heading {
-
-        font-size:
-            clamp(
-                2rem,
-                9vw,
-                3.5rem
-            );
-
-        margin-bottom:
-            1rem;
-    }
-
-
-    .result-oracle {
-
-        width:
-            min(
-                82vw,
-                420px
-            );
-    }
-
-
-    #result-font {
-
-        font-size:
-            clamp(
-                3rem,
-                13vw,
-                6rem
-            );
-    }
-
-
-    .result-description {
-
-        font-size:
-            0.95rem;
-    }
-
-
-    .result-stars {
-
-        font-size:
-            0.8rem;
-
-        letter-spacing:
-            0.35rem;
-    }
+```
+.ornament-track {
+    height: 30px;
 }
 
-
-/* =====================================================
-   VERY SMALL PHONES
-===================================================== */
-
-@media (max-height: 700px) and (max-width: 700px) {
-
-    .machine-header {
-        top: 2vh;
-    }
-
-
-    .logo-image {
-        width: 120px;
-    }
-
-
-    #question-text {
-
-        font-size:
-            1.8rem;
-
-        margin-bottom:
-            1.2rem;
-    }
-
-
-    .answers {
-
-        max-height:
-            42vh;
-    }
-
-
-    .answer-option {
-
-        padding:
-            0.25rem;
-    }
-
-
-    .orb {
-
-        width:
-            48px;
-    }
+.ornament-row span {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
 }
 
+.machine-header {
+    top: 30px;
+    height: 25vh;
+}
 
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
+.logo-image {
+    width: 190px;
+}
+
+.screen {
+    padding:
+        50px
+        5vw
+        45px;
+}
+
+.intro {
+    padding-top: 80px;
+}
+
+.welcome-text {
+    font-size: 1.8rem;
+}
+
+.fontune-title {
+    font-size:
+        clamp(3.4rem, 14vw, 6rem);
+}
+
+.scroll-button {
+    font-size: 3rem;
+}
+
+.intro-ball {
+    width: 88vw;
+    height: 88vw;
+    max-height: none;
+}
+
+.ball-content {
+    padding: 11%;
+
+    font-size: 0.75rem;
+
+    line-height: 1.25;
+}
+
+.ball-content p {
+    margin-bottom: 0.45rem;
+}
+
+.quiz {
+    padding-top: 1vh;
+}
+
+.progress {
+    margin-bottom: 1.7rem;
+}
+
+#question-text {
+    font-size:
+        clamp(2rem, 10vw, 3.5rem);
+
+    margin-bottom: 2rem;
+
+    line-height: 0.9;
+}
+
+.answers {
+    grid-template-columns: 1fr;
+
+    gap: 0.7rem;
+
+    max-height: 48vh;
+
+    overflow-y: auto;
+
+    padding:
+        2px
+        4px;
+
+    scrollbar-width: thin;
+}
+
+.answer-option {
+    min-height: 65px;
+
+    padding:
+        0.8rem
+        0.9rem;
+}
+
+.answer-letter {
+    width: 28px;
+    height: 28px;
+
+    font-size: 0.75rem;
+}
+
+.answer-text {
+    font-size: 1rem;
+}
+
+.result-intro {
+    font-size:
+        clamp(2rem, 9vw, 3.5rem);
+
+    margin-bottom: 1.5rem;
+}
+
+.result-ball {
+    width: 82vw;
+    height: 82vw;
+}
+
+#result-font {
+    font-size:
+        clamp(3.3rem, 14vw, 6rem);
+}
+
+.result-description {
+    font-size: 0.9rem;
+}
+
+.magic-button {
+    font-size: 0.95rem;
+
+    padding:
+        0.9rem
+        1.7rem;
+}
+```
+
+}
+
+/* =========================================
+VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+```
+#question-text {
+    font-size: 1.8rem;
+}
+
+.answer-text {
+    font-size: 0.9rem;
+}
+
+.answers {
+    max-height: 50vh;
+}
+
+.result-ball {
+    width: 88vw;
+    height: 88vw;
+}
+```
+
+}
+
+/* =========================================
+REDUCED MOTION
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
+```
+*,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+}
+```
 
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        scroll-behavior:
-            auto !important;
-
-        transition-duration:
-            0.01ms !important;
-    }
 }
