@@ -1,6 +1,6 @@
-/* =========================================================
+/* =========================================
    RESET
-========================================================= */
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -8,206 +8,280 @@
     padding: 0;
 }
 
-html,
-body {
+html {
     width: 100%;
     min-height: 100%;
 }
 
-html {
-    background: #08050d;
-}
-
 body {
-    background: #08050d;
-    color: #f4eefc;
-    font-family: "Bodoni Moda", "Bodoni 72", "Bodoni MT", Didot, serif;
+    width: 100%;
+    min-height: 100dvh;
+
+    background: #09050d;
+    color: #f4f0e8;
+
+    font-family:
+        "Bodoni 72",
+        "Bodoni 72 Book",
+        "Bodoni MT",
+        Didot,
+        "Times New Roman",
+        serif;
+
     overflow-x: hidden;
 }
 
 
-/* =========================================================
+/* =========================================
    MAIN
-========================================================= */
+========================================= */
 
 .fortune-machine {
     position: relative;
+
     width: 100%;
-    min-height: 100svh;
+    min-height: 100dvh;
+
     background:
         radial-gradient(
-            ellipse at center,
-            #160d20 0%,
-            #09050d 55%,
-            #050308 100%
-        );
+            circle at 50% 45%,
+            rgba(90, 35, 120, 0.08),
+            transparent 45%
+        ),
+        #09050d;
+
     overflow: hidden;
 }
 
 
-/* =========================================================
-   ORNAMENT BANNERS
-========================================================= */
+/* =========================================
+   ORNAMENT BANDS
+========================================= */
 
-.ornament-banner {
+.ornament-band {
     position: fixed;
+
     left: 0;
     width: 100%;
-    height: clamp(34px, 5vh, 58px);
+    height: 38px;
 
     overflow: hidden;
 
-    z-index: 100;
+    z-index: 2;
 
     pointer-events: none;
 
-    color: #a66cff;
+    background: #16071f;
 
-    background: transparent;
+    color: #a95ee8;
 
-    text-shadow:
-        0 0 5px rgba(155, 82, 255, 0.8),
-        0 0 15px rgba(132, 52, 255, 0.7),
-        0 0 30px rgba(132, 52, 255, 0.35);
+    border: none;
+
+    box-shadow:
+        0 0 18px rgba(145, 55, 220, 0.25);
 }
+
+
+/* Top */
 
 .ornament-top {
     top: 0;
 }
 
+
+/* Bottom */
+
 .ornament-bottom {
     bottom: 0;
 }
 
+
+/* Moving content */
+
 .ornament-track {
     display: flex;
+
     width: max-content;
     height: 100%;
+
+    align-items: center;
+
+    white-space: nowrap;
+
+    will-change: transform;
 }
 
-.ornament-set {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+
+/*
+    IMPORTANT:
+    There are two identical copies of the ornament.
+    Because each copy has exactly the same width,
+    the animation can loop without a visible gap.
+*/
+
+.ornament-track span {
+    display: block;
 
     flex-shrink: 0;
 
-    width: 100vw;
-    min-width: 100vw;
-    height: 100%;
+    padding-right: 0;
 
-    white-space: nowrap;
-}
+    font-family:
+        "Bodoni 72",
+        "Bodoni MT",
+        Didot,
+        serif;
 
-.ornament-set span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 21px;
 
-    width: clamp(28px, 4vw, 60px);
+    line-height: 1;
 
-    font-size: clamp(17px, 2vw, 29px);
+    letter-spacing: 7px;
 
-    opacity: 0.88;
+    color: #a957e7;
 
-    transform-origin: center;
-
-    filter:
-        drop-shadow(0 0 5px #8e4dff)
-        drop-shadow(0 0 12px rgba(126, 47, 255, 0.7));
+    text-shadow:
+        0 0 5px rgba(180, 90, 255, 0.7),
+        0 0 15px rgba(150, 60, 240, 0.5);
 }
 
 
-/* seamless movement */
+/* Top moves left */
 
 .ornament-top .ornament-track {
+    animation:
+        ornamentLeft 28s linear infinite;
+}
+
+
+/* Bottom moves right */
+
+.ornament-bottom .ornament-track {
     animation:
         ornamentRight 32s linear infinite;
 }
 
-.ornament-bottom .ornament-track {
-    animation:
-        ornamentLeft 38s linear infinite;
-}
 
+/* Occasional magical glow */
 
-/* occasional magical pulse */
-
-.ornament-banner::after {
+.ornament-band::after {
     content: "";
 
     position: absolute;
     inset: 0;
 
     background:
-        radial-gradient(
-            ellipse at center,
-            rgba(194, 139, 255, 0.4),
-            transparent 65%
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(220, 150, 255, 0.05) 35%,
+            rgba(235, 190, 255, 0.35) 50%,
+            rgba(220, 150, 255, 0.05) 65%,
+            transparent 100%
         );
 
     opacity: 0;
 
-    animation: magicalPulse 7s ease-in-out infinite;
+    animation: magicalSweep 7s ease-in-out infinite;
+
+    pointer-events: none;
 }
 
-@keyframes ornamentRight {
-    from {
-        transform: translateX(-100vw);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
 
 @keyframes ornamentLeft {
+
     from {
         transform: translateX(0);
     }
 
     to {
-        transform: translateX(-100vw);
+        transform: translateX(-50%);
     }
+
 }
 
-@keyframes magicalPulse {
+
+@keyframes ornamentRight {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes magicalSweep {
+
     0%,
-    72%,
+    55%,
     100% {
         opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    65% {
+        opacity: 1;
     }
 
     78% {
-        opacity: 0.8;
-    }
-
-    84% {
-        opacity: 0.15;
-    }
-
-    89% {
-        opacity: 0.6;
-    }
-
-    94% {
         opacity: 0;
+        transform: translateX(100%);
     }
+
 }
 
 
-/* =========================================================
+/* =========================================
+   HEADER
+========================================= */
+
+.machine-header {
+    position: absolute;
+
+    top: 38px;
+    left: 0;
+
+    width: 100%;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo-image {
+    width: min(260px, 55vw);
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================================
    SCREENS
-========================================================= */
+========================================= */
 
 .screen {
     position: relative;
 
-    z-index: 2;
+    z-index: 3;
 
     width: 100%;
-
-    min-height: 100svh;
+    min-height: 100dvh;
 
     display: none;
 
@@ -215,26 +289,28 @@ body {
     justify-content: center;
 
     padding:
-        max(80px, 8vh)
-        clamp(18px, 5vw, 80px);
+        70px
+        clamp(20px, 5vw, 70px);
 }
+
 
 .screen.active {
     display: flex;
 }
 
 
-/* =========================================================
-   LANDING
-========================================================= */
+/* =========================================
+   START PAGE
+========================================= */
 
-.landing {
-    width: 100%;
-    max-width: 900px;
+.landing-content {
 
-    min-height: calc(100svh - 100px);
+    width: min(900px, 100%);
+
+    min-height: calc(100dvh - 76px);
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -242,178 +318,221 @@ body {
 
     text-align: center;
 
-    gap: clamp(22px, 4vh, 42px);
+    gap: clamp(22px, 4vh, 45px);
 }
 
-.welcome-text {
-    font-size: clamp(2rem, 5vw, 5rem);
 
-    line-height: 0.9;
+.welcome-text {
+
+    font-family:
+        "Bodoni 72",
+        "Bodoni MT",
+        Didot,
+        serif;
 
     font-style: italic;
 
-    letter-spacing: -0.055em;
+    font-size:
+        clamp(2.4rem, 6vw, 6rem);
 
-    animation:
-        fadeUp 1.4s ease forwards;
+    line-height: 1;
+
+    font-weight: 400;
+
+    color: #f4f0e8;
 }
 
-.logo-image {
-    width: min(68vw, 420px);
-    max-width: 100%;
+
+.landing-logo {
+
+    width:
+        min(
+            430px,
+            75vw
+        );
+
     height: auto;
 
     display: block;
 
     filter:
-        drop-shadow(0 0 15px rgba(145, 75, 255, 0.3))
-        drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+        drop-shadow(
+            0 0 25px rgba(170, 70, 255, 0.35)
+        );
 }
 
 
-/* =========================================================
+/* =========================================
    MAGIC ARROW
-========================================================= */
+========================================= */
 
 .magic-arrow {
+
     position: relative;
 
-    width: clamp(70px, 10vw, 100px);
-    height: clamp(90px, 13vw, 130px);
+    width: 85px;
+    height: 85px;
 
     border: none;
 
     background: transparent;
 
-    color: #b889ff;
+    color: #d6a0ff;
 
     cursor: pointer;
 
     display: flex;
-    flex-direction: column;
 
     align-items: center;
     justify-content: center;
 
-    animation:
-        arrowFloat 3s ease-in-out infinite;
-
-    filter:
-        drop-shadow(0 0 8px rgba(143, 73, 255, 0.7));
+    transition:
+        transform 0.4s ease,
+        color 0.4s ease;
 }
 
-.arrow-head {
-    position: relative;
-
-    font-family:
-        "Bodoni Moda",
-        "Bodoni 72",
-        Didot,
-        serif;
-
-    font-size: clamp(3rem, 6vw, 5rem);
-
-    line-height: 0.7;
-
-    font-weight: 400;
-
-    transform: scaleX(0.8);
-}
-
-.arrow-swirl {
-    position: absolute;
-
-    top: 0;
-
-    font-size: 2rem;
-
-    opacity: 0.7;
-
-    transform: rotate(-20deg);
-}
-
-.arrow-swirl-bottom {
-    top: auto;
-    bottom: 0;
-
-    transform: rotate(160deg);
-}
 
 .magic-arrow::before,
 .magic-arrow::after {
+
     content: "";
 
     position: absolute;
 
-    width: 28px;
-    height: 28px;
+    inset: 12px;
 
-    border: 1px solid rgba(177, 122, 255, 0.65);
+    border:
+        1px solid
+        rgba(190, 110, 245, 0.6);
 
     border-radius: 50%;
 
-    animation:
-        spiralPulse 3s ease-in-out infinite;
+    transform:
+        rotate(35deg)
+        scaleX(0.7);
+
+    transition:
+        transform 0.5s ease;
 }
 
-.magic-arrow::before {
-    top: 20px;
-    left: 8px;
-}
 
 .magic-arrow::after {
-    bottom: 18px;
-    right: 8px;
-    animation-delay: 1.5s;
+
+    inset: 18px;
+
+    transform:
+        rotate(-35deg)
+        scaleX(0.7);
+
+    opacity: 0.6;
 }
 
+
+.arrow-symbol {
+
+    position: relative;
+
+    z-index: 2;
+
+    font-family:
+        "Bodoni 72",
+        "Bodoni MT",
+        Didot,
+        serif;
+
+    font-size: 48px;
+
+    font-style: italic;
+
+    line-height: 1;
+
+    animation:
+        arrowFloat 2.4s ease-in-out infinite;
+}
+
+
+.magic-arrow:hover {
+
+    transform: scale(1.12);
+
+    color: #ffffff;
+}
+
+
+.magic-arrow:hover::before {
+
+    transform:
+        rotate(215deg)
+        scaleX(0.7);
+}
+
+
+.magic-arrow:hover::after {
+
+    transform:
+        rotate(-215deg)
+        scaleX(0.7);
+}
+
+
 @keyframes arrowFloat {
+
     0%,
     100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(10px);
-    }
-}
-
-@keyframes spiralPulse {
-    0%,
-    100% {
-        transform: scale(0.8);
-        opacity: 0.2;
+        transform: translateY(8px);
     }
 
-    50% {
-        transform: scale(1.25);
-        opacity: 0.8;
-    }
 }
 
 
-/* =========================================================
-   INTRO / CRYSTAL BALL
-========================================================= */
+/* =========================================
+   INTRO
+========================================= */
 
-.crystal-stage {
-    width: min(1000px, 100%);
+.intro-container {
+
+    width: min(760px, 100%);
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
 
-    gap: clamp(18px, 3vh, 30px);
+    gap: 30px;
+
+    padding:
+        20px 0;
 }
 
+
+/* =========================================
+   CRYSTAL BALL
+========================================= */
+
 .crystal-ball {
+
     position: relative;
 
-    width: min(78vw, 680px);
-    aspect-ratio: 1;
+    width:
+        min(
+            72vw,
+            620px
+        );
 
-    max-height: 75svh;
+    height:
+        min(
+            72vw,
+            620px
+        );
+
+    max-height: 68dvh;
+
+    aspect-ratio: 1;
 
     border-radius: 50%;
 
@@ -422,67 +541,77 @@ body {
     align-items: center;
     justify-content: center;
 
-    padding: clamp(45px, 7vw, 85px);
+    padding: clamp(35px, 7vw, 80px);
 
     background:
+
         radial-gradient(
-            circle at 35% 28%,
-            rgba(214, 183, 255, 0.22),
-            transparent 17%
+            circle at 35% 25%,
+            rgba(255,255,255,0.16),
+            transparent 12%
         ),
+
         radial-gradient(
             circle at 50% 50%,
-            rgba(102, 39, 173, 0.9),
-            rgba(31, 10, 52, 0.97) 58%,
-            rgba(5, 2, 10, 1) 100%
+            rgba(125, 40, 180, 0.35),
+            rgba(25, 5, 35, 0.95) 65%
         );
 
+    border:
+        1px solid
+        rgba(205, 130, 255, 0.45);
+
     box-shadow:
-        inset -25px -25px 60px rgba(0, 0, 0, 0.6),
-        inset 15px 15px 30px rgba(212, 178, 255, 0.15),
-        0 0 45px rgba(116, 42, 205, 0.5),
-        0 0 100px rgba(82, 27, 145, 0.25);
+
+        inset 0 0 60px
+        rgba(160, 65, 230, 0.22),
+
+        0 0 50px
+        rgba(140, 50, 210, 0.18),
+
+        0 0 120px
+        rgba(100, 20, 160, 0.12);
 
     overflow: hidden;
 }
 
-.crystal-ball::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 3%;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(206, 165, 255, 0.2);
-
-    box-shadow:
-        inset 0 0 30px rgba(175, 105, 255, 0.12);
-}
 
 .crystal-glow {
+
     position: absolute;
 
-    width: 70%;
-    height: 70%;
-
-    border-radius: 50%;
+    inset: -20%;
 
     background:
         radial-gradient(
             circle,
-            rgba(174, 99, 255, 0.3),
-            transparent 68%
+            rgba(190, 90, 255, 0.16),
+            transparent 60%
         );
-
-    filter: blur(20px);
 
     animation:
         crystalPulse 5s ease-in-out infinite;
 }
 
+
+@keyframes crystalPulse {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+}
+
+
 .intro-copy {
+
     position: relative;
 
     z-index: 2;
@@ -493,128 +622,147 @@ body {
 
     overflow-y: auto;
 
+    padding-right: 8px;
+
     text-align: center;
 
-    font-size: clamp(0.68rem, 1.25vw, 1rem);
+    font-family:
+        "Bodoni 72",
+        "Bodoni MT",
+        Didot,
+        serif;
 
-    line-height: 1.45;
+    font-style: italic;
 
-    letter-spacing: 0.01em;
+    font-size:
+        clamp(
+            0.72rem,
+            1.25vw,
+            1.05rem
+        );
+
+    line-height: 1.22;
+
+    color: rgba(255,255,255,0.88);
 
     scrollbar-width: none;
 }
+
 
 .intro-copy::-webkit-scrollbar {
     display: none;
 }
 
+
 .intro-copy p {
     margin-bottom: 0.55em;
 }
 
+
 .intro-copy strong {
+    color: #dba9ff;
+
     font-weight: 600;
 
-    color: #d4b6ff;
-
     text-shadow:
-        0 0 8px rgba(174, 112, 255, 0.5);
-}
-
-@keyframes crystalPulse {
-    0%,
-    100% {
-        transform: scale(0.85);
-        opacity: 0.4;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 0.85;
-    }
+        0 0 12px rgba(200, 110, 255, 0.45);
 }
 
 
-/* =========================================================
-   MAGIC BUTTON
-========================================================= */
+/* =========================================
+   BUTTONS
+========================================= */
 
-.magic-button {
+.pill-button {
+
     position: relative;
 
-    padding:
-        0.9rem
-        clamp(1.6rem, 4vw, 3rem);
+    z-index: 5;
 
-    border: 1px solid rgba(194, 156, 255, 0.7);
+    padding:
+        15px 30px;
+
+    border:
+        1px solid
+        rgba(240, 220, 250, 0.55);
 
     border-radius: 100px;
 
     background:
-        linear-gradient(
-            120deg,
-            rgba(104, 43, 167, 0.2),
-            rgba(183, 116, 255, 0.1)
-        );
+        rgba(20, 10, 25, 0.65);
 
-    color: #f5edff;
+    color: #f4f0e8;
 
     font-family:
-        "Bodoni Moda",
         "Bodoni 72",
+        "Bodoni MT",
         Didot,
         serif;
 
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-
     font-style: italic;
+
+    font-size:
+        clamp(1rem, 1.5vw, 1.25rem);
 
     cursor: pointer;
 
-    box-shadow:
-        0 0 20px rgba(131, 67, 220, 0.25);
+    backdrop-filter: blur(8px);
 
     transition:
-        transform 0.35s ease,
-        background 0.35s ease,
-        box-shadow 0.35s ease;
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.magic-button:hover {
-    transform: scale(1.04);
+
+.pill-button:hover {
+
+    transform: scale(1.06);
 
     background:
-        rgba(163, 99, 235, 0.25);
+        rgba(140, 50, 190, 0.35);
 
     box-shadow:
-        0 0 35px rgba(152, 82, 255, 0.55);
+        0 0 30px
+        rgba(190, 90, 255, 0.3);
 }
 
 
-/* =========================================================
+/* =========================================
    QUIZ
-========================================================= */
+========================================= */
 
-.quiz {
-    width: min(1000px, 100%);
+.quiz-container {
+
+    width:
+        min(
+            1100px,
+            100%
+        );
+
+    text-align: center;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
 
-    text-align: center;
+    justify-content: center;
 }
 
+
 .progress {
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    gap: 1rem;
+    gap: 18px;
 
-    margin-bottom: clamp(1.5rem, 5vh, 4rem);
+    margin-bottom:
+        clamp(25px, 5vh, 55px);
 
     font-size: 0.75rem;
 
@@ -623,94 +771,185 @@ body {
     opacity: 0.55;
 }
 
+
 .progress-line {
-    width: clamp(50px, 10vw, 120px);
+
+    width:
+        clamp(50px, 12vw, 120px);
 
     height: 1px;
 
     background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #ad78ff,
-            transparent
-        );
+        rgba(255,255,255,0.45);
 }
 
 
-/* =========================================================
-   QUESTION
-========================================================= */
-
 #question-text {
+
     width: 100%;
 
-    max-width: 900px;
+    max-width: 1000px;
 
-    margin-bottom: clamp(1.8rem, 5vh, 4rem);
+    margin-bottom:
+        clamp(30px, 5vh, 55px);
 
     font-family:
-        "Bodoni Moda",
         "Bodoni 72",
         "Bodoni MT",
         Didot,
         serif;
 
-    font-size: clamp(2.2rem, 5.5vw, 5.8rem);
-
     font-style: italic;
 
     font-weight: 400;
 
-    line-height: 0.92;
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            5.5rem
+        );
 
-    letter-spacing: -0.055em;
+    line-height: 0.95;
 
-    text-wrap: balance;
+    letter-spacing: -0.045em;
 }
 
 
-/* =========================================================
+/* =========================================
    ANSWERS
-========================================================= */
+========================================= */
 
 .answers {
-    width: min(850px, 100%);
+
+    width: min(900px, 100%);
 
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    gap: clamp(10px, 2vw, 20px);
+    gap:
+        clamp(12px, 2vw, 22px);
 }
 
+
 .answer-button {
-    min-height: clamp(105px, 13vw, 145px);
 
-    position: relative;
+    min-height:
+        clamp(90px, 10vw, 130px);
 
-    padding: clamp(18px, 3vw, 30px);
+    padding:
+        18px 22px;
 
-    border: 1px solid rgba(181, 126, 255, 0.25);
+    border:
+        1px solid
+        rgba(180, 105, 225, 0.35);
 
     border-radius: 20px;
 
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(143, 71, 213, 0.2),
-            rgba(20, 8, 29, 0.8)
+        linear-gradient(
+            135deg,
+            rgba(70, 25, 90, 0.28),
+            rgba(20, 10, 30, 0.65)
         );
 
-    color: #eee3fb;
+    color: #f4f0e8;
 
     font-family:
-        "Bodoni Moda",
         "Bodoni 72",
+        "Bodoni MT",
         Didot,
         serif;
 
     cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    text-align: left;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.answer-button:hover {
+
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(215, 150, 255, 0.8);
+
+    background:
+        rgba(105, 35, 135, 0.38);
+
+    box-shadow:
+        0 10px 35px
+        rgba(130, 50, 180, 0.2);
+}
+
+
+.answer-button:active {
+
+    transform: scale(0.98);
+}
+
+
+.answer-letter {
+
+    flex:
+        0 0 auto;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(210, 150, 245, 0.5);
+
+    color: #d9a5ff;
+
+    font-size: 0.9rem;
+
+    font-style: italic;
+}
+
+
+.answer-text {
+
+    font-size:
+        clamp(
+            0.95rem,
+            1.5vw,
+            1.2rem
+        );
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.result-container {
+
+    width: min(1000px, 100%);
 
     display: flex;
 
@@ -720,100 +959,51 @@ body {
 
     justify-content: center;
 
-    gap: 10px;
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-}
-
-.answer-button:hover {
-    transform: translateY(-5px);
-
-    border-color: rgba(190, 138, 255, 0.85);
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(153, 77, 230, 0.4),
-            rgba(28, 9, 40, 0.9)
-        );
-
-    box-shadow:
-        0 0 30px rgba(127, 55, 210, 0.35);
-}
-
-.answer-symbol {
-    color: #ae78ed;
-
-    font-size: clamp(0.75rem, 1.3vw, 1rem);
-
-    letter-spacing: 0.12em;
-}
-
-.answer-text {
-    font-size: clamp(0.95rem, 1.7vw, 1.35rem);
-
-    line-height: 1.2;
-}
-
-.answer-label {
-    min-height: 1.5em;
-
-    margin-top: clamp(1rem, 3vh, 2rem);
-
-    font-size: 0.75rem;
-
-    letter-spacing: 0.15em;
-
-    text-transform: uppercase;
-
-    opacity: 0.4;
-}
-
-
-/* =========================================================
-   RESULT
-========================================================= */
-
-.result {
-    width: min(1100px, 100%);
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
     text-align: center;
 }
 
-.result-intro {
-    max-width: 900px;
 
-    margin-bottom: clamp(1rem, 3vh, 2.5rem);
+.result-intro {
 
     font-family:
-        "Bodoni Moda",
         "Bodoni 72",
+        "Bodoni MT",
         Didot,
         serif;
 
-    font-size: clamp(2rem, 5vw, 5rem);
-
     font-style: italic;
 
-    line-height: 0.9;
+    font-weight: 400;
 
-    letter-spacing: -0.05em;
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            5.5rem
+        );
+
+    line-height: 0.95;
+
+    margin-bottom:
+        clamp(25px, 4vh, 45px);
 }
 
-.result-ball {
+
+.result-crystal-ball {
+
     position: relative;
 
-    width: min(68vw, 600px);
+    width:
+        min(
+            68vw,
+            600px
+        );
+
+    height:
+        min(
+            68vw,
+            600px
+        );
 
     aspect-ratio: 1;
 
@@ -824,30 +1014,36 @@ body {
     align-items: center;
     justify-content: center;
 
-    overflow: hidden;
-
     background:
         radial-gradient(
             circle at 35% 25%,
-            rgba(255,255,255,0.18),
-            transparent 15%
+            rgba(255,255,255,0.15),
+            transparent 12%
         ),
+
         radial-gradient(
             circle,
-            var(--result-color, #5f2b94),
-            #120719 75%
+            rgba(105, 30, 150, 0.4),
+            rgba(20, 5, 30, 0.95) 68%
         );
 
-    box-shadow:
-        inset -30px -25px 50px rgba(0,0,0,0.65),
-        inset 15px 15px 30px rgba(255,255,255,0.08),
-        0 0 80px var(--result-glow, rgba(128,63,255,0.5));
+    border:
+        1px solid
+        rgba(210, 130, 255, 0.5);
 
-    animation:
-        resultBallReveal 2s ease forwards;
+    box-shadow:
+        inset 0 0 70px
+        rgba(170, 70, 230, 0.25),
+
+        0 0 80px
+        rgba(140, 50, 210, 0.25);
+
+    overflow: hidden;
 }
 
-.result-ball-glow {
+
+.result-glow {
+
     position: absolute;
 
     inset: -20%;
@@ -855,388 +1051,345 @@ body {
     background:
         radial-gradient(
             circle,
-            var(--result-glow, rgba(145,70,255,0.35)),
+            rgba(220, 130, 255, 0.3),
             transparent 60%
         );
-
-    filter: blur(25px);
 
     animation:
         resultGlow 4s ease-in-out infinite;
 }
 
-.result-content {
-    position: relative;
-
-    z-index: 2;
-
-    padding: 30px;
-
-    width: 100%;
-}
-
-.result-label {
-    margin-bottom: 0.8rem;
-
-    font-size: clamp(0.7rem, 1.2vw, 0.95rem);
-
-    letter-spacing: 0.18em;
-
-    text-transform: uppercase;
-
-    opacity: 0.6;
-}
-
-#result-font {
-    margin-bottom: 1rem;
-
-    font-size: clamp(3.5rem, 11vw, 9rem);
-
-    line-height: 0.8;
-
-    letter-spacing: -0.07em;
-
-    font-weight: 400;
-}
-
-.result-description {
-    max-width: 500px;
-
-    margin: 0 auto;
-
-    font-size: clamp(0.9rem, 1.5vw, 1.15rem);
-
-    line-height: 1.4;
-
-    opacity: 0.7;
-}
-
-.result .magic-button {
-    margin-top: clamp(20px, 4vh, 40px);
-}
-
-
-/* =========================================================
-   RESULT FONT CLASSES
-========================================================= */
-
-.font-futura {
-    font-family: Futura, "Century Gothic", sans-serif;
-}
-
-.font-raceway {
-    font-family: "Arial Narrow", Arial, sans-serif;
-}
-
-.font-playfair {
-    font-family: "Playfair Display", Georgia, serif;
-}
-
-.font-helvetica {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.font-gotham {
-    font-family: Gotham, Arial, sans-serif;
-}
-
-.font-montserrat {
-    font-family: Montserrat, Arial, sans-serif;
-}
-
-.font-didot {
-    font-family: Didot, "Bodoni MT", serif;
-}
-
-.font-cooper {
-    font-family: "Cooper Black", Cooper, serif;
-}
-
-.font-bodoni {
-    font-family: Bodoni, "Bodoni MT", Didot, serif;
-}
-
-.font-comic {
-    font-family: "Comic Sans MS", cursive;
-}
-
-.font-chiller {
-    font-family: Chiller, fantasy;
-}
-
-.font-hobo {
-    font-family: Hobo, fantasy;
-}
-
-.font-bubblegum {
-    font-family: Bubblegum, cursive;
-}
-
-.font-arial {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes resultBallReveal {
-    0% {
-        opacity: 0;
-        transform: scale(0.25) rotate(-12deg);
-        filter: blur(20px);
-    }
-
-    55% {
-        opacity: 1;
-        transform: scale(1.08) rotate(4deg);
-        filter: blur(0);
-    }
-
-    100% {
-        transform: scale(1) rotate(0);
-    }
-}
 
 @keyframes resultGlow {
+
     0%,
     100% {
-        transform: scale(0.85);
+        transform: scale(0.8);
         opacity: 0.45;
     }
 
     50% {
         transform: scale(1.15);
-        opacity: 0.9;
+        opacity: 1;
     }
+
 }
 
 
-/* =========================================================
-   TABLET
-========================================================= */
+.result-content {
 
-@media (max-width: 800px) {
+    position: relative;
+
+    z-index: 2;
+
+    width: 85%;
+}
+
+
+.result-label {
+
+    font-size:
+        clamp(0.8rem, 1.5vw, 1rem);
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    opacity: 0.55;
+
+    margin-bottom: 12px;
+}
+
+
+#result-font {
+
+    font-family:
+        "Bodoni 72",
+        "Bodoni MT",
+        Didot,
+        serif;
+
+    font-style: italic;
+
+    font-size:
+        clamp(
+            3.5rem,
+            10vw,
+            9rem
+        );
+
+    line-height: 0.85;
+
+    font-weight: 400;
+
+    margin-bottom: 22px;
+
+    text-shadow:
+        0 0 25px
+        rgba(220, 160, 255, 0.45);
+}
+
+
+#result-description {
+
+    font-family:
+        "Bodoni 72",
+        "Bodoni MT",
+        Didot,
+        serif;
+
+    font-style: italic;
+
+    font-size:
+        clamp(
+            1rem,
+            2vw,
+            1.4rem
+        );
+
+    opacity: 0.75;
+
+    line-height: 1.25;
+}
+
+
+.result-container .pill-button {
+
+    margin-top: 35px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .ornament-band {
+        height: 30px;
+    }
+
+    .ornament-track span {
+        font-size: 16px;
+        letter-spacing: 4px;
+    }
+
 
     .screen {
         padding:
-            75px
-            20px;
+            55px
+            16px;
     }
+
+
+    .landing-content {
+        min-height:
+            calc(100dvh - 55px);
+
+        gap: 28px;
+    }
+
+
+    .welcome-text {
+        font-size:
+            clamp(
+                2.5rem,
+                11vw,
+                4rem
+            );
+    }
+
+
+    .landing-logo {
+        width: min(350px, 82vw);
+    }
+
+
+    .magic-arrow {
+        width: 70px;
+        height: 70px;
+    }
+
+
+    .arrow-symbol {
+        font-size: 40px;
+    }
+
 
     .crystal-ball {
-        width: min(86vw, 620px);
 
-        padding: 55px;
+        width:
+            min(
+                88vw,
+                560px
+            );
+
+        height:
+            min(
+                88vw,
+                560px
+            );
+
+        max-height: 66dvh;
+
+        padding: 32px;
     }
+
 
     .intro-copy {
-        font-size: clamp(0.62rem, 1.9vw, 0.85rem);
+
+        font-size:
+            clamp(
+                0.65rem,
+                2.3vw,
+                0.85rem
+            );
+
+        line-height: 1.18;
     }
 
+
     .answers {
+
+        grid-template-columns:
+            1fr;
+
         gap: 12px;
     }
 
-}
 
+    .answer-button {
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .fortune-machine {
-        min-height: 100svh;
-    }
-
-    .ornament-banner {
-        height: 34px;
-    }
-
-    .ornament-set span {
-        font-size: 15px;
-        width: 27px;
-    }
-
-    .screen {
-        min-height: 100svh;
+        min-height: 78px;
 
         padding:
-            55px
-            14px;
+            14px 16px;
     }
 
-    .landing {
-        min-height: calc(100svh - 70px);
 
-        gap: 22px;
+    .answer-letter {
+
+        width: 32px;
+        height: 32px;
     }
 
-    .welcome-text {
-        font-size: clamp(2rem, 10vw, 3.5rem);
-    }
-
-    .logo-image {
-        width: min(78vw, 330px);
-    }
-
-    .crystal-stage {
-        gap: 15px;
-    }
-
-    .crystal-ball {
-        width: min(92vw, 480px);
-
-        padding:
-            45px
-            35px;
-    }
-
-    .intro-copy {
-        font-size: clamp(0.57rem, 2.35vw, 0.75rem);
-
-        line-height: 1.32;
-    }
-
-    .intro-copy p {
-        margin-bottom: 0.35em;
-    }
-
-    .magic-button {
-        font-size: 0.9rem;
-
-        padding:
-            0.75rem
-            1.5rem;
-    }
 
     #question-text {
-        font-size: clamp(2rem, 9vw, 3.4rem);
 
-        margin-bottom: 1.7rem;
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                3.5rem
+            );
+
+        margin-bottom: 28px;
     }
 
-    .answers {
-        grid-template-columns: 1fr;
-
-        gap: 10px;
-
-        width: 100%;
-    }
-
-    .answer-button {
-        min-height: 82px;
-
-        padding: 14px 18px;
-
-        border-radius: 15px;
-
-        flex-direction: row;
-
-        justify-content: flex-start;
-
-        text-align: left;
-    }
-
-    .answer-symbol {
-        min-width: 35px;
-
-        text-align: center;
-    }
-
-    .answer-text {
-        font-size: 0.95rem;
-    }
-
-    .answer-label {
-        margin-top: 12px;
-    }
 
     .result-intro {
-        font-size: clamp(1.8rem, 9vw, 3rem);
+
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                3.8rem
+            );
     }
 
-    .result-ball {
-        width: min(82vw, 430px);
+
+    .result-crystal-ball {
+
+        width:
+            min(
+                86vw,
+                500px
+            );
+
+        height:
+            min(
+                86vw,
+                500px
+            );
     }
+
 
     #result-font {
-        font-size: clamp(3rem, 15vw, 6rem);
+
+        font-size:
+            clamp(
+                3rem,
+                13vw,
+                6rem
+            );
     }
 
-    .result-description {
-        font-size: 0.85rem;
-    }
 }
 
 
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .ornament-banner {
-        height: 29px;
-    }
-
-    .ornament-set span {
-        font-size: 12px;
-        width: 22px;
-    }
+@media (max-height: 700px) and (min-width: 701px) {
 
     .screen {
-        padding-top: 48px;
-        padding-bottom: 48px;
+        padding-top: 50px;
+        padding-bottom: 50px;
     }
+
 
     .crystal-ball {
-        width: 94vw;
 
-        padding: 35px 28px;
+        width: 450px;
+        height: 450px;
+
+        padding: 45px;
     }
+
 
     .intro-copy {
-        font-size: 0.54rem;
+        font-size: 0.8rem;
     }
+
+
+    #question-text {
+        margin-bottom: 25px;
+    }
+
 
     .answer-button {
-        min-height: 75px;
+        min-height: 80px;
     }
 
-    .answer-text {
-        font-size: 0.88rem;
-    }
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+button:focus-visible {
+
+    outline:
+        2px solid
+        #e3b8ff;
+
+    outline-offset: 4px;
+}
+
+
+/* Respect reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
-        animation-duration: 0.001ms !important;
+
+        animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+
         scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
     }
+
 }
 
