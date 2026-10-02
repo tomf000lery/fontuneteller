@@ -1,5 +1,4 @@
 /* =========================================
-FONTUNE TELLER
 QUESTIONS
 ========================================= */
 
@@ -17,12 +16,12 @@ const questions = [
 },
 
 {
-    question: "What do you do when you walk into a room full of people you don't know?",
+    question: "What do you do when you walk into a room full of people you don’t know?",
     answers: {
         A: "Stick to the wall",
         B: "Take the initiative, start talking, take over the room, assert dominance.",
         C: "Spot someone interesting and go up to them",
-        D: "Call your friend and ask what they're doing."
+        D: "Call your friend and ask what they’re doing."
     }
 },
 
@@ -77,7 +76,7 @@ const questions = [
 },
 
 {
-    question: "What do you do when you don't know what to choose?",
+    question: "What do you do when you don’t know what to choose?",
     answers: {
         A: "Take the safe option",
         B: "Ask someone else",
@@ -122,24 +121,24 @@ const questions = [
         A: "Through careful analysis of my experiences and other proven methods",
         B: "Gut feeling",
         C: "Quickly and instinctively",
-        D: "I don't do that"
+        D: "I don’t do that"
     }
 },
 
 {
     question: "What type of compliment do you appreciate the most?",
     answers: {
-        A: "You're someone I can rely on.",
-        B: "You're so funny.",
-        C: "You're so good at kerning.",
-        D: "You're so smart."
+        A: "“You’re someone I can rely on.”",
+        B: "“You’re so funny.”",
+        C: "“You’re so good at kerning.”",
+        D: "“You’re so smart.”"
     }
 },
 
 {
     question: "If you were a music genre, what would you be?",
     answers: {
-        A: "Rock 'n' roll",
+        A: "Rock ’n’ roll",
         B: "Blues",
         C: "Experimental and unpredictable, the kind of thing you only find on SoundCloud",
         D: "Disco funk"
@@ -169,9 +168,9 @@ const questions = [
 {
     question: "When was the last time you read a book?",
     answers: {
-        A: "I've never read anything in my life not even this stupid test",
+        A: "I’ve never read anything in my life, not even this stupid test",
         B: "All day erryday, son!",
-        C: "If the last book you read was Harry Potter you have a curse on you. Say: KAKA! Loud to break the curse",
+        C: "If the last book you read was Harry Potter you have a curse on you. Say KAKA! loud to break the curse",
         D: "Purple"
     }
 },
@@ -191,13 +190,13 @@ const questions = [
     answers: {
         A: "Never happened",
         B: "Not that long ago",
-        C: "At some point, but I can't remember when",
+        C: "At some point, but I can’t remember when",
         D: "Everything I do is spontaneous"
     }
 },
 
 {
-    question: "If you were faced with a tiger you would?",
+    question: "If you were faced with a tiger, what would you do?",
     answers: {
         A: "Pat the tiger.",
         B: "Flykick the tiger",
@@ -277,7 +276,7 @@ const typefaces = [
 {
     name: "Bodoni",
     className: "font-bodoni",
-    description: "Luxurious, editorial, knows they're better"
+    description: "Luxurious, editorial, knows they’re better"
 },
 
 {
@@ -295,7 +294,7 @@ const typefaces = [
 {
     name: "Hobo",
     className: "font-hobo",
-    description: "Unusual but appreciated, doesn't have any straight lines"
+    description: "Unusual but appreciated, doesn’t have any straight lines"
 },
 
 {
@@ -318,7 +317,6 @@ VARIABLES
 ========================================= */
 
 let selectedQuestions = [];
-
 let currentQuestion = 0;
 
 let score = {
@@ -347,8 +345,8 @@ document.getElementById("result-screen");
 const scrollButton =
 document.getElementById("scroll-button");
 
-const startButton =
-document.getElementById("start-button");
+const beginButton =
+document.getElementById("begin-button");
 
 const restartButton =
 document.getElementById("restart-button");
@@ -359,6 +357,9 @@ document.getElementById("question-text");
 const questionNumber =
 document.getElementById("question-number");
 
+const answerLabel =
+document.getElementById("answer-label");
+
 const resultFont =
 document.getElementById("result-font");
 
@@ -366,7 +367,37 @@ const resultDescription =
 document.getElementById("result-description");
 
 const answerButtons =
-document.querySelectorAll(".answer-option");
+document.querySelectorAll(".answer-button");
+
+/* =========================================
+SCREEN NAVIGATION
+========================================= */
+
+function showScreen(screenToShow) {
+
+```
+const screens = [
+    startScreen,
+    introScreen,
+    quizScreen,
+    resultScreen
+];
+
+screens.forEach(screen => {
+
+    screen.classList.remove("active");
+
+});
+
+screenToShow.classList.add("active");
+
+window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
+```
+
+}
 
 /* =========================================
 SHUFFLE
@@ -375,38 +406,36 @@ SHUFFLE
 function shuffle(array) {
 
 ```
-return [...array].sort(
-    () => Math.random() - 0.5
-);
+const copy = [...array];
+
+for (
+    let i = copy.length - 1;
+    i > 0;
+    i--
+) {
+
+    const j =
+        Math.floor(
+            Math.random() * (i + 1)
+        );
+
+    [
+        copy[i],
+        copy[j]
+    ] =
+    [
+        copy[j],
+        copy[i]
+    ];
+}
+
+return copy;
 ```
 
 }
 
 /* =========================================
-SHOW SCREEN
-========================================= */
-
-function showScreen(screen) {
-
-```
-[
-    startScreen,
-    introScreen,
-    quizScreen,
-    resultScreen
-].forEach(currentScreen => {
-
-    currentScreen.classList.remove("active");
-
-});
-
-screen.classList.add("active");
-```
-
-}
-
-/* =========================================
-START PAGE → INTRO
+START / INTRO
 ========================================= */
 
 scrollButton.addEventListener(
@@ -419,6 +448,11 @@ scrollButton.addEventListener(
 }
 ```
 
+);
+
+beginButton.addEventListener(
+"click",
+startQuiz
 );
 
 /* =========================================
@@ -436,11 +470,6 @@ score = {
 };
 
 currentQuestion = 0;
-
-/*
-    Select exactly 10 random questions
-    from the complete question pool.
-*/
 
 selectedQuestions =
     shuffle(questions).slice(0, 10);
@@ -469,27 +498,23 @@ questionNumber.textContent =
     String(currentQuestion + 1)
         .padStart(2, "0");
 
-
-/*
-    IMPORTANT:
-    Put the current question's answers
-    directly into the four visible buttons.
-*/
+answerLabel.textContent =
+    "Choose your sign";
 
 answerButtons.forEach(button => {
 
     const answer =
         button.dataset.answer;
 
-    const answerText =
+    const text =
         button.querySelector(".answer-text");
 
-    answerText.textContent =
+    text.textContent =
         question.answers[answer];
 
     button.disabled = false;
 
-    button.style.opacity = "1";
+    button.classList.remove("selected");
 
 });
 ```
@@ -500,42 +525,34 @@ answerButtons.forEach(button => {
 ANSWER QUESTION
 ========================================= */
 
-function answerQuestion(answer) {
+function answerQuestion(answer, button) {
 
 ```
-/*
-    Add the selected answer to the score.
-*/
+if (button.disabled) {
+    return;
+}
+
+button.disabled = true;
 
 score[answer]++;
 
+button.classList.add("selected");
 
-/*
-    Disable buttons immediately so the
-    user cannot accidentally answer twice.
-*/
+answerLabel.textContent =
+    "The sign has spoken…";
 
-answerButtons.forEach(button => {
+answerButtons.forEach(otherButton => {
 
-    button.disabled = true;
+    if (otherButton !== button) {
+        otherButton.disabled = true;
+    }
 
 });
 
 
-/*
-    Small visual pause before changing
-    question.
-*/
-
 setTimeout(() => {
 
     currentQuestion++;
-
-
-    /*
-        After exactly 10 questions,
-        show the result.
-    */
 
     if (
         currentQuestion >=
@@ -544,54 +561,32 @@ setTimeout(() => {
 
         showResult();
 
-        return;
+    } else {
+
+        showQuestion();
 
     }
 
-
-    /*
-        Otherwise load the next question.
-    */
-
-    showQuestion();
-
-}, 350);
+}, 550);
 ```
 
 }
 
 /* =========================================
-CALCULATE RESULT
+RESULT CALCULATION
 ========================================= */
 
 function calculateResult() {
 
 ```
-/*
-    Current simple scoring system.
-
-    A = 1
-    B = 2
-    C = 3
-    D = 4
-
-    The total determines which typeface
-    is revealed.
-
-    This can later be replaced with a
-    more sophisticated personality system.
-*/
-
 const total =
     score.A * 1 +
     score.B * 2 +
     score.C * 3 +
     score.D * 4;
 
-
 const index =
     total % typefaces.length;
-
 
 return typefaces[index];
 ```
@@ -599,7 +594,7 @@ return typefaces[index];
 }
 
 /* =========================================
-SHOW RESULT
+RESULT
 ========================================= */
 
 function showResult() {
@@ -608,13 +603,11 @@ function showResult() {
 const result =
     calculateResult();
 
-
 showScreen(resultScreen);
 
 
 /*
-    Remove every possible font class
-    before applying the new one.
+    Remove previous result font classes.
 */
 
 typefaces.forEach(font => {
@@ -627,7 +620,7 @@ typefaces.forEach(font => {
 
 
 /*
-    Apply the result font.
+    Apply selected font.
 */
 
 resultFont.classList.add(
@@ -635,14 +628,112 @@ resultFont.classList.add(
 );
 
 
+/*
+    Fill result.
+*/
+
 resultFont.textContent =
     result.name;
 
 resultDescription.textContent =
     result.description;
+
+
+/*
+    Small magic colour transformation.
+*/
+
+const colourSets = [
+
+    {
+        background:
+            "radial-gradient(circle at center, #21100f, #050202 70%)",
+        glow:
+            "rgba(255, 80, 60, 0.3)"
+    },
+
+    {
+        background:
+            "radial-gradient(circle at center, #101a2a, #020408 70%)",
+        glow:
+            "rgba(60, 130, 255, 0.3)"
+    },
+
+    {
+        background:
+            "radial-gradient(circle at center, #211a08, #050401 70%)",
+        glow:
+            "rgba(255, 193, 67, 0.3)"
+    },
+
+    {
+        background:
+            "radial-gradient(circle at center, #101d13, #020603 70%)",
+        glow:
+            "rgba(80, 220, 120, 0.3)"
+    },
+
+    {
+        background:
+            "radial-gradient(circle at center, #1b1024, #050208 70%)",
+        glow:
+            "rgba(190, 90, 255, 0.3)"
+    }
+
+];
+
+const colour =
+    colourSets[
+        Math.floor(
+            Math.random() *
+            colourSets.length
+        )
+    ];
+
+document
+    .querySelector(".fortune-machine")
+    .style.background =
+        colour.background;
+
+document
+    .querySelectorAll(".crystal-ball")
+    .forEach(ball => {
+
+        ball.style.boxShadow = `
+            inset 15px 15px 40px rgba(255,255,255,0.05),
+            inset -20px -20px 50px rgba(0,0,0,0.8),
+            0 0 60px ${colour.glow},
+            0 0 120px ${colour.glow}
+        `;
+
+    });
 ```
 
 }
+
+/* =========================================
+RESTART
+========================================= */
+
+restartButton.addEventListener(
+"click",
+() => {
+
+```
+    /*
+        Return all the way to the beginning.
+    */
+
+    document
+        .querySelector(".fortune-machine")
+        .style.background = "";
+
+    showScreen(startScreen);
+
+}
+```
+
+);
 
 /* =========================================
 ANSWER BUTTON EVENTS
@@ -655,38 +746,13 @@ button.addEventListener(
     "click",
     () => {
 
-        const answer =
-            button.dataset.answer;
-
-        answerQuestion(answer);
+        answerQuestion(
+            button.dataset.answer,
+            button
+        );
 
     }
 );
 ```
 
 });
-
-/* =========================================
-INTRO → QUIZ
-========================================= */
-
-startButton.addEventListener(
-"click",
-startQuiz
-);
-
-/* =========================================
-RESTART
-========================================= */
-
-restartButton.addEventListener(
-"click",
-() => {
-
-```
-    showScreen(startScreen);
-
-}
-```
-
-);
