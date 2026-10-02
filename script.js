@@ -514,7 +514,7 @@ function showQuestion() {
     /* LABEL */
 
     answerLabel.textContent =
-        "Choose your sign";
+        "Choose your axis";
 
 
     /* CLEAR OLD ANSWERS */
@@ -651,7 +651,7 @@ function answerQuestion(answer) {
     /* Feedback */
 
     answerLabel.textContent =
-        "The sign has been registered…";
+        "The typenteties have heard your answer";
 
 
     /*
