@@ -1,10 +1,21 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Typeoscope — What type are you?</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#080609"
+    >
+
+    <title>Typeoscope — What Type Are You?</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,71 +24,117 @@
 
 <main class="typeoscope">
 
-    <!-- =========================================
-         AMBIENT BACKGROUND
-    ========================================== -->
 
-    <div class="ambient ambient-a"></div>
-    <div class="ambient ambient-b"></div>
+    <!-- =====================================================
+         AMBIENT ORNAMENT — TOP
+    ====================================================== -->
 
-    <!-- =========================================
-         ORNAMENT RAILS
-    ========================================== -->
-
-    <div class="ornament-rail ornament-top" aria-hidden="true">
+    <div
+        class="ornament-rail ornament-top"
+        aria-hidden="true"
+    >
         <div class="ornament-track">
-            <span>✦ ❦ ✧ ❧ ✦ ❦ ✧ ❧ ✦ ❦ ✧ ❧</span>
-            <span>✦ ❦ ✧ ❧ ✦ ❦ ✧ ❧ ✦ ❦ ✧ ❧</span>
+
+            <span>
+                ☾ ✦ ❧ ⟡ ✧ ❖ ☽ ❦ ✦ ⟡ ❧ ✧ ☾ ❖ ✦ ☽ ❦
+                ⟡ ✧ ❧ ☾ ✦ ❖ ☽ ❦ ✧ ⟡ ✦ ❧ ☾ ❖ ✧ ☽
+            </span>
+
+            <span>
+                ☾ ✦ ❧ ⟡ ✧ ❖ ☽ ❦ ✦ ⟡ ❧ ✧ ☾ ❖ ✦ ☽ ❦
+                ⟡ ✧ ❧ ☾ ✦ ❖ ☽ ❦ ✧ ⟡ ✦ ❧ ☾ ❖ ✧ ☽
+            </span>
+
         </div>
     </div>
 
-    <div class="ornament-rail ornament-bottom" aria-hidden="true">
+
+    <!-- =====================================================
+         AMBIENT ORNAMENT — BOTTOM
+    ====================================================== -->
+
+    <div
+        class="ornament-rail ornament-bottom"
+        aria-hidden="true"
+    >
         <div class="ornament-track reverse">
-            <span>❧ ✧ ❦ ✦ ❧ ✧ ❦ ✦ ❧ ✧ ❦ ✦</span>
-            <span>❧ ✧ ❦ ✦ ❧ ✧ ❦ ✦ ❧ ✧ ❦ ✦</span>
+
+            <span>
+                ❦ ☽ ✧ ❖ ✦ ☾ ❧ ⟡ ✦ ❖ ☽ ✧ ❦ ⟡ ☾ ❧
+                ✦ ☽ ❖ ✧ ⟡ ❦ ☾ ✦ ❧ ❖ ☽ ⟡ ✧ ❦ ☾
+            </span>
+
+            <span>
+                ❦ ☽ ✧ ❖ ✦ ☾ ❧ ⟡ ✦ ❖ ☽ ✧ ❦ ⟡ ☾ ❧
+                ✦ ☽ ❖ ✧ ⟡ ❦ ☾ ✦ ❧ ❖ ☽ ⟡ ✧ ❦ ☾
+            </span>
+
         </div>
     </div>
 
 
-    <!-- =========================================
+    <!-- =====================================================
+         AMBIENT AUDIO
+    ====================================================== -->
+
+    <audio
+        id="ambient-audio"
+        src="ambient.mp3"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <!-- =====================================================
          HEADER / LOGO
-    ========================================== -->
+    ====================================================== -->
 
     <header class="machine-header">
 
         <div class="floating-logo">
+
+            <!--
+                Replace this with your animated logo GIF.
+
+                Example:
+
+                <img
+                    src="logo.gif"
+                    alt="Typeoscope"
+                    class="logo-image"
+                >
+            -->
+
             <img
                 src="logo.gif"
                 alt="Typeoscope"
                 class="logo-image"
             >
+
         </div>
 
     </header>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          WELCOME SCREEN
-    ========================================== -->
+    ====================================================== -->
 
-    <section id="welcome-screen" class="screen active">
+    <section
+        id="welcome-screen"
+        class="screen welcome-screen active"
+    >
 
-        <div class="welcome">
+        <div class="welcome-content">
 
             <p class="welcome-small">
                 Welcome to
             </p>
 
-            <img
-                src="logo.gif"
-                alt="Typeoscope"
-                class="welcome-logo"
-            >
-
             <button
                 id="scroll-button"
                 class="scroll-button"
-                aria-label="Continue"
+                aria-label="Enter Typeoscope"
             >
                 ↓
             </button>
@@ -87,59 +144,87 @@
     </section>
 
 
-    <!-- =========================================
-         INTRO / CRYSTAL BALL
-    ========================================== -->
+    <!-- =====================================================
+         INTRO / FORTUNE TELLING SCREEN
+    ====================================================== -->
 
-    <section id="intro-screen" class="screen">
+    <section
+        id="intro-screen"
+        class="screen intro-screen"
+    >
 
-        <div class="intro-layout">
+        <div class="fortune-container">
 
-            <div class="crystal-ball intro-ball">
+            <div class="fortune-glow"></div>
 
-                <div class="ball-glow"></div>
+            <div class="fortune-glass">
 
-                <div class="ball-content">
+                <div class="fortune-stars">
+                    ✦　✧　☾　✦　⟡　✧
+                </div>
 
-                    <p class="intro-copy">
-                        How <strong>bold</strong> of you to step into the
-                        world of <strong>Type</strong>oscope.
-                        <br><br>
+                <div class="fortune-copy">
 
+                    <p>
+                        How <strong>bold</strong> of you to step
+                        into the world of <strong>Type</strong>oscope.
+                    </p>
+
+                    <p>
                         Step inside and have your
                         <strong>font</strong>une told.
-                        <br><br>
+                    </p>
 
+                    <p>
                         Let the <strong>glyphs</strong> guide you.
-                        <br>
-                        Let the stars <strong>align</strong>.
-                        <br>
-                        Only <strong>type</strong> will tell.
-                        <br><br>
+                    </p>
 
+                    <p>
+                        Let the stars <strong>align</strong>.
+                    </p>
+
+                    <p>
+                        Only <strong>type</strong> will tell.
+                    </p>
+
+                    <p>
                         What <strong>type</strong> of
                         <strong>character</strong> you are.
-                        <br><br>
+                    </p>
 
-                        Are you more of a <strong>modular</strong>
-                        laid-back <strong>italic</strong>
+                    <p>
+                        Are you more of a
+                        <strong>modular</strong> laid-back
+                        <strong>italic</strong>
+                    </p>
+
+                    <p>
                         or perhaps an <strong>upright</strong>
                         and <strong>variable sans serif</strong>?
-                        <br><br>
+                    </p>
 
-                        This is not your <strong>regular</strong>
-                        <strong>read</strong>ing.
-                        <br><br>
+                    <p>
+                        This is not your
+                        <strong>regular</strong> <strong>read</strong>ing.
+                    </p>
 
+                    <p>
                         Who <strong>kerns</strong> if you're a Libra
                         or a Capri-what-now?
+                    </p>
+
+                    <p>
                         What matters most is knowing which
                         <strong>typeface</strong> you are.
-                        Only a <strong>legible</strong>
-                        <strong>font</strong>-<strong>read</strong>ing
-                        will tell you what you need to know about yourself.
-                        <br><br>
+                    </p>
 
+                    <p>
+                        Only a <strong>legible</strong>
+                        <strong>font-read</strong>ing will tell you
+                        what you need to know about yourself.
+                    </p>
+
+                    <p>
                         Answer the spirits' questions,
                         and the <strong>shape</strong> will take
                         <strong>form</strong>.
@@ -147,7 +232,12 @@
 
                 </div>
 
+                <div class="fortune-stars bottom">
+                    ✧　⟡　☽　✦　❧　✧
+                </div>
+
             </div>
+
 
             <button
                 id="start-button"
@@ -161,13 +251,18 @@
     </section>
 
 
-    <!-- =========================================
-         QUIZ
-    ========================================== -->
+    <!-- =====================================================
+         QUIZ SCREEN
+    ====================================================== -->
 
-    <section id="quiz-screen" class="screen">
+    <section
+        id="quiz-screen"
+        class="screen quiz-screen"
+    >
 
         <div class="quiz">
+
+            <!-- PROGRESS -->
 
             <div class="progress">
 
@@ -184,10 +279,14 @@
             </div>
 
 
+            <!-- QUESTION -->
+
             <h2 id="question-text">
                 The spirits are preparing your question...
             </h2>
 
+
+            <!-- ANSWERS -->
 
             <div
                 id="answers"
@@ -195,35 +294,70 @@
             >
 
                 <button
-                    class="answer-card answer-a"
+                    class="answer-option answer-a"
                     data-answer="A"
+                    aria-label="Answer A"
                 >
-                    <span class="orb"></span>
-                    <span class="answer-text"></span>
+
+                    <span class="orb orb-red"></span>
+
+                    <span
+                        class="answer-text"
+                        id="answer-a"
+                    >
+                    </span>
+
                 </button>
 
+
                 <button
-                    class="answer-card answer-b"
+                    class="answer-option answer-b"
                     data-answer="B"
+                    aria-label="Answer B"
                 >
-                    <span class="orb"></span>
-                    <span class="answer-text"></span>
+
+                    <span class="orb orb-blue"></span>
+
+                    <span
+                        class="answer-text"
+                        id="answer-b"
+                    >
+                    </span>
+
                 </button>
 
+
                 <button
-                    class="answer-card answer-c"
+                    class="answer-option answer-c"
                     data-answer="C"
+                    aria-label="Answer C"
                 >
-                    <span class="orb"></span>
-                    <span class="answer-text"></span>
+
+                    <span class="orb orb-gold"></span>
+
+                    <span
+                        class="answer-text"
+                        id="answer-c"
+                    >
+                    </span>
+
                 </button>
 
+
                 <button
-                    class="answer-card answer-d"
+                    class="answer-option answer-d"
                     data-answer="D"
+                    aria-label="Answer D"
                 >
-                    <span class="orb"></span>
-                    <span class="answer-text"></span>
+
+                    <span class="orb orb-green"></span>
+
+                    <span
+                        class="answer-text"
+                        id="answer-d"
+                    >
+                    </span>
+
                 </button>
 
             </div>
@@ -233,7 +367,7 @@
                 id="answer-label"
                 class="answer-label"
             >
-                Choose a sign
+                Choose your sign
             </div>
 
         </div>
@@ -241,11 +375,14 @@
     </section>
 
 
-    <!-- =========================================
-         RESULT
-    ========================================== -->
+    <!-- =====================================================
+         RESULT SCREEN
+    ====================================================== -->
 
-    <section id="result-screen" class="screen">
+    <section
+        id="result-screen"
+        class="screen result-screen"
+    >
 
         <div class="result">
 
@@ -254,13 +391,17 @@
             </div>
 
 
-            <div class="result-ball crystal-ball">
+            <!-- CRYSTAL BALL -->
 
-                <div class="ball-glow"></div>
+            <div class="result-oracle">
+
+                <div class="result-stars">
+                    ✦　☾　✧　⟡　✦
+                </div>
 
                 <div class="result-content">
 
-                    <p class="result-pre">
+                    <p class="result-label">
                         Your type is
                     </p>
 
@@ -277,12 +418,16 @@
 
                 </div>
 
+                <div class="result-stars result-stars-bottom">
+                    ✧　⟡　☽　✦　❦
+                </div>
+
             </div>
 
 
             <button
                 id="restart-button"
-                class="magic-button"
+                class="magic-button restart-button"
             >
                 Do a new font reading
             </button>
@@ -292,21 +437,12 @@
     </section>
 
 
-    <!-- =========================================
-         SOUND
-    ========================================== -->
-
-    <audio
-        id="ambient-sound"
-        src="ambient.mp3"
-        loop
-        preload="auto"
-    ></audio>
-
-
 </main>
+
 
 <script src="script.js"></script>
 
 </body>
 </html>
+```
+
