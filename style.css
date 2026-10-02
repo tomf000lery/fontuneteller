@@ -1,6 +1,5 @@
 /* =========================================
-FONTUNE TELLER
-GLOBAL RESET
+RESET
 ========================================= */
 
 * {
@@ -12,24 +11,23 @@ GLOBAL RESET
 html,
 body {
 width: 100%;
-height: 100%;
+min-height: 100%;
 }
 
 body {
-background: #080608;
-color: #f4f0e8;
+background: #050505;
+color: #f5f0e8;
+overflow-x: hidden;
 font-family:
 "Bodoni 72",
-"Bodoni 72 Book",
 "Bodoni MT",
-Didot,
+"Didot",
 "Times New Roman",
 serif;
+}
 
-```
-overflow: hidden;
-```
-
+button {
+font-family: inherit;
 }
 
 /* =========================================
@@ -38,115 +36,136 @@ MAIN
 
 .fortune-machine {
 position: relative;
-width: 100vw;
-height: 100vh;
-
-```
-background:
-    radial-gradient(
-        circle at center,
-        #17101b 0%,
-        #0b080d 48%,
-        #050405 100%
-    );
-
+width: 100%;
+min-height: 100vh;
 overflow: hidden;
-```
-
+background:
+radial-gradient(
+circle at center,
+#17120e 0%,
+#080706 45%,
+#020202 100%
+);
 }
 
 /* =========================================
-TOP / BOTTOM ORNAMENTS
+ORNAMENT BANNERS
 ========================================= */
 
-.ornament-track {
+.ornament-banner {
 position: fixed;
-
-```
 left: 0;
 width: 100%;
+height: 58px;
 
-height: 42px;
-
+```
 overflow: hidden;
 
 z-index: 100;
 
 pointer-events: none;
 
-display: flex;
-align-items: center;
-
 background:
     linear-gradient(
-        90deg,
-        rgba(5,4,6,0.95),
-        rgba(20,10,25,0.8),
-        rgba(5,4,6,0.95)
+        to bottom,
+        rgba(5, 3, 2, 0.95),
+        rgba(12, 8, 5, 0.85),
+        rgba(5, 3, 2, 0.95)
     );
 
-border-top: 1px solid rgba(210,170,255,0.18);
-border-bottom: 1px solid rgba(210,170,255,0.18);
+border-top: 1px solid rgba(220, 174, 83, 0.3);
+border-bottom: 1px solid rgba(220, 174, 83, 0.25);
 
 box-shadow:
-    0 0 25px rgba(160,80,255,0.12);
+    0 0 15px rgba(208, 153, 54, 0.08);
 ```
 
 }
 
-.ornament-track-top {
+.ornament-top {
 top: 0;
 }
 
-.ornament-track-bottom {
+.ornament-bottom {
 bottom: 0;
 }
 
-.ornament-row {
-display: flex;
+.ornament-track {
+position: absolute;
 
 ```
+top: 0;
+left: 0;
+
+height: 100%;
+
+display: flex;
 width: max-content;
+
+will-change: transform;
+```
+
+}
+
+.ornament-top .ornament-track {
+animation:
+ornamentLeft 32s linear infinite;
+}
+
+.ornament-bottom .ornament-track {
+animation:
+ornamentRight 36s linear infinite;
+}
+
+.ornament-set {
+height: 100%;
+
+```
+display: flex;
+align-items: center;
 
 white-space: nowrap;
 
-animation:
-    ornamentMove 38s linear infinite;
-```
-
-}
-
-.ornament-row span {
-display: inline-block;
-
-```
 padding-right: 0;
 
-color: #cda8ff;
+font-family:
+    "Bodoni 72",
+    "Bodoni MT",
+    Didot,
+    serif;
 
-font-size: 1.15rem;
+font-style: italic;
 
-letter-spacing: 0.22em;
+font-size: 1.7rem;
+
+letter-spacing: 0.18em;
+
+color: #c89c52;
 
 text-shadow:
-    0 0 5px rgba(202,145,255,0.8),
-    0 0 14px rgba(153,72,255,0.5);
+    0 0 4px rgba(255, 203, 109, 0.35),
+    0 0 12px rgba(207, 154, 61, 0.25);
 ```
 
 }
 
-.ornament-row-reverse {
-animation:
-ornamentMoveReverse 42s linear infinite;
-}
-
-@keyframes ornamentMove {
+/*
+The duplicated content is exactly one full
+sequence behind the first sequence.
 
 ```
+Because the animation moves by 50%, the
+second copy replaces the first seamlessly.
+```
+
+*/
+
+@keyframes ornamentLeft {
 from {
-    transform: translateX(0);
+transform: translateX(0);
 }
 
+```
 to {
     transform: translateX(-50%);
 }
@@ -154,13 +173,12 @@ to {
 
 }
 
-@keyframes ornamentMoveReverse {
-
-```
+@keyframes ornamentRight {
 from {
-    transform: translateX(-50%);
+transform: translateX(-50%);
 }
 
+```
 to {
     transform: translateX(0);
 }
@@ -169,64 +187,56 @@ to {
 }
 
 /* =========================================
-HEADER / LOGO
+MAGIC ORNAMENT PULSES
 ========================================= */
 
-.machine-header {
-position: absolute;
+.ornament-banner::after {
+content: "";
 
 ```
-top: 42px;
-left: 0;
-
-width: 100%;
-height: 35vh;
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-z-index: 20;
+position: absolute;
+inset: 0;
 
 pointer-events: none;
-```
 
-}
+background:
+    radial-gradient(
+        ellipse at center,
+        rgba(255, 210, 115, 0.35),
+        transparent 55%
+    );
 
-.floating-logo {
-display: flex;
-justify-content: center;
-align-items: center;
+opacity: 0;
 
-```
 animation:
-    floatingLogo 4s ease-in-out infinite;
-
-filter:
-    drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+    ornamentPulse 7s ease-in-out infinite;
 ```
 
 }
 
-.logo-image {
-width: 260px;
-height: auto;
-display: block;
-}
-
-@keyframes floatingLogo {
+@keyframes ornamentPulse {
 
 ```
-0% {
-    transform: translateY(0);
-}
-
-50% {
-    transform: translateY(-12px);
-}
-
+0%,
+72%,
 100% {
-    transform: translateY(0);
+    opacity: 0;
+}
+
+78% {
+    opacity: 0.45;
+}
+
+84% {
+    opacity: 0.08;
+}
+
+89% {
+    opacity: 0.35;
+}
+
+94% {
+    opacity: 0;
 }
 ```
 
@@ -237,10 +247,11 @@ SCREENS
 ========================================= */
 
 .screen {
-position: absolute;
+position: relative;
 
 ```
-inset: 0;
+min-height: 100vh;
+width: 100%;
 
 display: none;
 
@@ -248,752 +259,80 @@ align-items: center;
 justify-content: center;
 
 padding:
-    70px
-    5vw
-    60px;
+    100px 5vw;
 
-z-index: 5;
+opacity: 0;
 ```
 
 }
 
 .screen.active {
 display: flex;
+
+```
+animation:
+    screenIn 0.9s ease forwards;
+```
+
+}
+
+@keyframes screenIn {
+
+```
+from {
+    opacity: 0;
+}
+
+to {
+    opacity: 1;
+}
+```
+
 }
 
 /* =========================================
 START SCREEN
 ========================================= */
 
-.intro {
-width: 100%;
-height: 100%;
+.start-screen {
+text-align: center;
+}
+
+.start-content {
 
 ```
+width: 100%;
+min-height: calc(100vh - 116px);
+
 display: flex;
 flex-direction: column;
 
-justify-content: center;
 align-items: center;
+justify-content: center;
 
-text-align: center;
-
-padding-top: 120px;
+gap: 2.5rem;
 ```
 
 }
 
 .welcome-text {
-font-size: clamp(1.8rem, 4vw, 4rem);
 
 ```
-font-style: italic;
-
-letter-spacing: -0.04em;
-
-margin-bottom: 1rem;
-```
-
-}
-
-.intro-logo-space {
-margin-bottom: 3rem;
-}
-
-.fontune-title {
 font-size:
-clamp(4rem, 10vw, 10rem);
-
-```
-font-style: italic;
-
-line-height: 0.8;
-
-letter-spacing: -0.065em;
-
-color: #f4f0e8;
-
-text-shadow:
-    0 0 20px rgba(255,255,255,0.08),
-    0 0 60px rgba(175,95,255,0.15);
-```
-
-}
-
-/* =========================================
-ARROW
-========================================= */
-
-.scroll-button {
-border: none;
-
-```
-background: transparent;
-
-color: #f4f0e8;
-
-font-family:
-    "Bodoni 72",
-    "Bodoni 72 Book",
-    "Bodoni MT",
-    Didot,
-    serif;
-
-font-size: 4rem;
+    clamp(2rem, 4vw, 4rem);
 
 font-style: italic;
-
-line-height: 1;
-
-cursor: pointer;
-
-animation:
-    arrowFloat 2s ease-in-out infinite;
-
-transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-```
-
-}
-
-.scroll-button:hover {
-color: #d8a7ff;
-
-```
-transform: scale(1.15);
-```
-
-}
-
-@keyframes arrowFloat {
-
-```
-0%,
-100% {
-    transform: translateY(0);
-}
-
-50% {
-    transform: translateY(10px);
-}
-```
-
-}
-
-/* =========================================
-INTRO READING
-========================================= */
-
-.intro-reading {
-width: min(850px, 92vw);
-
-```
-display: flex;
-flex-direction: column;
-
-align-items: center;
-```
-
-}
-
-/* =========================================
-CRYSTAL BALL
-========================================= */
-
-.crystal-ball {
-position: relative;
-
-```
-border-radius: 50%;
-
-background:
-    radial-gradient(
-        circle at 35% 28%,
-        rgba(255,255,255,0.22),
-        rgba(140,70,200,0.15) 16%,
-        rgba(40,15,60,0.8) 55%,
-        rgba(5,3,8,0.98) 100%
-    );
-
-border:
-    1px solid rgba(216,170,255,0.35);
-
-box-shadow:
-    inset 0 0 50px rgba(180,90,255,0.15),
-    0 0 35px rgba(150,70,255,0.18),
-    0 0 100px rgba(80,30,130,0.2);
-```
-
-}
-
-.ball-glow {
-position: absolute;
-
-```
-inset: 10%;
-
-border-radius: 50%;
-
-background:
-    radial-gradient(
-        circle,
-        rgba(204,140,255,0.16),
-        transparent 65%
-    );
-
-filter: blur(15px);
-
-animation:
-    ballPulse 4s ease-in-out infinite;
-```
-
-}
-
-@keyframes ballPulse {
-
-```
-0%,
-100% {
-    opacity: 0.5;
-    transform: scale(0.95);
-}
-
-50% {
-    opacity: 1;
-    transform: scale(1.05);
-}
-```
-
-}
-
-.intro-ball {
-width: min(620px, 80vw);
-height: min(620px, 80vw);
-
-```
-max-height: 65vh;
-
-overflow: auto;
-
-scrollbar-width: none;
-```
-
-}
-
-.intro-ball::-webkit-scrollbar {
-display: none;
-}
-
-.ball-content {
-position: relative;
-
-```
-z-index: 2;
-
-padding:
-    12%
-    13%;
-
-text-align: center;
-
-font-size:
-    clamp(0.85rem, 1.3vw, 1.15rem);
-
-line-height: 1.35;
-
-font-style: italic;
-```
-
-}
-
-.ball-content p {
-margin-bottom: 0.7rem;
-}
-
-.ball-content strong {
-font-weight: 700;
-}
-
-/* =========================================
-BUTTON
-========================================= */
-
-.magic-button {
-margin-top: 2.5rem;
-
-```
-padding:
-    1rem
-    2.3rem;
-
-border:
-    1px solid rgba(244,240,232,0.55);
-
-border-radius: 100px;
-
-background:
-    rgba(255,255,255,0.02);
-
-color: #f4f0e8;
-
-font-family:
-    "Bodoni 72",
-    "Bodoni 72 Book",
-    "Bodoni MT",
-    Didot,
-    serif;
-
-font-size: 1rem;
-
-font-style: italic;
-
-cursor: pointer;
-
-transition:
-    all 0.4s ease;
-```
-
-}
-
-.magic-button:hover {
-background: #f4f0e8;
-
-```
-color: #090609;
-
-transform: scale(1.05);
-
-box-shadow:
-    0 0 30px rgba(220,170,255,0.25);
-```
-
-}
-
-/* =========================================
-QUIZ
-========================================= */
-
-.quiz {
-width: min(1100px, 94vw);
-
-```
-text-align: center;
-
-padding-top: 4vh;
-```
-
-}
-
-/* =========================================
-PROGRESS
-========================================= */
-
-.progress {
-display: flex;
-
-```
-align-items: center;
-justify-content: center;
-
-gap: 1rem;
-
-margin-bottom: 3rem;
-
-font-size: 0.85rem;
-
-font-style: italic;
-
-letter-spacing: 0.1em;
-
-opacity: 0.55;
-```
-
-}
-
-.progress-line {
-width: 100px;
-
-```
-height: 1px;
-
-background:
-    rgba(255,255,255,0.4);
-```
-
-}
-
-/* =========================================
-QUESTION
-========================================= */
-
-#question-text {
-max-width: 1000px;
-
-```
-margin:
-    0 auto
-    3.5rem;
-
-font-family:
-    "Bodoni 72",
-    "Bodoni 72 Book",
-    "Bodoni MT",
-    Didot,
-    "Times New Roman",
-    serif;
-
-font-size:
-    clamp(2.4rem, 5vw, 5.5rem);
-
-line-height: 0.9;
-
-letter-spacing: -0.055em;
-
 font-weight: 400;
 
-font-style: italic;
-```
-
-}
-
-/* =========================================
-ANSWERS
-========================================= */
-
-.answers {
-width: min(900px, 95vw);
-
-```
-margin: 0 auto;
-
-display: grid;
-
-grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-gap:
-    1rem
-    1.2rem;
-```
-
-}
-
-.answer-option {
-position: relative;
-
-```
-min-height: 95px;
-
-padding:
-    1.3rem
-    1.5rem;
-
-display: flex;
-
-align-items: center;
-
-text-align: left;
-
-gap: 1rem;
-
-border:
-    1px solid rgba(244,240,232,0.18);
-
-border-radius: 3px;
-
-background:
-    rgba(255,255,255,0.025);
-
-color: #f4f0e8;
-
-font-family:
-    "Bodoni 72",
-    "Bodoni 72 Book",
-    "Bodoni MT",
-    Didot,
-    serif;
-
-cursor: pointer;
-
-transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.35s ease;
-```
-
-}
-
-.answer-option:hover {
-transform: translateY(-4px);
-
-```
-border-color:
-    rgba(216,170,255,0.65);
-
-background:
-    rgba(170,100,230,0.08);
-
-box-shadow:
-    0 0 25px rgba(150,70,255,0.12);
-```
-
-}
-
-.answer-option:active {
-transform: scale(0.98);
-}
-
-.answer-letter {
-flex-shrink: 0;
-
-```
-width: 34px;
-height: 34px;
-
-display: flex;
-
-align-items: center;
-justify-content: center;
-
-border-radius: 50%;
-
-border:
-    1px solid rgba(216,170,255,0.4);
-
-color: #d8a7ff;
-
-font-size: 0.9rem;
-
-font-style: italic;
-```
-
-}
-
-.answer-text {
-font-size:
-clamp(1rem, 1.5vw, 1.3rem);
-
-```
-line-height: 1.15;
-
-font-style: italic;
-```
-
-}
-
-/* =========================================
-RESULT
-========================================= */
-
-.result {
-width: min(1100px, 94vw);
-
-```
-display: flex;
-flex-direction: column;
-
-align-items: center;
-
-text-align: center;
-```
-
-}
-
-.result-intro {
-position: relative;
-
-```
-z-index: 5;
-
-margin-bottom: 2rem;
-
-max-width: 900px;
-
-font-family:
-    "Bodoni 72",
-    "Bodoni 72 Book",
-    "Bodoni MT",
-    Didot,
-    serif;
-
-font-size:
-    clamp(2rem, 5vw, 5rem);
-
-line-height: 0.9;
-
-font-style: italic;
-
-letter-spacing: -0.05em;
+letter-spacing: -0.035em;
 
 animation:
-    fadeInText 1.5s ease forwards;
+    welcomeFade 1.8s ease forwards;
 ```
 
 }
 
-.result-ball {
-width:
-min(620px, 75vw);
-
-```
-height:
-    min(620px, 75vw);
-
-display: flex;
-
-align-items: center;
-justify-content: center;
-
-animation:
-    resultBallReveal 2s ease forwards;
-```
-
-}
-
-.result-content {
-position: relative;
-
-```
-z-index: 2;
-
-text-align: center;
-
-padding: 10%;
-```
-
-}
-
-.result-label {
-font-size: 0.9rem;
-
-```
-letter-spacing: 0.12em;
-
-text-transform: uppercase;
-
-opacity: 0.55;
-
-margin-bottom: 1rem;
-```
-
-}
-
-#result-font {
-font-family:
-"Bodoni 72",
-"Bodoni 72 Book",
-"Bodoni MT",
-Didot,
-serif;
-
-```
-font-size:
-    clamp(4rem, 11vw, 10rem);
-
-line-height: 0.8;
-
-letter-spacing: -0.06em;
-
-margin-bottom: 2rem;
-
-font-weight: 400;
-
-font-style: italic;
-
-animation:
-    magicalResult 2s ease forwards;
-```
-
-}
-
-.result-description {
-max-width: 500px;
-
-```
-margin: 0 auto;
-
-font-size:
-    clamp(1rem, 1.5vw, 1.3rem);
-
-line-height: 1.35;
-
-font-style: italic;
-
-opacity: 0;
-
-animation:
-    fadeInText 1.5s ease 1.2s forwards;
-```
-
-}
-
-/* =========================================
-RESULT FONT CLASSES
-========================================= */
-
-.font-futura {
-font-family: Futura, "Century Gothic", sans-serif !important;
-}
-
-.font-raceway {
-font-family: Raceway, "Arial Narrow", sans-serif !important;
-}
-
-.font-playfair {
-font-family: "Playfair Display", Georgia, serif !important;
-}
-
-.font-helvetica {
-font-family: Helvetica, Arial, sans-serif !important;
-}
-
-.font-gotham {
-font-family: Gotham, Arial, sans-serif !important;
-}
-
-.font-montserrat {
-font-family: Montserrat, Arial, sans-serif !important;
-}
-
-.font-didot {
-font-family: Didot, "Bodoni MT", serif !important;
-}
-
-.font-cooper {
-font-family: "Cooper Black", Cooper, serif !important;
-}
-
-.font-bodoni {
-font-family: Bodoni, "Bodoni MT", Didot, serif !important;
-}
-
-.font-comic {
-font-family: "Comic Sans MS", cursive !important;
-}
-
-.font-chiller {
-font-family: Chiller, fantasy !important;
-}
-
-.font-hobo {
-font-family: Hobo, fantasy !important;
-}
-
-.font-bubblegum {
-font-family: Bubblegum, cursive !important;
-}
-
-.font-arial {
-font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* =========================================
-RESULT ANIMATIONS
-========================================= */
-
-@keyframes fadeInText {
+@keyframes welcomeFade {
 
 ```
 from {
@@ -1009,89 +348,982 @@ to {
 
 }
 
-@keyframes magicalResult {
+/* =========================================
+LOGO
+========================================= */
+
+.start-logo-wrap {
 
 ```
-0% {
-    opacity: 0;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    transform:
-        scale(0.45)
-        rotate(-8deg);
+animation:
+    logoFloat 5s ease-in-out infinite;
+```
 
-    filter:
-        blur(25px);
-
-    text-shadow:
-        0 0 0 transparent;
 }
 
-45% {
-    opacity: 0.5;
+.logo-image {
 
-    transform:
-        scale(1.12)
-        rotate(3deg);
+```
+display: block;
 
-    filter:
-        blur(5px);
+width:
+    clamp(190px, 35vw, 420px);
+
+height: auto;
+
+object-fit: contain;
+
+filter:
+    drop-shadow(
+        0 0 25px rgba(220, 174, 83, 0.2)
+    );
+```
+
 }
 
-75% {
-    transform:
-        scale(0.96)
-        rotate(-1deg);
+@keyframes logoFloat {
 
-    filter:
-        blur(0);
-
-    text-shadow:
-        0 0 40px rgba(220,170,255,0.9);
-}
-
+```
+0%,
 100% {
-    opacity: 1;
+    transform: translateY(0);
+}
 
-    transform:
-        scale(1)
-        rotate(0);
-
-    filter:
-        blur(0);
-
-    text-shadow:
-        0 0 15px rgba(220,170,255,0.35);
+50% {
+    transform: translateY(-12px);
 }
 ```
 
 }
 
-@keyframes resultBallReveal {
+/* =========================================
+MAGIC ARROW
+========================================= */
+
+.magic-arrow {
+
+```
+position: relative;
+
+width: 100px;
+height: 120px;
+
+display: flex;
+flex-direction: column;
+
+align-items: center;
+justify-content: center;
+
+border: none;
+background: transparent;
+
+color: #d8b16a;
+
+cursor: pointer;
+
+transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+```
+
+}
+
+.magic-arrow:hover {
+
+```
+transform: translateY(8px) scale(1.08);
+
+filter:
+    drop-shadow(
+        0 0 15px rgba(232, 190, 104, 0.8)
+    );
+```
+
+}
+
+.arrow-symbol {
+
+```
+font-family:
+    "Bodoni 72",
+    "Bodoni MT",
+    Didot,
+    serif;
+
+font-size: 4rem;
+
+font-style: italic;
+
+line-height: 0.65;
+```
+
+}
+
+.arrow-ornament {
+
+```
+font-size: 2rem;
+
+font-style: italic;
+
+line-height: 0.5;
+
+transform: rotate(-8deg);
+
+opacity: 0.75;
+```
+
+}
+
+.arrow-ornament.reverse {
+
+```
+transform:
+    rotate(172deg);
+
+margin-top: 12px;
+```
+
+}
+
+.magic-arrow::after {
+
+```
+content: "";
+
+position: absolute;
+
+width: 70px;
+height: 70px;
+
+border-radius: 50%;
+
+border:
+    1px solid rgba(216, 177, 106, 0.2);
+
+animation:
+    arrowPulse 2.8s ease-in-out infinite;
+```
+
+}
+
+@keyframes arrowPulse {
+
+```
+0%,
+100% {
+    transform: scale(0.7);
+    opacity: 0;
+}
+
+50% {
+    transform: scale(1.25);
+    opacity: 1;
+}
+```
+
+}
+
+/* =========================================
+INTRO
+========================================= */
+
+.intro-screen {
+text-align: center;
+}
+
+.intro-content {
+
+```
+width: min(900px, 94vw);
+
+display: flex;
+flex-direction: column;
+
+align-items: center;
+justify-content: center;
+
+gap: 2.5rem;
+```
+
+}
+
+/* =========================================
+CRYSTAL BALL
+========================================= */
+
+.crystal-ball {
+
+```
+position: relative;
+
+border-radius: 50%;
+
+background:
+
+    radial-gradient(
+        circle at 30% 25%,
+        rgba(255,255,255,0.3),
+        transparent 13%
+    ),
+
+    radial-gradient(
+        circle at 50% 50%,
+        rgba(100, 54, 140, 0.8),
+        rgba(25, 8, 45, 0.95) 55%,
+        rgba(4, 2, 8, 1) 100%
+    );
+
+border:
+    1px solid rgba(226, 186, 103, 0.45);
+
+box-shadow:
+
+    inset
+    15px
+    15px
+    40px
+    rgba(255,255,255,0.05),
+
+    inset
+    -20px
+    -20px
+    50px
+    rgba(0,0,0,0.8),
+
+    0 0 50px
+    rgba(117, 64, 177, 0.3),
+
+    0 0 100px
+    rgba(117, 64, 177, 0.15);
+```
+
+}
+
+.intro-ball {
+
+```
+width:
+    min(700px, 85vw);
+
+aspect-ratio: 1;
+
+max-height: 72vh;
+
+overflow: hidden;
+
+display: flex;
+
+align-items: center;
+justify-content: center;
+```
+
+}
+
+.crystal-glow {
+
+```
+position: absolute;
+
+inset: 8%;
+
+border-radius: 50%;
+
+background:
+    radial-gradient(
+        circle,
+        rgba(189, 111, 255, 0.25),
+        transparent 65%
+    );
+
+filter: blur(18px);
+
+animation:
+    crystalGlow 5s ease-in-out infinite;
+```
+
+}
+
+@keyframes crystalGlow {
+
+```
+0%,
+100% {
+    opacity: 0.45;
+    transform: scale(0.95);
+}
+
+50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+```
+
+}
+
+.ball-content {
+
+```
+position: relative;
+
+width: 72%;
+max-height: 72%;
+
+overflow-y: auto;
+
+scrollbar-width: none;
+
+z-index: 2;
+```
+
+}
+
+.ball-content::-webkit-scrollbar {
+display: none;
+}
+
+.intro-copy {
+
+```
+font-size:
+    clamp(0.75rem, 1.3vw, 1.15rem);
+
+line-height: 1.35;
+
+font-style: italic;
+
+color:
+    rgba(248, 239, 225, 0.9);
+
+text-shadow:
+    0 0 12px rgba(255,255,255,0.08);
+```
+
+}
+
+.intro-copy strong {
+color: #e0ba72;
+}
+
+/* =========================================
+MAGIC BUTTON
+========================================= */
+
+.magic-button {
+
+```
+padding:
+    1rem 2.4rem;
+
+border:
+    1px solid rgba(223, 186, 111, 0.65);
+
+border-radius: 999px;
+
+background:
+    rgba(20, 12, 25, 0.8);
+
+color:
+    #f5e9d1;
+
+font-size:
+    1rem;
+
+font-style: italic;
+
+cursor: pointer;
+
+box-shadow:
+    0 0 20px rgba(218, 167, 79, 0.08);
+
+transition:
+    all 0.4s ease;
+```
+
+}
+
+.magic-button:hover {
+
+```
+background:
+    rgba(220, 174, 83, 0.15);
+
+border-color:
+    #e3bc72;
+
+transform:
+    scale(1.05);
+
+box-shadow:
+    0 0 30px
+    rgba(220, 174, 83, 0.3);
+```
+
+}
+
+/* =========================================
+QUIZ
+========================================= */
+
+.quiz {
+
+```
+width:
+    min(1100px, 94vw);
+
+text-align: center;
+```
+
+}
+
+.progress {
+
+```
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+gap: 1rem;
+
+margin-bottom:
+    3.5rem;
+
+font-size:
+    0.9rem;
+
+font-style: italic;
+
+opacity: 0.6;
+```
+
+}
+
+.progress-line {
+
+```
+width: 110px;
+
+height: 1px;
+
+background:
+    rgba(255,255,255,0.35);
+```
+
+}
+
+/* =========================================
+QUESTION
+========================================= */
+
+#question-text {
+
+```
+max-width: 950px;
+
+margin:
+    0 auto 3rem;
+
+font-family:
+    "Bodoni 72",
+    "Bodoni MT",
+    Didot,
+    serif;
+
+font-style: italic;
+
+font-weight: 400;
+
+font-size:
+    clamp(2rem, 5vw, 5rem);
+
+line-height: 0.95;
+
+letter-spacing:
+    -0.045em;
+```
+
+}
+
+/* =========================================
+ANSWERS
+========================================= */
+
+.answers {
+
+```
+width:
+    min(900px, 100%);
+
+margin:
+    0 auto;
+
+display: grid;
+
+grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+gap:
+    1.2rem;
+```
+
+}
+
+.answer-button {
+
+```
+min-height:
+    105px;
+
+padding:
+    1.3rem 1.5rem;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    1rem;
+
+border:
+    1px solid rgba(231, 198, 132, 0.25);
+
+border-radius:
+    18px;
+
+background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,0.04),
+        rgba(255,255,255,0.015)
+    );
+
+color:
+    #f4eee3;
+
+cursor:
+    pointer;
+
+text-align:
+    left;
+
+transition:
+    all 0.35s ease;
+```
+
+}
+
+.answer-button:hover {
+
+```
+border-color:
+    rgba(229, 187, 104, 0.75);
+
+background:
+    rgba(205, 157, 71, 0.1);
+
+transform:
+    translateY(-4px);
+
+box-shadow:
+    0 10px 35px
+    rgba(216, 170, 83, 0.12);
+```
+
+}
+
+.answer-button.selected {
+
+```
+transform:
+    scale(0.97);
+
+background:
+    rgba(220, 173, 78, 0.18);
+
+border-color:
+    #e4bb70;
+```
+
+}
+
+.answer-letter {
+
+```
+flex:
+    0 0 40px;
+
+width:
+    40px;
+
+height:
+    40px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+border-radius:
+    50%;
+
+border:
+    1px solid rgba(224, 185, 105, 0.5);
+
+color:
+    #dfb86e;
+
+font-size:
+    1.2rem;
+
+font-style:
+    italic;
+```
+
+}
+
+.answer-text {
+
+```
+font-size:
+    clamp(0.9rem, 1.4vw, 1.2rem);
+
+line-height:
+    1.25;
+
+font-style:
+    italic;
+```
+
+}
+
+.answer-label {
+
+```
+margin-top:
+    2rem;
+
+min-height:
+    1.5em;
+
+font-size:
+    0.85rem;
+
+font-style:
+    italic;
+
+opacity:
+    0.45;
+```
+
+}
+
+/* =========================================
+RESULT
+========================================= */
+
+.result-screen {
+text-align: center;
+}
+
+.result-content {
+
+```
+width:
+    min(1000px, 94vw);
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+gap:
+    2.5rem;
+```
+
+}
+
+.result-intro {
+
+```
+font-family:
+    "Bodoni 72",
+    "Bodoni MT",
+    Didot,
+    serif;
+
+font-style:
+    italic;
+
+font-size:
+    clamp(2rem, 5vw, 5rem);
+
+line-height:
+    0.9;
+
+max-width:
+    900px;
+```
+
+}
+
+.result-ball {
+
+```
+width:
+    min(600px, 80vw);
+
+aspect-ratio:
+    1;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+animation:
+    resultBallIn 1.5s cubic-bezier(.2,.8,.2,1) forwards;
+```
+
+}
+
+@keyframes resultBallIn {
 
 ```
 from {
     opacity: 0;
-
     transform:
-        scale(0.8);
-
+        scale(0.4)
+        rotate(-8deg);
     filter:
-        brightness(0.3)
-        blur(10px);
+        blur(12px);
 }
 
 to {
     opacity: 1;
-
     transform:
-        scale(1);
-
+        scale(1)
+        rotate(0);
     filter:
-        brightness(1)
         blur(0);
 }
 ```
 
+}
+
+.result-ball-content {
+
+```
+position:
+    relative;
+
+z-index:
+    3;
+
+width:
+    75%;
+
+text-align:
+    center;
+```
+
+}
+
+.result-label {
+
+```
+font-size:
+    0.9rem;
+
+font-style:
+    italic;
+
+opacity:
+    0.6;
+
+margin-bottom:
+    1rem;
+```
+
+}
+
+#result-font {
+
+```
+font-size:
+    clamp(4rem, 11vw, 10rem);
+
+line-height:
+    0.8;
+
+font-weight:
+    400;
+
+font-style:
+    italic;
+
+margin-bottom:
+    2rem;
+
+text-shadow:
+    0 0 35px
+    rgba(255,255,255,0.15);
+
+animation:
+    resultTextMagic 1.8s ease forwards;
+```
+
+}
+
+@keyframes resultTextMagic {
+
+```
+from {
+    opacity: 0;
+    transform:
+        scale(0.5)
+        rotate(-4deg);
+    filter:
+        blur(15px);
+}
+
+60% {
+    opacity: 1;
+    transform:
+        scale(1.08)
+        rotate(1deg);
+    filter:
+        blur(0);
+}
+
+to {
+    opacity: 1;
+    transform:
+        scale(1)
+        rotate(0);
+}
+```
+
+}
+
+.result-description {
+
+```
+font-size:
+    clamp(1rem, 2vw, 1.35rem);
+
+font-style:
+    italic;
+
+line-height:
+    1.35;
+
+opacity:
+    0;
+
+animation:
+    descriptionIn 1s ease 1.3s forwards;
+```
+
+}
+
+@keyframes descriptionIn {
+
+```
+from {
+    opacity: 0;
+    transform:
+        translateY(15px);
+}
+
+to {
+    opacity: 0.85;
+    transform:
+        translateY(0);
+}
+```
+
+}
+
+/* =========================================
+RESULT FONTS
+========================================= */
+
+.font-futura {
+font-family: Futura, "Century Gothic", sans-serif;
+}
+
+.font-raceway {
+font-family: "Arial Narrow", Arial, sans-serif;
+}
+
+.font-playfair {
+font-family: "Playfair Display", Georgia, serif;
+}
+
+.font-helvetica {
+font-family: Helvetica, Arial, sans-serif;
+}
+
+.font-gotham {
+font-family: Gotham, Arial, sans-serif;
+}
+
+.font-montserrat {
+font-family: Montserrat, Arial, sans-serif;
+}
+
+.font-didot {
+font-family: Didot, "Bodoni MT", serif;
+}
+
+.font-cooper {
+font-family: "Cooper Black", Cooper, serif;
+}
+
+.font-bodoni {
+font-family: Bodoni, "Bodoni MT", Didot, serif;
+}
+
+.font-comic {
+font-family: "Comic Sans MS", cursive;
+}
+
+.font-chiller {
+font-family: Chiller, fantasy;
+}
+
+.font-hobo {
+font-family: Hobo, fantasy;
+}
+
+.font-bubblegum {
+font-family: Bubblegum, cursive;
+}
+
+.font-arial {
+font-family: Arial, Helvetica, sans-serif;
 }
 
 /* =========================================
@@ -1101,172 +1333,143 @@ MOBILE
 @media (max-width: 700px) {
 
 ```
-.ornament-track {
-    height: 30px;
+.ornament-banner {
+    height: 45px;
 }
 
-.ornament-row span {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-}
-
-.machine-header {
-    top: 30px;
-    height: 25vh;
-}
-
-.logo-image {
-    width: 190px;
+.ornament-set {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
 }
 
 .screen {
     padding:
-        50px
-        5vw
-        45px;
+        75px 18px;
 }
 
-.intro {
-    padding-top: 80px;
+.start-content {
+    min-height:
+        calc(100vh - 90px);
+
+    gap:
+        1.8rem;
 }
 
 .welcome-text {
-    font-size: 1.8rem;
-}
-
-.fontune-title {
     font-size:
-        clamp(3.4rem, 14vw, 6rem);
+        clamp(2rem, 9vw, 3rem);
 }
 
-.scroll-button {
-    font-size: 3rem;
+.logo-image {
+    width:
+        min(75vw, 300px);
+}
+
+.magic-arrow {
+    transform:
+        scale(0.85);
 }
 
 .intro-ball {
-    width: 88vw;
-    height: 88vw;
-    max-height: none;
+
+    width:
+        92vw;
+
+    max-height:
+        none;
 }
 
 .ball-content {
-    padding: 11%;
+    width:
+        72%;
 
-    font-size: 0.75rem;
-
-    line-height: 1.25;
+    max-height:
+        70%;
 }
 
-.ball-content p {
-    margin-bottom: 0.45rem;
+.intro-copy {
+    font-size:
+        clamp(0.67rem, 2.3vw, 0.9rem);
+
+    line-height:
+        1.28;
 }
 
-.quiz {
-    padding-top: 1vh;
+.magic-button {
+    font-size:
+        0.9rem;
+
+    padding:
+        0.9rem 1.8rem;
 }
 
 .progress {
-    margin-bottom: 1.7rem;
+    margin-bottom:
+        2.2rem;
 }
 
 #question-text {
     font-size:
-        clamp(2rem, 10vw, 3.5rem);
+        clamp(2rem, 9vw, 3.5rem);
 
-    margin-bottom: 2rem;
-
-    line-height: 0.9;
+    margin-bottom:
+        2rem;
 }
 
 .answers {
-    grid-template-columns: 1fr;
 
-    gap: 0.7rem;
+    grid-template-columns:
+        1fr;
 
-    max-height: 48vh;
-
-    overflow-y: auto;
-
-    padding:
-        2px
-        4px;
-
-    scrollbar-width: thin;
+    gap:
+        0.8rem;
 }
 
-.answer-option {
-    min-height: 65px;
+.answer-button {
+    min-height:
+        76px;
 
     padding:
-        0.8rem
-        0.9rem;
+        0.9rem 1rem;
 }
 
 .answer-letter {
-    width: 28px;
-    height: 28px;
+    flex-basis:
+        34px;
 
-    font-size: 0.75rem;
+    width:
+        34px;
+
+    height:
+        34px;
+
+    font-size:
+        1rem;
 }
 
 .answer-text {
-    font-size: 1rem;
+    font-size:
+        0.95rem;
+}
+
+.answer-label {
+    margin-top:
+        1rem;
 }
 
 .result-intro {
     font-size:
         clamp(2rem, 9vw, 3.5rem);
-
-    margin-bottom: 1.5rem;
 }
 
 .result-ball {
-    width: 82vw;
-    height: 82vw;
+    width:
+        88vw;
 }
 
 #result-font {
     font-size:
-        clamp(3.3rem, 14vw, 6rem);
-}
-
-.result-description {
-    font-size: 0.9rem;
-}
-
-.magic-button {
-    font-size: 0.95rem;
-
-    padding:
-        0.9rem
-        1.7rem;
-}
-```
-
-}
-
-/* =========================================
-VERY SMALL PHONES
-========================================= */
-
-@media (max-width: 380px) {
-
-```
-#question-text {
-    font-size: 1.8rem;
-}
-
-.answer-text {
-    font-size: 0.9rem;
-}
-
-.answers {
-    max-height: 50vh;
-}
-
-.result-ball {
-    width: 88vw;
-    height: 88vw;
+        clamp(3.2rem, 13vw, 6rem);
 }
 ```
 
@@ -1282,9 +1485,15 @@ REDUCED MOTION
 *,
 *::before,
 *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
+
+    animation-duration:
+        0.01ms !important;
+
+    animation-iteration-count:
+        1 !important;
+
+    scroll-behavior:
+        auto !important;
 }
 ```
 
