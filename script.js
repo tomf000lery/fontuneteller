@@ -1,7 +1,6 @@
-
-/* =========================================================
+/* =========================================
    QUESTIONS
-========================================================= */
+========================================= */
 
 const questions = [
 
@@ -16,12 +15,12 @@ const questions = [
     },
 
     {
-        question: "What do you do when you walk into a room full of people you don't know?",
+        question: "What do you do when you walk into a room full of people you don’t know?",
         answers: {
             A: "Stick to the wall",
             B: "Take the initiative, start talking, take over the room, assert dominance.",
             C: "Spot someone interesting and go up to them",
-            D: "Call your friend and ask what they're doing."
+            D: "Call your friend and ask what they’re doing."
         }
     },
 
@@ -76,7 +75,7 @@ const questions = [
     },
 
     {
-        question: "What do you do when you don't know what to choose?",
+        question: "What do you do when you don’t know what to choose?",
         answers: {
             A: "Take the safe option",
             B: "Ask someone else",
@@ -121,24 +120,24 @@ const questions = [
             A: "Through careful analysis of my experiences and other proven methods",
             B: "Gut feeling",
             C: "Quickly and instinctively",
-            D: "I don't do that"
+            D: "I don’t do that"
         }
     },
 
     {
         question: "What type of compliment do you appreciate the most?",
         answers: {
-            A: "You're someone I can rely on.",
-            B: "You're so funny.",
-            C: "You're so good at kerning.",
-            D: "You're so smart."
+            A: "You’re someone I can rely on.",
+            B: "You’re so funny.",
+            C: "You’re so good at kerning.",
+            D: "You’re so smart."
         }
     },
 
     {
         question: "If you were a music genre, what would you be?",
         answers: {
-            A: "Rock 'n' roll",
+            A: "Rock ’n’ roll",
             B: "Blues",
             C: "Experimental and unpredictable, the kind of thing you only find on SoundCloud",
             D: "Disco funk"
@@ -168,7 +167,7 @@ const questions = [
     {
         question: "When was the last time you read a book?",
         answers: {
-            A: "I've never read anything in my life not even this stupid test",
+            A: "I’ve never read anything in my life not even this stupid test",
             B: "All day erryday, son!",
             C: "If the last book you read was Harry Potter you have a curse on you. Say: KAKA! Loud to break the curse",
             D: "Purple"
@@ -190,7 +189,7 @@ const questions = [
         answers: {
             A: "Never happened",
             B: "Not that long ago",
-            C: "At some point, but I can't remember when",
+            C: "At some point, but I can’t remember when",
             D: "Everything I do is spontaneous"
         }
     },
@@ -201,7 +200,7 @@ const questions = [
             A: "Pat the tiger.",
             B: "Flykick the tiger",
             C: "Offer it a cigarette",
-            D: "Spend an unreasonable amount of time designing and launching a new font we made together."
+            D: "Spend an unreasonable amount of time on designing and launching a new font we made together."
         }
     },
 
@@ -218,130 +217,102 @@ const questions = [
 ];
 
 
-/* =========================================================
+/* =========================================
    TYPEFACES
-========================================================= */
+========================================= */
 
 const typefaces = [
 
     {
         name: "Futura",
         className: "font-futura",
-        description: "Geometric, clean and progressive",
-        color: "#5733a8",
-        glow: "rgba(122, 75, 255, 0.65)"
+        description: "Geometric, clean and progressive"
     },
 
     {
         name: "Raceway",
         className: "font-raceway",
-        description: "Serious, sleek and structured",
-        color: "#263c9b",
-        glow: "rgba(69, 103, 255, 0.65)"
+        description: "Serious, sleek and structured"
     },
 
     {
         name: "Playfair Display",
         className: "font-playfair",
-        description: "Traditional but with a flair",
-        color: "#8e416d",
-        glow: "rgba(230, 92, 177, 0.6)"
+        description: "Traditional but with a flair"
     },
 
     {
         name: "Helvetica",
         className: "font-helvetica",
-        description: "The Swiss Army knife of fonts",
-        color: "#43505c",
-        glow: "rgba(120, 160, 190, 0.6)"
+        description: "The Swiss Army knife of fonts"
     },
 
     {
         name: "Gotham",
         className: "font-gotham",
-        description: "Bold and built for impact",
-        color: "#852e2e",
-        glow: "rgba(255, 75, 75, 0.65)"
+        description: "Bold and built for impact"
     },
 
     {
         name: "Montserrat",
         className: "font-montserrat",
-        description: "Urban, stylish and in their own lane",
-        color: "#245f71",
-        glow: "rgba(48, 188, 219, 0.6)"
+        description: "Urban, stylish and in their own lane"
     },
 
     {
         name: "Didot",
         className: "font-didot",
-        description: "Fashion is my passion",
-        color: "#7d315e",
-        glow: "rgba(244, 99, 183, 0.65)"
+        description: "Fashion is my passion"
     },
 
     {
         name: "Cooper Black",
         className: "font-cooper",
-        description: "Charming, playful, friendly, but will bite",
-        color: "#9a542b",
-        glow: "rgba(255, 153, 76, 0.65)"
+        description: "Charming, playful, friendly, but will bite"
     },
 
     {
         name: "Bodoni",
         className: "font-bodoni",
-        description: "Luxurious, editorial, knows they're better",
-        color: "#542b83",
-        glow: "rgba(179, 104, 255, 0.65)"
+        description: "Luxurious, editorial, knows they’re better"
     },
 
     {
         name: "Comic Sans",
         className: "font-comic",
-        description: "Fun, embodiment of informality, not invited anywhere",
-        color: "#497e3e",
-        glow: "rgba(115, 224, 93, 0.65)"
+        description: "Fun, embodiment of informality, not invited anywhere"
     },
 
     {
         name: "Chiller",
         className: "font-chiller",
-        description: "Alarming presence, likes to party but maybe a bit too much",
-        color: "#5e233b",
-        glow: "rgba(255, 45, 112, 0.7)"
+        description: "Alarming presence, likes to party but maybe a bit too much"
     },
 
     {
         name: "Hobo",
         className: "font-hobo",
-        description: "Unusual but appreciated, doesn't have any straight lines",
-        color: "#5d7130",
-        glow: "rgba(172, 223, 74, 0.6)"
+        description: "Unusual but appreciated, doesn’t have any straight lines"
     },
 
     {
         name: "Bubblegum",
         className: "font-bubblegum",
-        description: "Joyful, not edgy, sometimes cool",
-        color: "#9e3e76",
-        glow: "rgba(255, 93, 190, 0.65)"
+        description: "Joyful, not edgy, sometimes cool"
     },
 
     {
         name: "Arial",
         className: "font-arial",
-        description: "Clean, modern, high readability",
-        color: "#384858",
-        glow: "rgba(109, 166, 220, 0.6)"
+        description: "Clean, modern, high readability"
     }
 
 ];
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
+/* =========================================
+   STATE
+========================================= */
 
 let selectedQuestions = [];
 
@@ -355,9 +326,9 @@ let score = {
 };
 
 
-/* =========================================================
+/* =========================================
    DOM
-========================================================= */
+========================================= */
 
 const startScreen =
     document.getElementById("start-screen");
@@ -371,6 +342,7 @@ const quizScreen =
 const resultScreen =
     document.getElementById("result-screen");
 
+
 const scrollButton =
     document.getElementById("scroll-button");
 
@@ -380,14 +352,12 @@ const startButton =
 const restartButton =
     document.getElementById("restart-button");
 
+
 const questionText =
     document.getElementById("question-text");
 
 const questionNumber =
     document.getElementById("question-number");
-
-const answerLabel =
-    document.getElementById("answer-label");
 
 const resultFont =
     document.getElementById("result-font");
@@ -395,52 +365,47 @@ const resultFont =
 const resultDescription =
     document.getElementById("result-description");
 
+
 const answerButtons =
     document.querySelectorAll(".answer-button");
 
 
-/* =========================================================
-   SCREEN MANAGEMENT
-========================================================= */
+/* =========================================
+   SCREEN NAVIGATION
+========================================= */
 
 function showScreen(screen) {
 
-    [
-        startScreen,
-        introScreen,
-        quizScreen,
-        resultScreen
-    ].forEach(current => {
-
-        current.classList.remove("active");
-
-    });
+    document
+        .querySelectorAll(".screen")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
 
     screen.classList.add("active");
 
     window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        behavior: "instant"
     });
 }
 
 
-/* =========================================================
+/* =========================================
    SHUFFLE
-========================================================= */
+========================================= */
 
 function shuffle(array) {
 
-    return [...array].sort(
-        () => Math.random() - 0.5
-    );
+    return [...array]
+        .sort(() => Math.random() - 0.5);
 
 }
 
 
-/* =========================================================
+/* =========================================
    LANDING → INTRO
-========================================================= */
+========================================= */
 
 scrollButton.addEventListener(
     "click",
@@ -452,9 +417,9 @@ scrollButton.addEventListener(
 );
 
 
-/* =========================================================
+/* =========================================
    START QUIZ
-========================================================= */
+========================================= */
 
 function startQuiz() {
 
@@ -467,8 +432,15 @@ function startQuiz() {
 
     currentQuestion = 0;
 
+
+    /*
+        Select exactly 10 random questions
+        from the complete question pool.
+    */
+
     selectedQuestions =
         shuffle(questions).slice(0, 10);
+
 
     showScreen(quizScreen);
 
@@ -477,24 +449,36 @@ function startQuiz() {
 }
 
 
-/* =========================================================
+startButton.addEventListener(
+    "click",
+    startQuiz
+);
+
+
+/* =========================================
    SHOW QUESTION
-========================================================= */
+========================================= */
 
 function showQuestion() {
 
     const question =
         selectedQuestions[currentQuestion];
 
+
+    if (!question) {
+        showResult();
+        return;
+    }
+
+
     questionText.textContent =
         question.question;
+
 
     questionNumber.textContent =
         String(currentQuestion + 1)
             .padStart(2, "0");
 
-    answerLabel.textContent =
-        "Choose your sign";
 
     answerButtons.forEach(button => {
 
@@ -516,37 +500,29 @@ function showQuestion() {
 }
 
 
-/* =========================================================
-   ANSWER
-========================================================= */
+/* =========================================
+   ANSWER QUESTION
+========================================= */
 
-function answerQuestion(answer, clickedButton) {
+function answerQuestion(answer) {
 
-    if (clickedButton.disabled) {
-        return;
-    }
+    /*
+        Prevent double-clicking while
+        moving to the next question.
+    */
 
     answerButtons.forEach(button => {
         button.disabled = true;
     });
 
+
     score[answer]++;
 
-    clickedButton.style.transform =
-        "scale(1.04)";
 
-    clickedButton.style.borderColor =
-        "rgba(210, 170, 255, 1)";
+    currentQuestion++;
 
-    clickedButton.style.boxShadow =
-        "0 0 35px rgba(151, 79, 255, 0.7)";
-
-    answerLabel.textContent =
-        "The sign has been chosen…";
 
     setTimeout(() => {
-
-        currentQuestion++;
 
         if (
             currentQuestion >=
@@ -561,16 +537,45 @@ function answerQuestion(answer, clickedButton) {
 
         }
 
-    }, 550);
+    }, 250);
 
 }
 
 
-/* =========================================================
+/* =========================================
+   ANSWER BUTTON EVENTS
+========================================= */
+
+answerButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const answer =
+                button.dataset.answer;
+
+            answerQuestion(answer);
+
+        }
+    );
+
+});
+
+
+/* =========================================
    RESULT CALCULATION
-========================================================= */
+========================================= */
 
 function calculateResult() {
+
+    /*
+        Temporary scoring logic.
+
+        A weighted answer gives the result
+        a little more variety while keeping
+        the quiz simple.
+    */
 
     const total =
         score.A * 1 +
@@ -578,26 +583,32 @@ function calculateResult() {
         score.C * 3 +
         score.D * 4;
 
+
     const index =
         total % typefaces.length;
+
 
     return typefaces[index];
 
 }
 
 
-/* =========================================================
+/* =========================================
    SHOW RESULT
-========================================================= */
+========================================= */
 
 function showResult() {
 
     const result =
         calculateResult();
 
-    quizScreen.classList.remove("active");
 
-    resultScreen.classList.add("active");
+    showScreen(resultScreen);
+
+
+    /*
+        Remove previous font classes.
+    */
 
     typefaces.forEach(font => {
 
@@ -607,76 +618,43 @@ function showResult() {
 
     });
 
+
+    /*
+        Add result font class.
+    */
+
     resultFont.classList.add(
         result.className
     );
 
+
     resultFont.textContent =
         result.name;
+
 
     resultDescription.textContent =
         result.description;
 
-
-    /* =====================================================
-       MAGIC RESULT COLORS
-    ===================================================== */
-
-    const resultBall =
-        document.querySelector(".result-ball");
-
-    resultBall.style.setProperty(
-        "--result-color",
-        result.color
-    );
-
-    resultBall.style.setProperty(
-        "--result-glow",
-        result.glow
-    );
-
 }
 
 
-/* =========================================================
-   BUTTON EVENTS
-========================================================= */
-
-startButton.addEventListener(
-    "click",
-    startQuiz
-);
+/* =========================================
+   RESTART
+========================================= */
 
 restartButton.addEventListener(
     "click",
-    startQuiz
+    () => {
+
+        showScreen(startScreen);
+
+    }
 );
 
 
-/* =========================================================
-   ANSWER EVENTS
-========================================================= */
-
-answerButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            answerQuestion(
-                button.dataset.answer,
-                button
-            );
-
-        }
-    );
-
-});
-
-
-/* =========================================================
+/* =========================================
    KEYBOARD ACCESSIBILITY
-========================================================= */
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -684,7 +662,7 @@ document.addEventListener(
 
         if (
             event.key === "Enter" &&
-            document.activeElement.classList.contains(
+            document.activeElement?.classList.contains(
                 "answer-button"
             )
         ) {
@@ -695,4 +673,3 @@ document.addEventListener(
 
     }
 );
-
