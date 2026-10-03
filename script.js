@@ -20,7 +20,7 @@ const questions = [
             A: "Stick to the wall",
             B: "Take the initiative, start talking, take over the room, assert dominance.",
             C: "Spot someone interesting and go up to them",
-            D: "Call your friend and ask what they’re doing."
+            D: "Call your friend and ask what they’re doing. Then exit party and go meet them."
         }
     },
 
@@ -47,10 +47,10 @@ const questions = [
     {
         question: "What does your desk look like?",
         answers: {
-            A: "Organized and structured",
-            B: "Clean and minimalist",
-            C: "Creative chaos",
-            D: "Stylish and thoughtfully arranged"
+            A: "I promise I don't have OCD",
+            B: "Like the ones you find in a prisoncell",
+            C: "The desk is like a battlefield",
+            D: "Me bed is me desk is me kitchen is me whole house"
         }
     },
 
@@ -70,17 +70,17 @@ const questions = [
             A: "I prefer for things to remain the same",
             B: "I adapt quickly",
             C: "I love change",
-            D: "I embrace everything life has to offer"
+            D: "I embrace everything life has to offer, there would be no ups if there were no downs anyways"
         }
     },
 
     {
         question: "What do you do when you don’t know what to choose?",
         answers: {
-            A: "Take the safe option",
-            B: "Ask someone else",
+            A: "Ask a salesman for help then end up getting seven other things and an insurance",
+            B: "Call mom",
             C: "Go with my gut",
-            D: "Compare all the options"
+            D: "Look up the trends, compare all the options fifty times then choose none"
         }
     },
 
@@ -109,7 +109,7 @@ const questions = [
         answers: {
             A: "Security",
             B: "Freedom",
-            C: "Creativity",
+            C: "Good kerning",
             D: "Quality"
         }
     },
@@ -138,7 +138,7 @@ const questions = [
         question: "If you were a music genre, what would you be?",
         answers: {
             A: "Rock ’n’ roll",
-            B: "Blues",
+            B: "Blues:(",
             C: "Experimental and unpredictable, the kind of thing you only find on SoundCloud",
             D: "Disco funk"
         }
@@ -189,7 +189,7 @@ const questions = [
         answers: {
             A: "Never happened",
             B: "Not that long ago",
-            C: "At some point, but I can’t remember when",
+            C: "I used to be an adventurer like you..",
             D: "Everything I do is spontaneous"
         }
     },
@@ -200,7 +200,7 @@ const questions = [
             A: "Pat the tiger.",
             B: "Flykick the tiger",
             C: "Offer it a cigarette",
-            D: "Spend an unreasonable amount of time on designing and launching a new font we made together."
+            D: "Spend an unreasonable amount of time on designing and launching a new font you made together."
         }
     },
 
@@ -208,9 +208,9 @@ const questions = [
         question: "Which environment do you feel most comfortable in?",
         answers: {
             A: "A library",
-            B: "An office",
-            C: "Home",
-            D: "A café"
+            B: "A café",
+            C: "Train stations",
+            D: "Underground"
         }
     }
 
