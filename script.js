@@ -217,6 +217,7 @@ const questions = [
 ];
 
 
+
 /* =========================================================
    TYPEFACES
 ========================================================= */
@@ -224,90 +225,86 @@ const questions = [
 const typefaces = [
 
     {
-        name: "Futura",
-        className: "font-futura",
-        description: "Geometric, clean and progressive"
+        name: "Areal",
+        className: "font-areal",
+        description: 'With the latest fashion, ”technologia!”, high readability'
     },
 
     {
-        name: "Raceway",
-        className: "font-raceway",
-        description: "Serious, sleek and structured"
+        name: "Galapagos",
+        className: "font-galapagos",
+        description: "Futuristic, has read all Tolkien books, modular"
     },
 
     {
-        name: "Playfair Display",
-        className: "font-playfair",
-        description: "Traditional but with a flair"
+        name: "Maxi",
+        className: "font-maxi",
+        description: "Warm, witty and heavily-engineered"
     },
 
     {
-        name: "Helvetica",
-        className: "font-helvetica",
-        description: "The Swiss Army knife of fonts"
+        name: "Stefan",
+        className: "font-stefan",
+        description: "You made it out of elementary school physically but not mentally"
     },
 
     {
-        name: "Gotham",
-        className: "font-gotham",
-        description: "Bold and built for impact"
+        name: "Bingo",
+        className: "font-bingo",
+        description: "Rough on the outside and soft on the inside"
     },
 
     {
-        name: "Montserrat",
-        className: "font-montserrat",
-        description: "Urban, stylish and in their own lane"
+        name: "Gramercy",
+        className: "font-gramercy",
+        description: "Whimsical, elegantly sashays through life, comes with uppercase swashes"
     },
 
     {
-        name: "Didot",
-        className: "font-didot",
-        description: "Fashion is my passion"
+        name: "Limpet Granite",
+        className: "font-limpet-granite",
+        description: "Irregular, rugged, is a cowboy"
     },
 
     {
-        name: "Cooper Black",
-        className: "font-cooper",
-        description: "Charming, playful, friendly, but will bite"
+        name: "Ticker",
+        className: "font-ticker",
+        description: "”Do it for the plot”, questions EVERYTHING, works all the time"
     },
 
     {
-        name: "Bodoni",
-        className: "font-bodoni",
-        description: "Luxurious, editorial, knows they’re better"
+        name: "Joseleen",
+        className: "font-joseleen",
+        description: "Will go chasing cars with you, usual answer to everything is shrugging, picks flowers for you"
     },
 
     {
-        name: "Comic Sans",
-        className: "font-comic",
-        description: "Fun, embodiment of informality, not invited anywhere"
+        name: "Jungka",
+        className: "font-jungka",
+        description: "Fined tuned, contemporary, immaculate vibes yo"
     },
 
     {
-        name: "Chiller",
-        className: "font-chiller",
-        description: "Alarming presence, likes to party but maybe a bit too much"
+        name: "Pirelli",
+        className: "font-pirelli",
+        description: "Speaks through eye contact, mono-lined, often thinks or says that everything was better when they were a kid."
     },
 
     {
-        name: "Hobo",
-        className: "font-hobo",
-        description: "Unusual but appreciated, doesn’t have any straight lines"
+        name: "Publisher",
+        className: "font-publisher",
+        description: "Can write 60 words per minute, boasts about it, can (and will) recite the whole business-card scene from American Psycho from start to finish."
     },
 
     {
-        name: "Bubblegum",
-        className: "font-bubblegum",
-        description: "Joyful, not edgy, sometimes cool"
-    },
-
-    {
-        name: "Arial",
-        className: "font-arial",
-        description: "Clean, modern, high readability"
+        name: "Amdal",
+        className: "font-amdal",
+        description: "Bold, expressive, capable of surviving several occupations"
     }
 
 ];
+
+
 
 
 /* =========================================================
