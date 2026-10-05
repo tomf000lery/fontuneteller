@@ -18,11 +18,6 @@ body {
     background: #08050d;
     color: #f4edf8;
 
-    /*
-        Bodoni Book Italic first.
-        If you have the actual font file, see the note
-        at the bottom of this CSS.
-    */
     font-family:
         "Bodoni Book Italic",
         "Bodoni 72",
@@ -100,12 +95,6 @@ body {
     bottom: 0;
 }
 
-
-/*
-    The track is intentionally much wider than the viewport.
-    Repeated symbols prevent empty gaps.
-*/
-
 .ornament-track {
     display: flex;
 
@@ -130,9 +119,6 @@ body {
     will-change: transform;
 }
 
-
-/* Every repeated section has identical dimensions */
-
 .ornament-track span {
     display: block;
 
@@ -147,9 +133,6 @@ body {
         0 0 15px rgba(177, 71, 255, 0.7);
 }
 
-
-/* TOP → LEFT */
-
 .ornament-track-left {
     animation:
         ornamentLeft
@@ -158,9 +141,6 @@ body {
         infinite;
 }
 
-
-/* BOTTOM → RIGHT */
-
 .ornament-track-right {
     animation:
         ornamentRight
@@ -168,14 +148,6 @@ body {
         linear
         infinite;
 }
-
-
-/*
-    Seamless movement.
-
-    Because the content is repeated, the end of one
-    sequence visually matches the beginning of the next.
-*/
 
 @keyframes ornamentLeft {
 
@@ -196,68 +168,6 @@ body {
 
     to {
         transform: translateX(0);
-    }
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.machine-header {
-    position: fixed;
-
-    top: clamp(50px, 7vh, 90px);
-    left: 0;
-
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-
-    z-index: 500;
-
-    pointer-events: none;
-}
-
-.floating-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    animation:
-        floatingLogo
-        5s
-        ease-in-out
-        infinite;
-
-    filter:
-        drop-shadow(
-            0 15px 30px rgba(0,0,0,0.5)
-        );
-}
-
-.logo-image {
-    width: clamp(150px, 22vw, 280px);
-
-    height: auto;
-
-    display: block;
-}
-
-
-@keyframes floatingLogo {
-
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0);
     }
 }
 
@@ -309,9 +219,13 @@ body {
     align-items: center;
     justify-content: center;
 
+    /*
+        The whole group is raised slightly.
+    */
+
     gap: clamp(20px, 3vh, 40px);
 
-    margin-top: 4vh;
+    transform: translateY(-7vh);
 }
 
 .welcome-text {
@@ -333,6 +247,11 @@ body {
         forwards;
 }
 
+
+/* =========================================================
+   LANDING LOGO
+========================================================= */
+
 .landing-logo {
     width:
         clamp(180px, 32vw, 420px);
@@ -341,12 +260,33 @@ body {
 
     opacity: 0;
 
+    /*
+        This is the important part:
+        the logo itself is moved upward
+        on the Y axis.
+    */
+
+    transform: translateY(-35px);
+
     animation:
-        fadeIn
+        logoFadeIn
         1.8s
         ease
         0.3s
         forwards;
+}
+
+@keyframes logoFadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-35px);
+    }
 }
 
 
@@ -428,18 +368,12 @@ body {
 }
 
 
-
 /* =========================================================
    CRYSTAL BALL
 ========================================================= */
 
 .crystal-ball {
-
     position: relative;
-
-    /*
-        Always perfectly circular.
-    */
 
     width:
         min(850px, 88vw);
@@ -449,11 +383,6 @@ body {
 
     height:
         auto;
-
-    /*
-        Keep enough room for the text while
-        remaining a genuine magical orb.
-    */
 
     max-height:
         78vh;
@@ -471,7 +400,6 @@ body {
         );
 
     box-shadow:
-
         inset
         0 0 80px
         rgba(203, 123, 255, 0.18),
@@ -491,12 +419,7 @@ body {
 }
 
 .intro-copy {
-
     position: absolute;
-
-    /*
-        Generous circular safe area.
-    */
 
     inset:
         9%;
@@ -526,11 +449,6 @@ body {
     z-index:
         2;
 
-    /*
-        Gives the text the slightly bowed,
-        magical fisheye feeling.
-    */
-
     transform:
         perspective(900px)
         rotateX(5deg)
@@ -538,11 +456,6 @@ body {
 
     transform-origin:
         center center;
-
-    /*
-        The radial mask keeps the text visually
-        inside the spherical centre.
-    */
 
     -webkit-mask-image:
         radial-gradient(
@@ -561,21 +474,13 @@ body {
         );
 }
 
-
 .intro-copy::-webkit-scrollbar {
     display: none;
 }
 
-
 .intro-copy p {
-
     margin-bottom:
         0.65em;
-
-    /*
-        The middle of the text feels larger,
-        producing the fisheye/bulging effect.
-    */
 
     transform:
         scaleX(1.03);
@@ -584,40 +489,31 @@ body {
         center center;
 }
 
-
 .intro-copy p:nth-child(1),
 .intro-copy p:nth-child(10) {
-
     transform:
         scaleX(0.88);
 }
 
-
 .intro-copy p:nth-child(2),
 .intro-copy p:nth-child(9) {
-
     transform:
         scaleX(0.94);
 }
 
-
 .intro-copy p:nth-child(3),
 .intro-copy p:nth-child(8) {
-
     transform:
         scaleX(0.98);
 }
-
 
 .intro-copy p:nth-child(4),
 .intro-copy p:nth-child(5),
 .intro-copy p:nth-child(6),
 .intro-copy p:nth-child(7) {
-
     transform:
         scaleX(1.03);
 }
-
 
 .intro-copy strong {
     color:
@@ -625,14 +521,11 @@ body {
 }
 
 
-
-
 /* =========================================================
    BUTTONS
 ========================================================= */
 
 .magic-button {
-
     padding:
         1rem
         2rem;
@@ -672,7 +565,6 @@ body {
 }
 
 .magic-button:hover {
-
     background:
         rgba(164, 76, 207, 0.55);
 
@@ -694,7 +586,6 @@ body {
 ========================================================= */
 
 .quiz {
-
     width:
         min(
             1100px,
@@ -716,7 +607,6 @@ body {
 ========================================================= */
 
 .progress {
-
     display: flex;
 
     align-items: center;
@@ -738,7 +628,6 @@ body {
 }
 
 .progress-line {
-
     width:
         clamp(50px, 10vw, 120px);
 
@@ -754,7 +643,6 @@ body {
 ========================================================= */
 
 #question-text {
-
     width: 100%;
 
     max-width: 1000px;
@@ -794,7 +682,6 @@ body {
 ========================================================= */
 
 .answers {
-
     width:
         min(
             900px,
@@ -821,7 +708,6 @@ body {
 ========================================================= */
 
 .answer-option {
-
     position: relative;
 
     display: flex;
@@ -878,7 +764,6 @@ body {
 }
 
 .answer-option:hover {
-
     transform:
         translateY(-4px);
 
@@ -894,7 +779,6 @@ body {
 }
 
 .answer-option:active {
-
     transform:
         scale(0.98);
 }
@@ -905,7 +789,6 @@ body {
 ========================================================= */
 
 .answer-orb {
-
     position: relative;
 
     flex:
@@ -918,11 +801,6 @@ body {
 
     border-radius: 50%;
 
-    /*
-        White luminous centre fading into the
-        individual orb colour.
-    */
-
     background:
         radial-gradient(
             circle at 50% 50%,
@@ -933,17 +811,11 @@ body {
             color-mix(in srgb, currentColor 45%, black) 100%
         );
 
-    /*
-        The coloured outline is created with
-        a soft outer glow plus an inner rim.
-    */
-
     border:
         2px solid
         color-mix(in srgb, currentColor 75%, white);
 
     box-shadow:
-
         inset
         0 0 18px
         rgba(255,255,255,0.9),
@@ -971,13 +843,7 @@ body {
         box-shadow 0.3s ease;
 }
 
-
-/* =========================================================
-   ORB HIGHLIGHT
-========================================================= */
-
 .answer-orb::before {
-
     content: "";
 
     position: absolute;
@@ -1004,21 +870,13 @@ body {
     pointer-events: none;
 }
 
-
-/* =========================================================
-   ORB ANIMATION
-========================================================= */
-
 @keyframes orbPulse {
-
     0%,
     100% {
-
         transform:
             scale(0.94);
 
         box-shadow:
-
             inset
             0 0 18px
             rgba(255,255,255,0.9),
@@ -1037,12 +895,10 @@ body {
     }
 
     50% {
-
         transform:
             scale(1.06);
 
         box-shadow:
-
             inset
             0 0 22px
             rgba(255,255,255,1),
@@ -1083,13 +939,11 @@ body {
 }
 
 
-
 /* =========================================================
    ANSWER TEXT
 ========================================================= */
 
 .answer-copy {
-
     display: flex;
 
     flex-direction: column;
@@ -1100,19 +954,10 @@ body {
 }
 
 .answer-letter {
-
-    font-size:
-        0.75rem;
-
-    letter-spacing:
-        0.15em;
-
-    opacity:
-        0.45;
+    display: none;
 }
 
 .answer-text {
-
     font-size:
         clamp(
             1rem,
@@ -1133,7 +978,6 @@ body {
 ========================================================= */
 
 .answer-label {
-
     min-height:
         1.5em;
 
@@ -1159,7 +1003,6 @@ body {
 ========================================================= */
 
 .result {
-
     width:
         min(
             1000px,
@@ -1188,13 +1031,7 @@ body {
         auto;
 }
 
-
-/* =========================================================
-   RESULT TITLE
-========================================================= */
-
 .result-intro {
-
     max-width:
         666px;
 
@@ -1227,7 +1064,6 @@ body {
 ========================================================= */
 
 .result-ball {
-
     position:
         relative;
 
@@ -1262,7 +1098,6 @@ body {
         );
 
     box-shadow:
-
         inset
         0 0 70px
         rgba(216, 145, 255, 0.15),
@@ -1272,7 +1107,6 @@ body {
 }
 
 .result-ball-glow {
-
     position:
         absolute;
 
@@ -1297,7 +1131,6 @@ body {
 }
 
 @keyframes resultGlow {
-
     0%,
     100% {
         opacity: 0.5;
@@ -1311,7 +1144,6 @@ body {
 }
 
 .result-content {
-
     position:
         relative;
 
@@ -1331,13 +1163,7 @@ body {
         center;
 }
 
-
-/* =========================================================
-   RESULT LABEL
-========================================================= */
-
 .result-label {
-
     font-size:
         0.75rem;
 
@@ -1354,13 +1180,7 @@ body {
         1rem;
 }
 
-
-/* =========================================================
-   RESULT FONT
-========================================================= */
-
 #result-font {
-
     font-family:
         "Bodoni Book Italic",
         "Bodoni 72",
@@ -1391,13 +1211,7 @@ body {
         rgba(230, 180, 255, 0.35);
 }
 
-
-/* =========================================================
-   RESULT DESCRIPTION
-========================================================= */
-
 .result-description {
-
     max-width:
         500px;
 
@@ -1485,7 +1299,6 @@ body {
 ========================================================= */
 
 @keyframes fadeIn {
-
     from {
         opacity: 0;
         transform: translateY(15px);
@@ -1546,14 +1359,6 @@ body {
         letter-spacing: 0.35em;
     }
 
-    .machine-header {
-        top: 45px;
-    }
-
-    .logo-image {
-        width: 145px;
-    }
-
     .screen {
         padding:
             55px
@@ -1566,6 +1371,13 @@ body {
 
     .landing-content {
         gap: 18px;
+
+        /*
+            Move the entire landing composition
+            slightly higher on small screens.
+        */
+
+        transform: translateY(-5vh);
     }
 
     .welcome-text {
@@ -1574,6 +1386,32 @@ body {
 
     .landing-logo {
         width: min(70vw, 300px);
+
+        /*
+            Logo sits above its normal position.
+        */
+
+        transform: translateY(-25px);
+
+        animation:
+            logoFadeInMobile
+            1.8s
+            ease
+            0.3s
+            forwards;
+    }
+
+    @keyframes logoFadeInMobile {
+
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(-25px);
+        }
     }
 
     .arrow-button {
@@ -1587,51 +1425,45 @@ body {
         margin-top: 2vh;
     }
 
-.crystal-ball {
+    .crystal-ball {
+        width:
+            min(94vw, 600px);
 
-    width:
-        min(94vw, 600px);
+        height:
+            auto;
 
-    height:
-        auto;
+        aspect-ratio:
+            1 / 1;
 
-    aspect-ratio:
-        1 / 1;
+        min-height:
+            0;
 
-    min-height:
-        0;
+        max-height:
+            none;
 
-    max-height:
-        none;
+        border-radius:
+            50%;
+    }
 
-    border-radius:
-        50%;
-}
+    .intro-copy {
+        inset:
+            8%;
 
+        padding:
+            8%
+            9%;
 
+        font-size:
+            0.78rem;
 
-.intro-copy {
+        line-height:
+            1.32;
 
-    inset:
-        8%;
-
-    padding:
-        8%
-        9%;
-
-    font-size:
-        0.78rem;
-
-    line-height:
-        1.32;
-
-    transform:
-        perspective(700px)
-        rotateX(4deg)
-        scaleX(0.93);
-}
-
-
+        transform:
+            perspective(700px)
+            rotateX(4deg)
+            scaleX(0.93);
+    }
 
     .magic-button {
         padding:
@@ -1665,12 +1497,7 @@ body {
             1.8rem;
     }
 
-    /*
-        Still 2 columns on phones, but compact.
-    */
-
     .answers {
-
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
@@ -1679,7 +1506,6 @@ body {
     }
 
     .answer-option {
-
         flex-direction:
             column;
 
@@ -1808,13 +1634,5 @@ body {
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
     }
-}
-
-/* =========================================================
-   HIDE ANSWER LETTERS
-========================================================= */
-
-.answer-letter {
-    display: none;
 }
 
