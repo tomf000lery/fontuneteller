@@ -428,6 +428,7 @@ body {
 }
 
 
+
 /* =========================================================
    CRYSTAL BALL
 ========================================================= */
@@ -436,21 +437,29 @@ body {
 
     position: relative;
 
+    /*
+        Always perfectly circular.
+    */
+
     width:
-        min(
-            850px,
-            88vw
-        );
+        min(850px, 88vw);
+
+    aspect-ratio:
+        1 / 1;
 
     height:
-        min(
-            65vh,
-            720px
-        );
+        auto;
 
-    min-height: 430px;
+    /*
+        Keep enough room for the text while
+        remaining a genuine magical orb.
+    */
 
-    border-radius: 50%;
+    max-height:
+        78vh;
+
+    border-radius:
+        50%;
 
     background:
         radial-gradient(
@@ -477,62 +486,145 @@ body {
         1px solid
         rgba(213, 157, 255, 0.25);
 
-    overflow: hidden;
-}
-
-.crystal-glow {
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 30% 20%,
-            rgba(255,255,255,0.18),
-            transparent 20%
-        );
-
-    pointer-events: none;
+    overflow:
+        hidden;
 }
 
 .intro-copy {
 
     position: absolute;
 
-    inset:
-        clamp(45px, 7%, 70px);
+    /*
+        Generous circular safe area.
+    */
 
-    overflow-y: auto;
+    inset:
+        9%;
+
+    overflow-y:
+        auto;
 
     padding:
-        20px
-        clamp(20px, 5vw, 70px);
+        8%
+        12%;
 
-    text-align: center;
+    text-align:
+        center;
 
     font-size:
-        clamp(0.85rem, 1.4vw, 1.2rem);
+        clamp(0.75rem, 1.25vw, 1.1rem);
 
-    line-height: 1.45;
+    line-height:
+        1.4;
 
-    font-style: italic;
+    font-style:
+        italic;
 
-    scrollbar-width: none;
+    scrollbar-width:
+        none;
 
-    z-index: 2;
+    z-index:
+        2;
+
+    /*
+        Gives the text the slightly bowed,
+        magical fisheye feeling.
+    */
+
+    transform:
+        perspective(900px)
+        rotateX(5deg)
+        scaleX(0.94);
+
+    transform-origin:
+        center center;
+
+    /*
+        The radial mask keeps the text visually
+        inside the spherical centre.
+    */
+
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse 58% 58% at center,
+            black 0%,
+            black 76%,
+            transparent 100%
+        );
+
+    mask-image:
+        radial-gradient(
+            ellipse 58% 58% at center,
+            black 0%,
+            black 76%,
+            transparent 100%
+        );
 }
+
 
 .intro-copy::-webkit-scrollbar {
     display: none;
 }
 
+
 .intro-copy p {
-    margin-bottom: 0.65em;
+
+    margin-bottom:
+        0.65em;
+
+    /*
+        The middle of the text feels larger,
+        producing the fisheye/bulging effect.
+    */
+
+    transform:
+        scaleX(1.03);
+
+    transform-origin:
+        center center;
 }
 
-.intro-copy strong {
-    color: #e3b9ff;
+
+.intro-copy p:nth-child(1),
+.intro-copy p:nth-child(10) {
+
+    transform:
+        scaleX(0.88);
 }
+
+
+.intro-copy p:nth-child(2),
+.intro-copy p:nth-child(9) {
+
+    transform:
+        scaleX(0.94);
+}
+
+
+.intro-copy p:nth-child(3),
+.intro-copy p:nth-child(8) {
+
+    transform:
+        scaleX(0.98);
+}
+
+
+.intro-copy p:nth-child(4),
+.intro-copy p:nth-child(5),
+.intro-copy p:nth-child(6),
+.intro-copy p:nth-child(7) {
+
+    transform:
+        scaleX(1.03);
+}
+
+
+.intro-copy strong {
+    color:
+        #e3b9ff;
+}
+
+
 
 
 /* =========================================================
@@ -1495,28 +1587,51 @@ body {
         margin-top: 2vh;
     }
 
-    .crystal-ball {
-        width: 94vw;
-        height: 72vh;
+.crystal-ball {
 
-        min-height: 0;
+    width:
+        min(94vw, 600px);
 
-        border-radius: 45%;
-    }
+    height:
+        auto;
 
-    .intro-copy {
-        inset: 25px 15px;
+    aspect-ratio:
+        1 / 1;
 
-        padding:
-            15px
-            20px;
+    min-height:
+        0;
 
-        font-size:
-            0.86rem;
+    max-height:
+        none;
 
-        line-height:
-            1.35;
-    }
+    border-radius:
+        50%;
+}
+
+
+
+.intro-copy {
+
+    inset:
+        8%;
+
+    padding:
+        8%
+        9%;
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1.32;
+
+    transform:
+        perspective(700px)
+        rotateX(4deg)
+        scaleX(0.93);
+}
+
+
 
     .magic-button {
         padding:
