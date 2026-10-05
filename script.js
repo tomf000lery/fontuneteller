@@ -217,7 +217,6 @@ const questions = [
 ];
 
 
-
 /* =========================================================
    TYPEFACES
 ========================================================= */
@@ -305,8 +304,6 @@ const typefaces = [
 ];
 
 
-
-
 /* =========================================================
    VARIABLES
 ========================================================= */
@@ -368,6 +365,7 @@ const resultFont =
 const resultDescription =
     document.getElementById("result-description");
 
+
 /* =========================================================
    MAGICAL AUDIO
 ========================================================= */
@@ -381,12 +379,6 @@ let ambientLfo = null;
 let audioStarted = false;
 
 
-/*
-    Start the ambient atmosphere after the user's
-    first interaction. Browsers block autoplay,
-    so this is intentionally user-triggered.
-*/
-
 function startAmbientAudio() {
 
     if (audioStarted) {
@@ -395,24 +387,16 @@ function startAmbientAudio() {
 
     audioStarted = true;
 
-
     const AudioContext =
         window.AudioContext ||
         window.webkitAudioContext;
-
 
     if (!AudioContext) {
         return;
     }
 
-
     audioContext =
         new AudioContext();
-
-
-    /*
-        Master ambient volume.
-    */
 
     ambientGain =
         audioContext.createGain();
@@ -423,11 +407,6 @@ function startAmbientAudio() {
     ambientGain.connect(
         audioContext.destination
     );
-
-
-    /*
-        Deep atmospheric tone.
-    */
 
     ambientOscillator =
         audioContext.createOscillator();
@@ -441,11 +420,6 @@ function startAmbientAudio() {
     ambientOscillator.connect(
         ambientGain
     );
-
-
-    /*
-        Slow breathing movement.
-    */
 
     ambientLfo =
         audioContext.createOscillator();
@@ -470,7 +444,6 @@ function startAmbientAudio() {
         ambientGain.gain
     );
 
-
     ambientOscillator.start();
     ambientLfo.start();
 }
@@ -486,10 +459,8 @@ function playAnswerSound() {
         return;
     }
 
-
     const now =
         audioContext.currentTime;
-
 
     const oscillator =
         audioContext.createOscillator();
@@ -497,14 +468,8 @@ function playAnswerSound() {
     const gain =
         audioContext.createGain();
 
-
     oscillator.type =
         "sine";
-
-
-    /*
-        Magical rising chime.
-    */
 
     oscillator.frequency.setValueAtTime(
         420,
@@ -515,7 +480,6 @@ function playAnswerSound() {
         820,
         now + 0.18
     );
-
 
     gain.gain.setValueAtTime(
         0.0001,
@@ -532,13 +496,11 @@ function playAnswerSound() {
         now + 0.5
     );
 
-
     oscillator.connect(gain);
 
     gain.connect(
         audioContext.destination
     );
-
 
     oscillator.start(now);
 
@@ -558,22 +520,14 @@ function playResultSound() {
         return;
     }
 
-
     const now =
         audioContext.currentTime;
-
-
-    /*
-        Three layered notes create a
-        little magical reveal chord.
-    */
 
     const notes = [
         261.63,
         329.63,
         523.25
     ];
-
 
     notes.forEach(
         (frequency, index) => {
@@ -584,20 +538,16 @@ function playResultSound() {
             const gain =
                 audioContext.createGain();
 
-
             oscillator.type =
                 index === 2
                     ? "triangle"
                     : "sine";
 
-
             oscillator.frequency.value =
                 frequency;
 
-
             const start =
                 now + index * 0.12;
-
 
             gain.gain.setValueAtTime(
                 0.0001,
@@ -614,13 +564,11 @@ function playResultSound() {
                 start + 1.8
             );
 
-
             oscillator.connect(gain);
 
             gain.connect(
                 audioContext.destination
             );
-
 
             oscillator.start(start);
 
@@ -646,31 +594,7 @@ function showScreen(screen) {
         });
 
     screen.classList.add("active");
-
-
-    /*
-        Show the small floating logo only during
-        the actual reading and the final result.
-    */
-
-    if (
-        screen === quizScreen ||
-        screen === resultScreen
-    ) {
-
-        document.body.classList.add(
-            "show-machine-logo"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "show-machine-logo"
-        );
-
-    }
 }
-
 
 
 /* =========================================================
@@ -714,6 +638,8 @@ scrollButton.addEventListener(
     "click",
     () => {
 
+        startAmbientAudio();
+
         showScreen(introScreen);
 
     }
@@ -726,6 +652,15 @@ scrollButton.addEventListener(
 
 function startQuiz() {
 
+    startAmbientAudio();
+
+    if (
+        audioContext &&
+        audioContext.state === "suspended"
+    ) {
+        audioContext.resume();
+    }
+
     score = {
         A: 0,
         B: 0,
@@ -737,16 +672,9 @@ function startQuiz() {
 
     answerLocked = false;
 
-
-    /*
-        Pick 10 random questions
-        from the complete set of 21.
-    */
-
     selectedQuestions =
         shuffle(questions)
             .slice(0, 10);
-
 
     showScreen(quizScreen);
 
@@ -773,46 +701,29 @@ function showQuestion() {
     const question =
         selectedQuestions[currentQuestion];
 
-
     if (!question) {
         showResult();
         return;
     }
 
-
     answerLocked = false;
-
-
-    /* QUESTION NUMBER */
 
     questionNumber.textContent =
         String(currentQuestion + 1)
             .padStart(2, "0");
 
-
-    /* QUESTION */
-
     questionText.textContent =
         question.question;
-
-
-    /* LABEL */
 
     answerLabel.textContent =
         "Choose your axis";
 
-
-    /* CLEAR OLD ANSWERS */
-
     answersContainer.innerHTML = "";
-
-
-    /* CREATE ANSWERS */
 
     Object.entries(
         question.answers
     ).forEach(
-        ([letter, text], index) => {
+        ([letter, text]) => {
 
             const option =
                 document.createElement("button");
@@ -830,7 +741,6 @@ function showQuestion() {
 
             orb.className =
                 "answer-orb";
-
 
             if (letter === "A") {
                 orb.classList.add("orb-red");
@@ -927,28 +837,17 @@ function answerQuestion(answer) {
 
     answerLocked = true;
 
-
-    /* Add to score */
-
     score[answer]++;
 
-
-    /* Feedback */
+    playAnswerSound();
 
     answerLabel.textContent =
         "The typenteties have heard your answer";
-
-
-    /*
-        Small pause makes the transition feel
-        intentional and magical.
-    */
 
     setTimeout(
         () => {
 
             currentQuestion++;
-
 
             if (
                 currentQuestion >=
@@ -975,23 +874,14 @@ function answerQuestion(answer) {
 
 function calculateResult() {
 
-    /*
-        Temporary scoring system.
-
-        Every answer contributes differently
-        to the final typeface index.
-    */
-
     const total =
         score.A * 1 +
         score.B * 2 +
         score.C * 3 +
         score.D * 4;
 
-
     const index =
         total % typefaces.length;
-
 
     return typefaces[index];
 }
@@ -1006,13 +896,9 @@ function showResult() {
     const result =
         calculateResult();
 
-
     showScreen(resultScreen);
 
-
-    /*
-        Remove all previous font classes.
-    */
+    playResultSound();
 
     typefaces.forEach(
         font => {
@@ -1024,38 +910,23 @@ function showResult() {
         }
     );
 
-
-    /*
-        Add the selected typeface class.
-    */
-
     resultFont.classList.add(
         result.className
     );
 
-
     resultFont.textContent =
         result.name;
-
 
     resultDescription.textContent =
         result.description;
 
-
-    /*
-        Restart result animations.
-    */
-
     resultFont.style.animation = "none";
     resultDescription.style.animation = "none";
 
-
     void resultFont.offsetWidth;
-
 
     resultFont.style.animation =
         "resultReveal 2s ease forwards";
-
 
     resultDescription.style.animation =
         "fadeIn 1.5s ease 0.8s forwards";
@@ -1089,12 +960,15 @@ resultStyle.textContent = `
 
         0% {
             opacity: 0;
+
             transform:
                 scale(0.35)
                 rotate(-8deg);
+
             filter:
                 blur(18px)
                 brightness(2);
+
             text-shadow:
                 0 0 80px
                 rgba(255,255,255,1);
@@ -1102,12 +976,15 @@ resultStyle.textContent = `
 
         45% {
             opacity: 1;
+
             transform:
                 scale(1.15)
                 rotate(3deg);
+
             filter:
                 blur(0)
                 brightness(1.6);
+
             text-shadow:
                 0 0 50px
                 rgba(220,150,255,0.9);
@@ -1121,12 +998,15 @@ resultStyle.textContent = `
 
         100% {
             opacity: 1;
+
             transform:
                 scale(1)
                 rotate(0);
+
             filter:
                 blur(0)
                 brightness(1);
+
             text-shadow:
                 0 0 30px
                 rgba(230,180,255,0.35);
@@ -1142,3 +1022,4 @@ resultStyle.textContent = `
 document.head.appendChild(
     resultStyle
 );
+
