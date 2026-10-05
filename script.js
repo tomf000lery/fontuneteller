@@ -10,7 +10,7 @@ const questions = [
             A: "Reliable",
             B: "Sophisticated",
             C: "Playful",
-            D: "Expressive"
+            D: "Mono-spaced"
         }
     },
 
@@ -40,7 +40,7 @@ const questions = [
             A: "Bold",
             B: "Kerned",
             C: "Expressive",
-            D: "Classic"
+            D: "Modular"
         }
     },
 
@@ -67,17 +67,17 @@ const questions = [
     {
         question: "How do you deal with change?",
         answers: {
-            A: "I prefer for things to remain the same",
+            A: "I prefer for things to remain the same always and forever pls",
             B: "I adapt quickly",
             C: "I love change",
-            D: "I embrace everything life has to offer, there would be no ups if there were no downs anyways"
+            D: "I embrace everything life has to offer. There would be no ups if there were no downs, amirite?"
         }
     },
 
     {
         question: "What do you do when you don’t know what to choose?",
         answers: {
-            A: "Ask a salesman for help then end up getting seven other things and an insurance",
+            A: "Take the safest option",
             B: "Call mom",
             C: "Go with my gut",
             D: "Look up the trends, compare all the options fifty times then choose none"
@@ -90,7 +90,7 @@ const questions = [
             A: "Poor readability",
             B: "Unnecessary details",
             C: "Lack of personality",
-            D: "Poor kerning"
+            D: "Bad kerning"
         }
     },
 
@@ -118,8 +118,8 @@ const questions = [
         question: "How do you make decisions?",
         answers: {
             A: "Through careful analysis of my experiences and other proven methods",
-            B: "Gut feeling",
-            C: "Quickly and instinctively",
+            B: "Gut feeling, yeehaw!",
+            C: "I open up a portal to the other side to ask the spirits from other dimensions for guidance",
             D: "I don’t do that"
         }
     },
@@ -160,7 +160,7 @@ const questions = [
             A: "Close enough, but at a safe distance",
             B: "I love them",
             C: "I have friends that are letters",
-            D: "L311er5 4r3 1nf3r10r"
+            D: "L3113r5 4r3 1nf3r10r"
         }
     },
 
@@ -207,9 +207,9 @@ const questions = [
     {
         question: "Which environment do you feel most comfortable in?",
         answers: {
-            A: "A library",
-            B: "A café",
-            C: "Train stations",
+            A: "A maze",
+            B: "Central train station in foreign country",
+            C: "the waiting room at the hospital",
             D: "Underground"
         }
     }
