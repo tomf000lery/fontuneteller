@@ -368,6 +368,270 @@ const resultFont =
 const resultDescription =
     document.getElementById("result-description");
 
+/* =========================================================
+   MAGICAL AUDIO
+========================================================= */
+
+let audioContext = null;
+
+let ambientGain = null;
+let ambientOscillator = null;
+let ambientLfo = null;
+
+let audioStarted = false;
+
+
+/*
+    Start the ambient atmosphere after the user's
+    first interaction. Browsers block autoplay,
+    so this is intentionally user-triggered.
+*/
+
+function startAmbientAudio() {
+
+    if (audioStarted) {
+        return;
+    }
+
+    audioStarted = true;
+
+
+    const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+    if (!AudioContext) {
+        return;
+    }
+
+
+    audioContext =
+        new AudioContext();
+
+
+    /*
+        Master ambient volume.
+    */
+
+    ambientGain =
+        audioContext.createGain();
+
+    ambientGain.gain.value =
+        0.035;
+
+    ambientGain.connect(
+        audioContext.destination
+    );
+
+
+    /*
+        Deep atmospheric tone.
+    */
+
+    ambientOscillator =
+        audioContext.createOscillator();
+
+    ambientOscillator.type =
+        "sine";
+
+    ambientOscillator.frequency.value =
+        110;
+
+    ambientOscillator.connect(
+        ambientGain
+    );
+
+
+    /*
+        Slow breathing movement.
+    */
+
+    ambientLfo =
+        audioContext.createOscillator();
+
+    const lfoGain =
+        audioContext.createGain();
+
+    ambientLfo.type =
+        "sine";
+
+    ambientLfo.frequency.value =
+        0.045;
+
+    lfoGain.gain.value =
+        0.018;
+
+    ambientLfo.connect(
+        lfoGain
+    );
+
+    lfoGain.connect(
+        ambientGain.gain
+    );
+
+
+    ambientOscillator.start();
+    ambientLfo.start();
+}
+
+
+/* =========================================================
+   ANSWER CLICK SFX
+========================================================= */
+
+function playAnswerSound() {
+
+    if (!audioContext) {
+        return;
+    }
+
+
+    const now =
+        audioContext.currentTime;
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type =
+        "sine";
+
+
+    /*
+        Magical rising chime.
+    */
+
+    oscillator.frequency.setValueAtTime(
+        420,
+        now
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+        820,
+        now + 0.18
+    );
+
+
+    gain.gain.setValueAtTime(
+        0.0001,
+        now
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.14,
+        now + 0.015
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        now + 0.5
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start(now);
+
+    oscillator.stop(
+        now + 0.5
+    );
+}
+
+
+/* =========================================================
+   RESULT SFX
+========================================================= */
+
+function playResultSound() {
+
+    if (!audioContext) {
+        return;
+    }
+
+
+    const now =
+        audioContext.currentTime;
+
+
+    /*
+        Three layered notes create a
+        little magical reveal chord.
+    */
+
+    const notes = [
+        261.63,
+        329.63,
+        523.25
+    ];
+
+
+    notes.forEach(
+        (frequency, index) => {
+
+            const oscillator =
+                audioContext.createOscillator();
+
+            const gain =
+                audioContext.createGain();
+
+
+            oscillator.type =
+                index === 2
+                    ? "triangle"
+                    : "sine";
+
+
+            oscillator.frequency.value =
+                frequency;
+
+
+            const start =
+                now + index * 0.12;
+
+
+            gain.gain.setValueAtTime(
+                0.0001,
+                start
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.13,
+                start + 0.03
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.0001,
+                start + 1.8
+            );
+
+
+            oscillator.connect(gain);
+
+            gain.connect(
+                audioContext.destination
+            );
+
+
+            oscillator.start(start);
+
+            oscillator.stop(
+                start + 1.8
+            );
+
+        }
+    );
+}
+
 
 /* =========================================================
    SCREEN MANAGEMENT
@@ -382,7 +646,31 @@ function showScreen(screen) {
         });
 
     screen.classList.add("active");
+
+
+    /*
+        Show the small floating logo only during
+        the actual reading and the final result.
+    */
+
+    if (
+        screen === quizScreen ||
+        screen === resultScreen
+    ) {
+
+        document.body.classList.add(
+            "show-machine-logo"
+        );
+
+    } else {
+
+        document.body.classList.remove(
+            "show-machine-logo"
+        );
+
+    }
 }
+
 
 
 /* =========================================================
