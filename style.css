@@ -1903,3 +1903,587 @@ REDUCED MOTION
 
 
 }
+
+/* =========================================================
+INTRO CRYSTAL BALL — LIVING / BULGING TEXT
+========================================================= */
+
+.crystal-ball {
+overflow: hidden;
+}
+
+/*
+The text follows the rounded feeling of the crystal ball.
+Width and font-size scale with the ball so it stays inside.
+*/
+
+.intro-copy {
+position: absolute;
+
+
+left: 50%;
+top: 50%;
+
+width: 68%;
+max-width: 68%;
+
+transform:
+    translate(-50%, -50%)
+    perspective(700px)
+    scaleX(1.08)
+    scaleY(0.94);
+
+transform-origin: center center;
+
+text-align: center;
+
+/*
+   Prevent long words from escaping the sphere.
+*/
+overflow-wrap: break-word;
+word-wrap: break-word;
+
+/*
+   Keeps the text proportional as the sphere changes size.
+*/
+font-size: clamp(8px, 1.7vw, 20px);
+line-height: 1.05;
+
+/*
+   Subtle magical breathing / wiggle.
+*/
+animation:
+    introTextMagic 5s ease-in-out infinite;
+
+text-shadow:
+    0 0 5px rgba(255,255,255,0.8),
+    0 0 12px rgba(255,255,255,0.35);
+
+filter:
+    drop-shadow(
+        0 0 4px
+        rgba(255,255,255,0.3)
+    );
+
+
+}
+
+@keyframes introTextMagic {
+
+
+0%,
+100% {
+    transform:
+        translate(-50%, -50%)
+        perspective(700px)
+        scaleX(1.06)
+        scaleY(0.94)
+        rotate(-0.35deg);
+}
+
+25% {
+    transform:
+        translate(-50%, -50%)
+        perspective(700px)
+        scaleX(1.10)
+        scaleY(0.98)
+        rotate(0.3deg);
+}
+
+50% {
+    transform:
+        translate(-50%, -50%)
+        perspective(700px)
+        scaleX(1.15)
+        scaleY(1.02)
+        rotate(-0.25deg);
+}
+
+75% {
+    transform:
+        translate(-50%, -50%)
+        perspective(700px)
+        scaleX(1.10)
+        scaleY(0.97)
+        rotate(0.35deg);
+}
+
+
+}
+
+/*
+Give the individual paragraphs a tiny independent
+movement so the whole block doesn't feel static.
+*/
+
+.intro-copy p {
+transform-origin: center center;
+
+
+animation:
+    introParagraphMagic 6s ease-in-out infinite;
+
+
+}
+
+.intro-copy p:nth-child(2) {
+animation-delay: -1s;
+}
+
+.intro-copy p:nth-child(3) {
+animation-delay: -2s;
+}
+
+.intro-copy p:nth-child(4) {
+animation-delay: -3s;
+}
+
+.intro-copy p:nth-child(5) {
+animation-delay: -4s;
+}
+
+.intro-copy p:nth-child(6) {
+animation-delay: -5s;
+}
+
+.intro-copy p:nth-child(7) {
+animation-delay: -1.5s;
+}
+
+.intro-copy p:nth-child(8) {
+animation-delay: -2.5s;
+}
+
+.intro-copy p:nth-child(9) {
+animation-delay: -3.5s;
+}
+
+.intro-copy p:nth-child(10) {
+animation-delay: -4.5s;
+}
+
+@keyframes introParagraphMagic {
+
+
+0%,
+100% {
+    transform:
+        scaleX(0.99)
+        scaleY(0.99);
+}
+
+50% {
+    transform:
+        scaleX(1.015)
+        scaleY(1.008);
+}
+
+
+}
+
+/* =========================================================
+QUESTION ORBS
+========================================================= */
+
+/*
+Completely remove A / B / C / D.
+*/
+
+.answer-letter {
+display: none !important;
+}
+
+/*
+The orb itself becomes the answer indicator.
+
+White glowing centre.
+Coloured outer edge.
+Breathing light.
+*/
+
+.answer-orb {
+position: relative;
+
+
+flex: 0 0 auto;
+
+width: clamp(34px, 5vw, 60px);
+height: clamp(34px, 5vw, 60px);
+
+border-radius: 50%;
+
+/*
+   White centre fading into transparency.
+*/
+background:
+    radial-gradient(
+        circle at 50% 48%,
+        #ffffff 0%,
+        rgba(255,255,255,0.98) 15%,
+        rgba(255,255,255,0.78) 28%,
+        rgba(255,255,255,0.22) 48%,
+        rgba(255,255,255,0) 68%
+    );
+
+/*
+   The colour comes from the individual
+   orb classes below.
+*/
+border: 2px solid currentColor;
+
+box-shadow:
+    0 0 7px currentColor,
+    0 0 15px currentColor,
+    0 0 28px currentColor,
+    inset 0 0 13px rgba(255,255,255,0.95);
+
+animation:
+    answerOrbBreath 3.2s ease-in-out infinite;
+
+transform-origin: center center;
+
+
+}
+
+/*
+Bright inner core.
+*/
+
+.answer-orb::before {
+content: "";
+
+
+position: absolute;
+
+left: 50%;
+top: 48%;
+
+width: 45%;
+height: 45%;
+
+transform:
+    translate(-50%, -50%);
+
+border-radius: 50%;
+
+background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0.98) 30%,
+        rgba(255,255,255,0.45) 65%,
+        transparent 100%
+    );
+
+filter:
+    blur(1px);
+
+opacity: 0.9;
+
+animation:
+    orbCoreBreath 2.6s ease-in-out infinite;
+
+
+}
+
+/*
+Small moving reflection.
+*/
+
+.answer-orb::after {
+content: "";
+
+
+position: absolute;
+
+left: 20%;
+top: 14%;
+
+width: 32%;
+height: 17%;
+
+border-radius: 50%;
+
+background:
+    rgba(255,255,255,0.85);
+
+filter:
+    blur(3px);
+
+transform:
+    rotate(-25deg);
+
+opacity: 0.5;
+
+animation:
+    orbShine 3.8s ease-in-out infinite;
+
+
+}
+
+/* =========================================================
+INDIVIDUAL ORB COLOURS
+========================================================= */
+
+.answer-orb.orb-red {
+color: #ff4f61;
+}
+
+.answer-orb.orb-blue {
+color: #55aaff;
+}
+
+.answer-orb.orb-gold {
+color: #ffd45a;
+}
+
+.answer-orb.orb-green {
+color: #62e69a;
+}
+
+/* =========================================================
+ORB BREATHING
+========================================================= */
+
+@keyframes answerOrbBreath {
+
+
+0%,
+100% {
+    transform: scale(0.96);
+
+    box-shadow:
+        0 0 7px currentColor,
+        0 0 15px currentColor,
+        0 0 27px currentColor,
+        inset 0 0 10px rgba(255,255,255,0.8);
+}
+
+50% {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 10px currentColor,
+        0 0 23px currentColor,
+        0 0 42px currentColor,
+        inset 0 0 18px rgba(255,255,255,1);
+}
+
+
+}
+
+@keyframes orbCoreBreath {
+
+
+0%,
+100% {
+    transform:
+        translate(-50%, -50%)
+        scale(0.85);
+
+    opacity: 0.7;
+}
+
+50% {
+    transform:
+        translate(-50%, -50%)
+        scale(1.18);
+
+    opacity: 1;
+}
+
+
+}
+
+@keyframes orbShine {
+
+
+0%,
+100% {
+    transform:
+        translateX(-3px)
+        rotate(-25deg);
+
+    opacity: 0.35;
+}
+
+50% {
+    transform:
+        translateX(14px)
+        rotate(-25deg);
+
+    opacity: 0.8;
+}
+
+
+}
+
+/* =========================================================
+RESULT ORB — TEXT FEELS PART OF THE BALL
+========================================================= */
+
+/*
+"Your type is"
+*/
+
+.result-label {
+
+
+transform-origin: center center;
+
+animation:
+    resultLabelBulge 5s ease-in-out infinite;
+
+text-shadow:
+    0 0 6px rgba(255,255,255,0.7),
+    0 0 16px rgba(220,160,255,0.35);
+
+
+}
+
+/*
+Description underneath the typeface.
+*/
+
+.result-description {
+
+
+transform-origin: center center;
+
+animation:
+    resultDescriptionBulge 5.5s ease-in-out infinite;
+
+text-shadow:
+    0 0 6px rgba(255,255,255,0.55),
+    0 0 16px rgba(220,160,255,0.3);
+
+
+}
+
+/*
+Slight spherical expansion and contraction.
+*/
+
+@keyframes resultLabelBulge {
+
+
+0%,
+100% {
+    transform:
+        perspective(600px)
+        scaleX(1)
+        scaleY(1)
+        rotate(0deg);
+}
+
+25% {
+    transform:
+        perspective(600px)
+        scaleX(1.035)
+        scaleY(1.01)
+        rotate(-0.25deg);
+}
+
+50% {
+    transform:
+        perspective(600px)
+        scaleX(1.075)
+        scaleY(1.025)
+        rotate(0.2deg);
+}
+
+75% {
+    transform:
+        perspective(600px)
+        scaleX(1.03)
+        scaleY(1.01)
+        rotate(-0.15deg);
+}
+
+
+}
+
+@keyframes resultDescriptionBulge {
+
+
+0%,
+100% {
+    transform:
+        perspective(600px)
+        scaleX(0.98)
+        scaleY(0.98)
+        rotate(0deg);
+}
+
+25% {
+    transform:
+        perspective(600px)
+        scaleX(1.02)
+        scaleY(1.01)
+        rotate(0.2deg);
+}
+
+50% {
+    transform:
+        perspective(600px)
+        scaleX(1.06)
+        scaleY(1.025)
+        rotate(-0.2deg);
+}
+
+75% {
+    transform:
+        perspective(600px)
+        scaleX(1.025)
+        scaleY(1.01)
+        rotate(0.15deg);
+}
+
+
+}
+
+/* =========================================================
+MOBILE — KEEP EVERYTHING INSIDE THE SPHERES
+========================================================= */
+
+@media (max-width: 600px) {
+
+
+.intro-copy {
+    width: 70%;
+    max-width: 70%;
+
+    font-size:
+        clamp(7px, 2.5vw, 16px);
+
+    line-height: 1.02;
+}
+
+.answer-orb {
+    width: 38px;
+    height: 38px;
+}
+
+
+}
+
+/* =========================================================
+REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+
+.intro-copy,
+.intro-copy p,
+.answer-orb,
+.answer-orb::before,
+.answer-orb::after,
+.result-label,
+.result-description {
+
+    animation: none !important;
+}
+
+
+}
