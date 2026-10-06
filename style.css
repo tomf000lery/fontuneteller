@@ -527,153 +527,200 @@ transform: scale(0.95);
 }
 
 /* =========================================================
-INTRO TEXT
+INTRO BALL — SPHERICAL TEXT SHAPE
 ========================================================= */
 
 .intro-copy {
 position: absolute;
 
 
-inset: 8%;
+inset: 8% 7%;
 
-overflow-y: auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
-padding:
-    7%
-    10%;
+/*
+    Keep the text inside the actual circular shape.
+    The mask creates a curved/spherical boundary rather
+    than a straight rectangular crop.
+*/
+clip-path: ellipse(50% 50% at 50% 50%);
+
+overflow: hidden;
 
 text-align: center;
 
-font-size:
-    clamp(
-        0.65rem,
-        1.15vw,
-        1.05rem
-    );
+/*
+    Slightly compress the text vertically so it feels
+    like it is being viewed through the crystal.
+*/
+transform: scaleY(0.96);
 
-line-height:
-    1.35;
-
-font-style: italic;
-
-scrollbar-width: none;
-
-z-index: 2;
-
-transform:
-    perspective(900px)
-    rotateX(5deg)
-    scaleX(0.94);
-
-transform-origin:
-    center center;
-
--webkit-mask-image:
-    radial-gradient(
-        ellipse 62% 62% at center,
-        black 0%,
-        black 78%,
-        transparent 100%
-    );
-
-mask-image:
-    radial-gradient(
-        ellipse 62% 62% at center,
-        black 0%,
-        black 78%,
-        transparent 100%
-    );
-
-animation:
-    magicalWiggle
-    6s
-    ease-in-out
-    infinite;
+transform-origin: center;
 
 
 }
 
-.intro-copy::-webkit-scrollbar {
-display: none;
-}
+/* Individual paragraphs */
 
 .intro-copy p {
-margin-bottom:
-0.55em;
+width: 100%;
+max-width: 88%;
 
 
-transform:
-    scaleX(1.03);
+margin: 0.35em auto;
 
-transform-origin:
-    center center;
+/*
+    Make the text naturally narrower near the top/bottom
+    and wider through the middle of the sphere.
+*/
+transform-origin: center;
+
+line-height: 1.25;
+
+/*
+    Keep text inside the curved boundary.
+*/
+overflow-wrap: break-word;
 
 
 }
+
+/* =========================================================
+SPHERICAL WIDTH EFFECT
+========================================================= */
 
 .intro-copy p:nth-child(1),
 .intro-copy p:nth-child(10) {
-transform: scaleX(0.88);
+max-width: 68%;
 }
 
 .intro-copy p:nth-child(2),
 .intro-copy p:nth-child(9) {
-transform: scaleX(0.94);
+max-width: 78%;
 }
 
 .intro-copy p:nth-child(3),
 .intro-copy p:nth-child(8) {
-transform: scaleX(0.98);
+max-width: 84%;
 }
 
 .intro-copy p:nth-child(4),
-.intro-copy p:nth-child(5),
-.intro-copy p:nth-child(6),
 .intro-copy p:nth-child(7) {
-transform: scaleX(1.03);
+max-width: 90%;
 }
 
-.intro-copy strong {
-color: #e3b9ff;
+.intro-copy p:nth-child(5),
+.intro-copy p:nth-child(6) {
+max-width: 94%;
 }
 
-@keyframes magicalWiggle {
+/* =========================================================
+MAGICALLY ALIVE
+========================================================= */
+
+.intro-copy p {
+animation: introTextWiggle 5s ease-in-out infinite;
+}
+
+.intro-copy p:nth-child(2) {
+animation-delay: -0.7s;
+}
+
+.intro-copy p:nth-child(3) {
+animation-delay: -1.4s;
+}
+
+.intro-copy p:nth-child(4) {
+animation-delay: -2.1s;
+}
+
+.intro-copy p:nth-child(5) {
+animation-delay: -2.8s;
+}
+
+.intro-copy p:nth-child(6) {
+animation-delay: -3.5s;
+}
+
+.intro-copy p:nth-child(7) {
+animation-delay: -4.2s;
+}
+
+.intro-copy p:nth-child(8) {
+animation-delay: -4.6s;
+}
+
+.intro-copy p:nth-child(9) {
+animation-delay: -1.8s;
+}
+
+.intro-copy p:nth-child(10) {
+animation-delay: -3.2s;
+}
+
+@keyframes introTextWiggle {
+
+
 0%,
 100% {
-transform:
-perspective(900px)
-rotateX(5deg)
-rotateZ(0deg)
-scaleX(0.94);
-}
-
-
-25% {
     transform:
-        perspective(900px)
-        rotateX(5deg)
-        rotateZ(-0.25deg)
-        scaleX(0.945);
+        scaleX(0.98)
+        scaleY(0.97)
+        rotate(-0.25deg);
 }
 
 50% {
     transform:
-        perspective(900px)
-        rotateX(5deg)
-        rotateZ(0.25deg)
-        scaleX(0.935);
-}
-
-75% {
-    transform:
-        perspective(900px)
-        rotateX(5deg)
-        rotateZ(-0.15deg)
-        scaleX(0.945);
+        scaleX(1.015)
+        scaleY(1.01)
+        rotate(0.25deg);
 }
 
 
 }
+
+/* =========================================================
+EXTRA SPHERICAL EDGE PROTECTION
+========================================================= */
+
+.intro-copy::before {
+content: "";
+
+
+position: absolute;
+inset: 0;
+
+pointer-events: none;
+
+border-radius: 50%;
+
+/*
+    Softly fades the very edges so no letters get
+    abruptly chopped by the sphere.
+*/
+background:
+    radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 67%,
+        rgba(0, 0, 0, 0.08) 82%,
+        rgba(0, 0, 0, 0.3) 96%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+
+z-index: 2;
+
+
+}
+
+.intro-copy p {
+position: relative;
+z-index: 1;
+}
+
 
 /* =========================================================
 MAGIC BUTTON
