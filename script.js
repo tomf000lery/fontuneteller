@@ -48,9 +48,9 @@ D: "Modular"
 question: "What does your desk look like?",
 answers: {
 A: "I promise I don't have OCD",
-B: "Like the ones you find in a prisoncell",
-C: "The desk is like a battlefield",
-D: "Me bed is me desk is me kitchen is me whole house"
+B: "computer. dead plant. yeah, and 5 000 000 coffestains",
+C: "The desk is like a battlefield, but I swear I have it under control",
+D: "I've never owned a desk"
 }
 },
 
@@ -69,8 +69,8 @@ question: "How do you deal with change?",
 answers: {
 A: "I prefer for things to remain the same always and forever pls",
 B: "I adapt quickly",
-C: "I love change",
-D: "I embrace everything life has to offer. There would be no ups if there were no downs, amirite?"
+C: "I love change hakuna matata",
+D: "I withdraw back into my turtle shell"
 }
 },
 
@@ -80,7 +80,7 @@ answers: {
 A: "Take the safest option",
 B: "Call mom",
 C: "Go with my gut",
-D: "Look up the trends, compare all the options fifty times then choose none"
+D: "Look up recesions, compare all the options fifty times then choose nothing and go home"
 }
 },
 
@@ -109,8 +109,8 @@ question: "What matters most to you?",
 answers: {
 A: "Security",
 B: "Freedom",
-C: "Good kerning",
-D: "Quality"
+C: "Purpose",
+D: "Good kerning"
 }
 },
 
@@ -135,12 +135,12 @@ D: "“You’re so smart.”"
 },
 
 {
-question: "If you were a music genre, what would you be?",
+question: "If you were one of these music genres, which one would you be?",
 answers: {
-A: "Rock ’n’ roll",
-B: "Blues:(",
-C: "Experimental and unpredictable, the kind of thing you only find on SoundCloud",
-D: "Disco funk"
+A: "Rock ’n’ roll yeeeee",
+B: "The blues:(",
+C: "Rap but I call it rhytm and poetry so u kno Im soulful like dat skrrrt",
+D: "I only listen to ancient mongolian throat singing"
 }
 },
 
@@ -195,7 +195,7 @@ D: "Everything I do is spontaneous"
 },
 
 {
-question: "If you were in faced with a tiger you would?",
+question: "If you were faced with a tiger you would?",
 answers: {
 A: "Pat the tiger.",
 B: "Flykick the tiger",
