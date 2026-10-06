@@ -209,7 +209,7 @@ question: "Which environment do you feel most comfortable in?",
 answers: {
 A: "A maze",
 B: "Central train station in foreign country",
-C: "the waiting room at the hospital",
+C: "the waiting room at a hospital",
 D: "Underground"
 }
 }
