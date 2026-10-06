@@ -395,123 +395,126 @@ if (!AudioContext) {
     return;
 }
 
-audioContext =
-    new AudioContext();
+try {
+
+    audioContext =
+        new AudioContext();
+
+    ambientMasterGain =
+        audioContext.createGain();
+
+    ambientMasterGain.gain.value =
+        0.025;
+
+    ambientMasterGain.connect(
+        audioContext.destination
+    );
 
 
-/* MASTER */
-
-ambientMasterGain =
-    audioContext.createGain();
-
-ambientMasterGain.gain.value =
-    0.025;
-
-ambientMasterGain.connect(
-    audioContext.destination
-);
-
-
-/*
-    Several extremely quiet tones instead of
-    one sustained note. This creates a more
-    organic magical ambience.
-*/
-
-const voices = [
-    {
-        frequency: 110,
-        type: "sine",
-        volume: 0.35,
-        lfo: 0.035
-    },
-    {
-        frequency: 164.81,
-        type: "sine",
-        volume: 0.18,
-        lfo: 0.045
-    },
-    {
-        frequency: 220,
-        type: "triangle",
-        volume: 0.09,
-        lfo: 0.025
-    },
-    {
-        frequency: 329.63,
-        type: "sine",
-        volume: 0.035,
-        lfo: 0.06
-    }
-];
+    const voices = [
+        {
+            frequency: 110,
+            type: "sine",
+            volume: 0.35,
+            lfo: 0.035
+        },
+        {
+            frequency: 164.81,
+            type: "sine",
+            volume: 0.18,
+            lfo: 0.045
+        },
+        {
+            frequency: 220,
+            type: "triangle",
+            volume: 0.09,
+            lfo: 0.025
+        },
+        {
+            frequency: 329.63,
+            type: "sine",
+            volume: 0.035,
+            lfo: 0.06
+        }
+    ];
 
 
-voices.forEach(
-    voice => {
+    voices.forEach(
+        voice => {
 
-        const oscillator =
-            audioContext.createOscillator();
+            const oscillator =
+                audioContext.createOscillator();
 
-        const gain =
-            audioContext.createGain();
+            const gain =
+                audioContext.createGain();
 
-        const lfo =
-            audioContext.createOscillator();
+            const lfo =
+                audioContext.createOscillator();
 
-        const lfoGain =
-            audioContext.createGain();
-
-
-        oscillator.type =
-            voice.type;
-
-        oscillator.frequency.value =
-            voice.frequency;
+            const lfoGain =
+                audioContext.createGain();
 
 
-        gain.gain.value =
-            voice.volume;
+            oscillator.type =
+                voice.type;
+
+            oscillator.frequency.value =
+                voice.frequency;
 
 
-        lfo.type =
-            "sine";
-
-        lfo.frequency.value =
-            voice.lfo;
-
-        lfoGain.gain.value =
-            voice.volume * 0.35;
+            gain.gain.value =
+                voice.volume;
 
 
-        lfo.connect(
-            lfoGain
-        );
+            lfo.type =
+                "sine";
 
-        lfoGain.connect(
-            gain.gain
-        );
+            lfo.frequency.value =
+                voice.lfo;
 
-        oscillator.connect(
-            gain
-        );
-
-        gain.connect(
-            ambientMasterGain
-        );
+            lfoGain.gain.value =
+                voice.volume * 0.35;
 
 
-        oscillator.start();
-        lfo.start();
+            lfo.connect(
+                lfoGain
+            );
+
+            lfoGain.connect(
+                gain.gain
+            );
+
+            oscillator.connect(
+                gain
+            );
+
+            gain.connect(
+                ambientMasterGain
+            );
 
 
-        ambientVoices.push({
-            oscillator,
-            gain,
-            lfo
-        });
+            oscillator.start();
 
-    }
-);
+            lfo.start();
+
+
+            ambientVoices.push({
+                oscillator,
+                gain,
+                lfo
+            });
+
+        }
+    );
+
+} catch (error) {
+
+    console.warn(
+        "Ambient audio could not start:",
+        error
+    );
+
+}
 ```
 
 }
@@ -529,7 +532,6 @@ if (!audioContext) {
 
 const now =
     audioContext.currentTime;
-
 
 const sparkleNotes = [
     783.99,
@@ -622,7 +624,6 @@ if (!audioContext) {
 const now =
     audioContext.currentTime;
 
-
 const notes = [
     523.25,
     659.25,
@@ -702,6 +703,10 @@ SCREEN MANAGEMENT
 function showScreen(screen) {
 
 ```
+if (!screen) {
+    return;
+}
+
 document
     .querySelectorAll(".screen")
     .forEach(item => {
@@ -749,25 +754,144 @@ return copy;
 }
 
 /* =========================================================
-START SCREEN → INTRO
+START → INTRO
+CLICK ARROW
 ========================================================= */
+
+function goToIntro() {
+
+```
+startAmbientAudio();
+
+if (
+    audioContext &&
+    audioContext.state === "suspended"
+) {
+    audioContext.resume().catch(() => {});
+}
+
+showScreen(introScreen);
+```
+
+}
 
 scrollButton.addEventListener(
 "click",
-() => {
+goToIntro
+);
+
+/* =========================================================
+START → INTRO
+MOUSE / TRACKPAD SCROLL
+========================================================= */
+
+let startScrollLocked = false;
+
+startScreen.addEventListener(
+"wheel",
+event => {
 
 ```
-    startAmbientAudio();
-
     if (
-        audioContext &&
-        audioContext.state === "suspended"
+        !startScreen.classList.contains("active") ||
+        startScrollLocked
     ) {
-        audioContext.resume();
+        return;
     }
 
-    showScreen(introScreen);
+    if (event.deltaY > 15) {
 
+        startScrollLocked = true;
+
+        goToIntro();
+
+        setTimeout(
+            () => {
+                startScrollLocked = false;
+            },
+            700
+        );
+    }
+
+},
+{
+    passive: true
+}
+```
+
+);
+
+/* =========================================================
+START → INTRO
+TOUCH / SWIPE
+========================================================= */
+
+let touchStartY = 0;
+
+let touchStartX = 0;
+
+startScreen.addEventListener(
+"touchstart",
+event => {
+
+```
+    if (!startScreen.classList.contains("active")) {
+        return;
+    }
+
+    const touch =
+        event.changedTouches[0];
+
+    touchStartY =
+        touch.clientY;
+
+    touchStartX =
+        touch.clientX;
+
+},
+{
+    passive: true
+}
+```
+
+);
+
+startScreen.addEventListener(
+"touchend",
+event => {
+
+```
+    if (!startScreen.classList.contains("active")) {
+        return;
+    }
+
+    const touch =
+        event.changedTouches[0];
+
+    const deltaY =
+        touch.clientY - touchStartY;
+
+    const deltaX =
+        touch.clientX - touchStartX;
+
+
+    /*
+        Only trigger if the gesture is clearly
+        a vertical swipe rather than a horizontal one.
+    */
+
+    if (
+        Math.abs(deltaY) > 45 &&
+        Math.abs(deltaY) > Math.abs(deltaX) &&
+        deltaY < 0
+    ) {
+
+        goToIntro();
+    }
+
+},
+{
+    passive: true
 }
 ```
 
@@ -786,7 +910,7 @@ if (
     audioContext &&
     audioContext.state === "suspended"
 ) {
-    audioContext.resume();
+    audioContext.resume().catch(() => {});
 }
 
 score = {
@@ -849,6 +973,7 @@ answerLabel.textContent =
 
 answersContainer.innerHTML = "";
 
+
 Object.entries(
     question.answers
 ).forEach(
@@ -857,7 +982,8 @@ Object.entries(
         const option =
             document.createElement("button");
 
-        option.type = "button";
+        option.type =
+            "button";
 
         option.className =
             "answer-option";
@@ -938,9 +1064,7 @@ Object.entries(
         option.addEventListener(
             "click",
             () => {
-
                 answerQuestion(letter);
-
             }
         );
 
@@ -974,6 +1098,7 @@ playAnswerSound();
 
 answerLabel.textContent =
     "The typenteties have heard your answer";
+
 
 setTimeout(
     () => {
@@ -1164,4 +1289,12 @@ resultStyle.textContent = `
 
 document.head.appendChild(
 resultStyle
+);
+
+/* =========================================================
+SAFETY CHECK
+========================================================= */
+
+console.log(
+"Fontune Teller loaded successfully."
 );
