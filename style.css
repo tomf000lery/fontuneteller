@@ -526,200 +526,315 @@ transform: scale(0.95);
 
 }
 
+
 /* =========================================================
-INTRO BALL — SPHERICAL TEXT SHAPE
+INTRO COPY — CURVED SPHERICAL EDGES
 ========================================================= */
 
 .intro-copy {
-position: absolute;
+    position: absolute;
 
+    inset: 7% 7%;
 
-inset: 8% 7%;
+    display: flex;
+    flex-direction: column;
 
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+    justify-content: center;
+    align-items: center;
 
-/*
-    Keep the text inside the actual circular shape.
-    The mask creates a curved/spherical boundary rather
-    than a straight rectangular crop.
-*/
-clip-path: ellipse(50% 50% at 50% 50%);
+    text-align: center;
 
-overflow: hidden;
+    /*
+    IMPORTANT:
+    We do NOT use clip-path here.
+    This means the entire text block remains accessible.
+    */
 
-text-align: center;
+    overflow: hidden;
 
-/*
-    Slightly compress the text vertically so it feels
-    like it is being viewed through the crystal.
-*/
-transform: scaleY(0.96);
+    transform:
+        scaleY(0.96);
 
-transform-origin: center;
+    transform-origin: center center;
 
+    font-size:
+        clamp(8px, 1.7vw, 20px);
 
+    line-height: 1.08;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.8),
+        0 0 12px rgba(255,255,255,0.35);
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(255,255,255,0.3)
+        );
 }
 
-/* Individual paragraphs */
-
-.intro-copy p {
-width: 100%;
-max-width: 88%;
-
-
-margin: 0.35em auto;
-
-/*
-    Make the text naturally narrower near the top/bottom
-    and wider through the middle of the sphere.
-*/
-transform-origin: center;
-
-line-height: 1.25;
-
-/*
-    Keep text inside the curved boundary.
-*/
-overflow-wrap: break-word;
-
-
-}
 
 /* =========================================================
-SPHERICAL WIDTH EFFECT
+INDIVIDUAL PARAGRAPHS
 ========================================================= */
+
+.intro-copy p {
+    width: 100%;
+
+    margin:
+        0.35em
+        auto;
+
+    line-height: 1.15;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    transform-origin: center center;
+
+    animation:
+        introParagraphMagic
+        6s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================================
+SPHERICAL WIDTH
+========================================================= */
+
+/*
+The text becomes narrower toward the top and bottom
+and wider around the centre of the sphere.
+*/
 
 .intro-copy p:nth-child(1),
 .intro-copy p:nth-child(10) {
-max-width: 68%;
+    max-width: 68%;
 }
 
 .intro-copy p:nth-child(2),
 .intro-copy p:nth-child(9) {
-max-width: 78%;
+    max-width: 78%;
 }
 
 .intro-copy p:nth-child(3),
 .intro-copy p:nth-child(8) {
-max-width: 84%;
+    max-width: 84%;
 }
 
 .intro-copy p:nth-child(4),
 .intro-copy p:nth-child(7) {
-max-width: 90%;
+    max-width: 90%;
 }
 
 .intro-copy p:nth-child(5),
 .intro-copy p:nth-child(6) {
-max-width: 94%;
+    max-width: 94%;
 }
+
 
 /* =========================================================
-MAGICALLY ALIVE
+MAGICAL WIGGLE
 ========================================================= */
 
-.intro-copy p {
-animation: introTextWiggle 5s ease-in-out infinite;
-}
-
 .intro-copy p:nth-child(2) {
-animation-delay: -0.7s;
+    animation-delay: -1s;
 }
 
 .intro-copy p:nth-child(3) {
-animation-delay: -1.4s;
+    animation-delay: -2s;
 }
 
 .intro-copy p:nth-child(4) {
-animation-delay: -2.1s;
+    animation-delay: -3s;
 }
 
 .intro-copy p:nth-child(5) {
-animation-delay: -2.8s;
+    animation-delay: -4s;
 }
 
 .intro-copy p:nth-child(6) {
-animation-delay: -3.5s;
+    animation-delay: -5s;
 }
 
 .intro-copy p:nth-child(7) {
-animation-delay: -4.2s;
+    animation-delay: -1.5s;
 }
 
 .intro-copy p:nth-child(8) {
-animation-delay: -4.6s;
+    animation-delay: -2.5s;
 }
 
 .intro-copy p:nth-child(9) {
-animation-delay: -1.8s;
+    animation-delay: -3.5s;
 }
 
 .intro-copy p:nth-child(10) {
-animation-delay: -3.2s;
-}
-
-@keyframes introTextWiggle {
-
-
-0%,
-100% {
-    transform:
-        scaleX(0.98)
-        scaleY(0.97)
-        rotate(-0.25deg);
-}
-
-50% {
-    transform:
-        scaleX(1.015)
-        scaleY(1.01)
-        rotate(0.25deg);
+    animation-delay: -4.5s;
 }
 
 
+@keyframes introParagraphMagic {
+
+    0%,
+    100% {
+        transform:
+            scaleX(0.99)
+            scaleY(0.99)
+            rotate(-0.15deg);
+    }
+
+    50% {
+        transform:
+            scaleX(1.015)
+            scaleY(1.008)
+            rotate(0.15deg);
+    }
 }
+
 
 /* =========================================================
-EXTRA SPHERICAL EDGE PROTECTION
+CURVED SPHERICAL TOP + BOTTOM EDGE
 ========================================================= */
 
+/*
+Instead of cutting the entire text into a circle,
+these two soft masks create the illusion that the
+top and bottom edges curve around the inside of
+the crystal ball.
+*/
+
 .intro-copy::before {
-content: "";
+    content: "";
 
+    position: absolute;
 
-position: absolute;
-inset: 0;
+    left: 0;
+    right: 0;
 
-pointer-events: none;
+    top: 0;
 
-border-radius: 50%;
+    height: 18%;
+
+    pointer-events: none;
+
+    z-index: 5;
+
+    /*
+    The centre of the mask reaches further down,
+    creating a very subtle curved indentation.
+    */
+
+    background:
+        radial-gradient(
+            ellipse 75% 100% at 50% 0%,
+            rgba(8,5,13,0.75) 0%,
+            rgba(8,5,13,0.45) 38%,
+            rgba(8,5,13,0.12) 65%,
+            transparent 100%
+        );
+}
+
 
 /*
-    Softly fades the very edges so no letters get
-    abruptly chopped by the sphere.
+Bottom curved edge.
 */
-background:
-    radial-gradient(
-        ellipse at center,
-        transparent 0%,
-        transparent 67%,
-        rgba(0, 0, 0, 0.08) 82%,
-        rgba(0, 0, 0, 0.3) 96%,
-        rgba(0, 0, 0, 0.55) 100%
-    );
 
-z-index: 2;
+.intro-copy::after {
+    content: "";
 
+    position: absolute;
 
+    left: 0;
+    right: 0;
+
+    bottom: 0;
+
+    height: 18%;
+
+    pointer-events: none;
+
+    z-index: 5;
+
+    background:
+        radial-gradient(
+            ellipse 75% 100% at 50% 100%,
+            rgba(8,5,13,0.75) 0%,
+            rgba(8,5,13,0.45) 38%,
+            rgba(8,5,13,0.12) 65%,
+            transparent 100%
+        );
 }
 
-.intro-copy p {
-position: relative;
-z-index: 1;
+
+/* =========================================================
+EXTRA SPHERICAL DISTORTION
+========================================================= */
+
+/*
+Slightly compresses the text near the top and bottom
+while leaving the centre fuller.
+*/
+
+.intro-copy p:nth-child(1) {
+    transform: scaleX(0.90);
 }
+
+.intro-copy p:nth-child(2) {
+    transform: scaleX(0.94);
+}
+
+.intro-copy p:nth-child(3) {
+    transform: scaleX(0.97);
+}
+
+.intro-copy p:nth-child(8) {
+    transform: scaleX(0.97);
+}
+
+.intro-copy p:nth-child(9) {
+    transform: scaleX(0.94);
+}
+
+.intro-copy p:nth-child(10) {
+    transform: scaleX(0.90);
+}
+
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .intro-copy {
+        inset: 7%;
+
+        font-size:
+            clamp(
+                0.57rem,
+                2.2vw,
+                0.78rem
+            );
+
+        line-height: 1.05;
+    }
+
+    .intro-copy p {
+        margin:
+            0.27em
+            auto;
+    }
+
+    .intro-copy::before,
+    .intro-copy::after {
+        height: 15%;
+    }
+}
+
+
 
 
 /* =========================================================
