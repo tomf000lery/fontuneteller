@@ -1709,3 +1709,244 @@ REDUCED MOTION
 ```
 
 }
+
+
+/* =========================================================
+   RESPONSIVE OVERRIDES
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding:
+            40px
+            10px
+            40px;
+    }
+
+
+    /* START */
+
+    .welcome-text {
+        font-size:
+            clamp(1.7rem, 8vw, 2.5rem);
+    }
+
+    .landing-logo {
+        width:
+            min(55vw, 220px);
+    }
+
+    .arrow-button {
+        width:
+            clamp(30px, 9vw, 45px);
+
+        bottom:
+            45px;
+    }
+
+
+    /* INTRO */
+
+    .crystal-ball {
+        width:
+            min(
+                88vw,
+                76vh
+            );
+
+        height:
+            min(
+                88vw,
+                76vh
+            );
+    }
+
+    .intro-copy {
+        inset: 7%;
+
+        padding:
+            6%
+            8%;
+
+        font-size:
+            clamp(
+                0.57rem,
+                2.2vw,
+                0.78rem
+            );
+
+        line-height:
+            1.28;
+    }
+
+    #begin-button {
+        font-size:
+            0.9rem;
+
+        padding:
+            0.7rem 1.3rem;
+    }
+
+
+    /* QUIZ */
+
+    #quiz-screen {
+        padding:
+            40px
+            8px
+            40px;
+    }
+
+    .quiz {
+        width: 100%;
+    }
+
+    .quiz-logo {
+        width:
+            clamp(90px, 25vw, 145px);
+
+        margin-bottom:
+            5px;
+    }
+
+    .progress {
+        margin-bottom:
+            0.7rem;
+    }
+
+    #question-text {
+        font-size:
+            clamp(
+                1.45rem,
+                7vw,
+                2.5rem
+            );
+
+        margin:
+            0 auto
+            1rem;
+    }
+
+    .answers {
+        gap:
+            8px;
+    }
+
+    .answer-option {
+        min-height:
+            clamp(85px, 17vh, 125px);
+
+        padding:
+            8px 6px;
+
+        border-radius:
+            12px;
+    }
+
+    .answer-orb {
+        width:
+            clamp(
+                35px,
+                11vw,
+                48px
+            );
+    }
+
+    .answer-text {
+        font-size:
+            clamp(
+                0.68rem,
+                2.7vw,
+                0.85rem
+            );
+    }
+
+    .answer-label {
+        margin-top:
+            0.5rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .quiz-logo {
+        width:
+            95px;
+    }
+
+    #question-text {
+        font-size:
+            1.35rem;
+
+        margin-bottom:
+            0.7rem;
+    }
+
+    .answer-option {
+        min-height:
+            78px;
+
+        padding:
+            6px;
+    }
+
+    .answer-orb {
+        width:
+            32px;
+    }
+
+    .answer-text {
+        font-size:
+            0.62rem;
+    }
+}
+
+
+/* =========================================================
+   SHORT SCREENS
+========================================================= */
+
+@media (max-height: 700px) {
+
+    .quiz-logo {
+        width:
+            90px;
+
+        margin-bottom:
+            3px;
+    }
+
+    .progress {
+        margin-bottom:
+            0.5rem;
+    }
+
+    #question-text {
+        font-size:
+            clamp(
+                1.35rem,
+                4vw,
+                2.4rem
+            );
+
+        margin-bottom:
+            0.7rem;
+    }
+
+    .answer-option {
+        min-height:
+            70px;
+    }
+
+    .answer-orb {
+        width:
+            38px;
+    }
+}
+
