@@ -4,217 +4,215 @@ QUESTIONS
 
 const questions = [
 
-
 {
-    question: "How do you think others perceive you?",
-    answers: {
-        A: "Reliable",
-        B: "Sophisticated",
-        C: "Playful",
-        D: "Mono-spaced"
-    }
-},
-
-{
-    question: "What do you do when you walk into a room full of people you don’t know?",
-    answers: {
-        A: "Stick to the wall",
-        B: "Take the initiative, start talking, take over the room, assert dominance.",
-        C: "Spot someone interesting and go up to them",
-        D: "Call your friend and ask what they’re doing. Then exit party and go meet them."
-    }
-},
-
-{
-    question: "How do you react to rules?",
-    answers: {
-        A: "Rules exist for a reason",
-        B: "I follow them if they make sense",
-        C: "I like to push the boundaries",
-        D: "I prefer to make my own"
-    }
-},
-
-{
-    question: "Which word describes you best?",
-    answers: {
-        A: "Bold",
-        B: "Kerned",
-        C: "Expressive",
-        D: "Modular"
-    }
-},
-
-{
-    question: "What does your desk look like?",
-    answers: {
-        A: "I promise I don't have OCD",
-        B: "Like the ones you find in a prisoncell",
-        C: "The desk is like a battlefield",
-        D: "Me bed is me desk is me kitchen is me whole house"
-    }
-},
-
-{
-    question: "What matters most when you choose clothes?",
-    answers: {
-        A: "Function",
-        B: "Fit",
-        C: "Personality",
-        D: "Style"
-    }
-},
-
-{
-    question: "How do you deal with change?",
-    answers: {
-        A: "I prefer for things to remain the same always and forever pls",
-        B: "I adapt quickly",
-        C: "I love change",
-        D: "I embrace everything life has to offer. There would be no ups if there were no downs, amirite?"
-    }
-},
-
-{
-    question: "What do you do when you don’t know what to choose?",
-    answers: {
-        A: "Take the safest option",
-        B: "Call mom",
-        C: "Go with my gut",
-        D: "Look up the trends, compare all the options fifty times then choose none"
-    }
-},
-
-{
-    question: "What annoys you the most?",
-    answers: {
-        A: "Poor readability",
-        B: "Unnecessary details",
-        C: "Lack of personality",
-        D: "Bad kerning"
-    }
-},
-
-{
-    question: "If you could choose a superpower, which one would you pick?",
-    answers: {
-        A: "Flying",
-        B: "Controlling time and space",
-        C: "Mastering Glyphs",
-        D: "Shooting fire from my hands"
-    }
-},
-
-{
-    question: "What matters most to you?",
-    answers: {
-        A: "Security",
-        B: "Freedom",
-        C: "Good kerning",
-        D: "Quality"
-    }
-},
-
-{
-    question: "How do you make decisions?",
-    answers: {
-        A: "Through careful analysis of my experiences and other proven methods",
-        B: "Gut feeling, yeehaw!",
-        C: "I open up a portal to the other side to ask the spirits from other dimensions for guidance",
-        D: "I don’t do that"
-    }
-},
-
-{
-    question: "What type of compliment do you appreciate the most?",
-    answers: {
-        A: "“You’re someone I can rely on.”",
-        B: "“You’re so funny.”",
-        C: "“You’re so good at kerning.”",
-        D: "“You’re so smart.”"
-    }
-},
-
-{
-    question: "If you were a music genre, what would you be?",
-    answers: {
-        A: "Rock ’n’ roll",
-        B: "Blues:(",
-        C: "Experimental and unpredictable, the kind of thing you only find on SoundCloud",
-        D: "Disco funk"
-    }
-},
-
-{
-    question: "What do you do when a project starts going in the wrong direction?",
-    answers: {
-        A: "Go back to the plan",
-        B: "Take control",
-        C: "Try a completely new idea for the plot",
-        D: "Retire"
-    }
-},
-
-{
-    question: "How close are you to letters?",
-    answers: {
-        A: "Close enough, but at a safe distance",
-        B: "I love them",
-        C: "I have friends that are letters",
-        D: "L3113r5 4r3 1nf3r10r"
-    }
-},
-
-{
-    question: "When was the last time you read a book?",
-    answers: {
-        A: "I’ve never read anything in my life not even this stupid test",
-        B: "All day erryday, son!",
-        C: "If the last book you read was Harry Potter you have a curse on you. Say: KAKA! Loud to break the curse",
-        D: "Purple"
-    }
-},
-
-{
-    question: "What would you never want to be?",
-    answers: {
-        A: "Unreadable",
-        B: "Rigid",
-        C: "A typeface designer",
-        D: "Unrefined"
-    }
-},
-
-{
-    question: "When was the last time you did something completely spontaneous?",
-    answers: {
-        A: "Never happened",
-        B: "Not that long ago",
-        C: "I used to be an adventurer like you..",
-        D: "Everything I do is spontaneous"
-    }
-},
-
-{
-    question: "If you were in faced with a tiger you would?",
-    answers: {
-        A: "Pat the tiger.",
-        B: "Flykick the tiger",
-        C: "Offer it a cigarette",
-        D: "Spend an unreasonable amount of time on designing and launching a new font you made together."
-    }
-},
-
-{
-    question: "Which environment do you feel most comfortable in?",
-    answers: {
-        A: "A maze",
-        B: "Central train station in foreign country",
-        C: "the waiting room at the hospital",
-        D: "Underground"
-    }
+question: "How do you think others perceive you?",
+answers: {
+A: "Reliable",
+B: "Sophisticated",
+C: "Playful",
+D: "Mono-spaced"
 }
+},
 
+{
+question: "What do you do when you walk into a room full of people you don’t know?",
+answers: {
+A: "Stick to the wall",
+B: "Take the initiative, start talking, take over the room, assert dominance.",
+C: "Spot someone interesting and go up to them",
+D: "Call your friend and ask what they’re doing. Then exit party and go meet them."
+}
+},
+
+{
+question: "How do you react to rules?",
+answers: {
+A: "Rules exist for a reason",
+B: "I follow them if they make sense",
+C: "I like to push the boundaries",
+D: "I prefer to make my own"
+}
+},
+
+{
+question: "Which word describes you best?",
+answers: {
+A: "Bold",
+B: "Kerned",
+C: "Expressive",
+D: "Modular"
+}
+},
+
+{
+question: "What does your desk look like?",
+answers: {
+A: "I promise I don't have OCD",
+B: "Like the ones you find in a prisoncell",
+C: "The desk is like a battlefield",
+D: "Me bed is me desk is me kitchen is me whole house"
+}
+},
+
+{
+question: "What matters most when you choose clothes?",
+answers: {
+A: "Function",
+B: "Fit",
+C: "Personality",
+D: "Style"
+}
+},
+
+{
+question: "How do you deal with change?",
+answers: {
+A: "I prefer for things to remain the same always and forever pls",
+B: "I adapt quickly",
+C: "I love change",
+D: "I embrace everything life has to offer. There would be no ups if there were no downs, amirite?"
+}
+},
+
+{
+question: "What do you do when you don’t know what to choose?",
+answers: {
+A: "Take the safest option",
+B: "Call mom",
+C: "Go with my gut",
+D: "Look up the trends, compare all the options fifty times then choose none"
+}
+},
+
+{
+question: "What annoys you the most?",
+answers: {
+A: "Poor readability",
+B: "Unnecessary details",
+C: "Lack of personality",
+D: "Bad kerning"
+}
+},
+
+{
+question: "If you could choose a superpower, which one would you pick?",
+answers: {
+A: "Flying",
+B: "Controlling time and space",
+C: "Mastering Glyphs",
+D: "Shooting fire from my hands"
+}
+},
+
+{
+question: "What matters most to you?",
+answers: {
+A: "Security",
+B: "Freedom",
+C: "Good kerning",
+D: "Quality"
+}
+},
+
+{
+question: "How do you make decisions?",
+answers: {
+A: "Through careful analysis of my experiences and other proven methods",
+B: "Gut feeling, yeehaw!",
+C: "I open up a portal to the other side to ask the spirits from other dimensions for guidance",
+D: "I don’t do that"
+}
+},
+
+{
+question: "What type of compliment do you appreciate the most?",
+answers: {
+A: "“You’re someone I can rely on.”",
+B: "“You’re so funny.”",
+C: "“You’re so good at kerning.”",
+D: "“You’re so smart.”"
+}
+},
+
+{
+question: "If you were a music genre, what would you be?",
+answers: {
+A: "Rock ’n’ roll",
+B: "Blues:(",
+C: "Experimental and unpredictable, the kind of thing you only find on SoundCloud",
+D: "Disco funk"
+}
+},
+
+{
+question: "What do you do when a project starts going in the wrong direction?",
+answers: {
+A: "Go back to the plan",
+B: "Take control",
+C: "Try a completely new idea for the plot",
+D: "Retire"
+}
+},
+
+{
+question: "How close are you to letters?",
+answers: {
+A: "Close enough, but at a safe distance",
+B: "I love them",
+C: "I have friends that are letters",
+D: "L3113r5 4r3 1nf3r10r"
+}
+},
+
+{
+question: "When was the last time you read a book?",
+answers: {
+A: "I’ve never read anything in my life not even this stupid test",
+B: "All day erryday, son!",
+C: "If the last book you read was Harry Potter you have a curse on you. Say: KAKA! Loud to break the curse",
+D: "Purple"
+}
+},
+
+{
+question: "What would you never want to be?",
+answers: {
+A: "Unreadable",
+B: "Rigid",
+C: "A typeface designer",
+D: "Unrefined"
+}
+},
+
+{
+question: "When was the last time you did something completely spontaneous?",
+answers: {
+A: "Never happened",
+B: "Not that long ago",
+C: "I used to be an adventurer like you..",
+D: "Everything I do is spontaneous"
+}
+},
+
+{
+question: "If you were in faced with a tiger you would?",
+answers: {
+A: "Pat the tiger.",
+B: "Flykick the tiger",
+C: "Offer it a cigarette",
+D: "Spend an unreasonable amount of time on designing and launching a new font you made together."
+}
+},
+
+{
+question: "Which environment do you feel most comfortable in?",
+answers: {
+A: "A maze",
+B: "Central train station in foreign country",
+C: "the waiting room at the hospital",
+D: "Underground"
+}
+}
 
 ];
 
@@ -224,85 +222,83 @@ TYPEFACES
 
 const typefaces = [
 
-
 {
-    name: "Areal",
-    image: "areal.png",
-    description: 'With the latest fashion, ”technologia!”, high readability'
+name: "Areal",
+image: "areal.png",
+description: 'With the latest fashion, ”technologia!”, high readability'
 },
 
 {
-    name: "Galapagos",
-    image: "galapagos.png",
-    description: "futuristic, communicates only in pop-cultural references, modular"
+name: "Galapagos",
+image: "galapagos.png",
+description: "futuristic, communicates only in pop-cultural references, modular"
 },
 
 {
-    name: "Maxi",
-    image: "maxi.png",
-    description: "warm, witty and heavily-engineered"
+name: "Maxi",
+image: "maxi.png",
+description: "warm, witty and heavily-engineered"
 },
 
 {
-    name: "Stefan",
-    image: "stefan.png",
-    description: "you made it out of elementary school physically but not mentally"
+name: "Stefan",
+image: "stefan.png",
+description: "you made it out of elementary school physically but not mentally"
 },
 
 {
-    name: "Bingo",
-    image: "bingo.png",
-    description: "rough on the outside and soft on the inside"
+name: "Bingo",
+image: "bingo.png",
+description: "rough on the outside and soft on the inside"
 },
 
 {
-    name: "Gramercy",
-    image: "gramercy.png",
-    description: "whimsical, elegantly sashays through life, comes with uppercase swashes"
+name: "Gramercy",
+image: "gramercy.png",
+description: "whimsical, elegantly sashays through life, comes with uppercase swashes"
 },
 
 {
-    name: "Limpet Granite",
-    image: "limpet-granite.png",
-    description: "irregular, rugged, is a cowboy"
+name: "Limpet Granite",
+image: "limpet-granite.png",
+description: "irregular, rugged, is a cowboy"
 },
 
 {
-    name: "Ticker",
-    image: "ticker.png",
-    description: "”do it for the plot”, questions EVERYTHING, works all the time"
+name: "Ticker",
+image: "ticker.png",
+description: "”do it for the plot”, questions EVERYTHING, works all the time"
 },
 
 {
-    name: "Joseleen",
-    image: "joseleen.png",
-    description: "will go chasing cars with you, usual answer to everything is shrugging, picks flowers for you"
+name: "Joseleen",
+image: "joseleen.png",
+description: "will go chasing cars with you, usual answer to everything is shrugging, picks flowers for you"
 },
 
 {
-    name: "Jungka",
-    image: "jungka.png",
-    description: "fined tuned, contemporary, immaculate vibes yo"
+name: "Jungka",
+image: "jungka.png",
+description: "fined tuned, contemporary, immaculate vibes yo"
 },
 
 {
-    name: "Pirelli",
-    image: "pirelli.png",
-    description: "speaks through eye contact, mono-lined, has sleeping problems"
+name: "Pirelli",
+image: "pirelli.png",
+description: "speaks through eye contact, mono-lined, has sleeping problems"
 },
 
 {
-    name: "Publisher",
-    image: "publisher.png",
-    description: "can write 60 words per minute, boasts about it, can (and will) recite the whole business-card scene from American Psycho from start to finish."
+name: "Publisher",
+image: "publisher.png",
+description: "can write 60 words per minute, boasts about it, can (and will) recite the whole business-card scene from American Psycho from start to finish."
 },
 
 {
-    name: "Amdal",
-    image: "amdal.png",
-    description: "bold, expressive, capable of surviving several occupations"
+name: "Amdal",
+image: "amdal.png",
+description: "bold, expressive, capable of surviving several occupations"
 }
-
 
 ];
 
@@ -311,7 +307,6 @@ VARIABLES
 ========================================================= */
 
 let selectedQuestions = [];
-
 let currentQuestion = 0;
 
 let score = {
@@ -371,11 +366,8 @@ MAGICAL AUDIO
 ========================================================= */
 
 let audioContext = null;
-
 let ambientMasterGain = null;
-
 let ambientVoices = [];
-
 let audioStarted = false;
 
 function startAmbientAudio() {
@@ -384,8 +376,6 @@ function startAmbientAudio() {
 if (audioStarted) {
     return;
 }
-
-audioStarted = true;
 
 const AudioContext =
     window.AudioContext ||
@@ -409,7 +399,6 @@ try {
     ambientMasterGain.connect(
         audioContext.destination
     );
-
 
     const voices = [
         {
@@ -438,7 +427,6 @@ try {
         }
     ];
 
-
     voices.forEach(
         voice => {
 
@@ -454,17 +442,14 @@ try {
             const lfoGain =
                 audioContext.createGain();
 
-
             oscillator.type =
                 voice.type;
 
             oscillator.frequency.value =
                 voice.frequency;
 
-
             gain.gain.value =
                 voice.volume;
-
 
             lfo.type =
                 "sine";
@@ -474,7 +459,6 @@ try {
 
             lfoGain.gain.value =
                 voice.volume * 0.35;
-
 
             lfo.connect(
                 lfoGain
@@ -492,11 +476,8 @@ try {
                 ambientMasterGain
             );
 
-
             oscillator.start();
-
             lfo.start();
-
 
             ambientVoices.push({
                 oscillator,
@@ -506,6 +487,8 @@ try {
 
         }
     );
+
+    audioStarted = true;
 
 } catch (error) {
 
@@ -525,7 +508,7 @@ MAGICAL GLITTER SFX
 
 function playAnswerSound() {
 
-```
+
 if (!audioContext) {
     return;
 }
@@ -539,7 +522,6 @@ const sparkleNotes = [
     1318.51,
     1567.98
 ];
-
 
 sparkleNotes.forEach(
     (frequency, index) => {
@@ -565,13 +547,11 @@ sparkleNotes.forEach(
             now + 0.35
         );
 
-
         const start =
             now + index * 0.045;
 
         const duration =
             0.65 + index * 0.08;
-
 
         gain.gain.setValueAtTime(
             0.0001,
@@ -588,7 +568,6 @@ sparkleNotes.forEach(
             start + duration
         );
 
-
         oscillator.connect(
             gain
         );
@@ -596,7 +575,6 @@ sparkleNotes.forEach(
         gain.connect(
             audioContext.destination
         );
-
 
         oscillator.start(start);
 
@@ -633,7 +611,6 @@ const notes = [
     1567.98
 ];
 
-
 notes.forEach(
     (frequency, index) => {
 
@@ -651,13 +628,11 @@ notes.forEach(
         oscillator.frequency.value =
             frequency;
 
-
         const start =
             now + index * 0.14;
 
         const duration =
             1.4 + index * 0.08;
-
 
         gain.gain.setValueAtTime(
             0.0001,
@@ -674,7 +649,6 @@ notes.forEach(
             start + duration
         );
 
-
         oscillator.connect(
             gain
         );
@@ -682,7 +656,6 @@ notes.forEach(
         gain.connect(
             audioContext.destination
         );
-
 
         oscillator.start(start);
 
@@ -767,7 +740,9 @@ if (
     audioContext &&
     audioContext.state === "suspended"
 ) {
-    audioContext.resume().catch(() => {});
+    audioContext
+        .resume()
+        .catch(() => {});
 }
 
 showScreen(introScreen);
@@ -775,10 +750,16 @@ showScreen(introScreen);
 
 }
 
+if (scrollButton) {
+
+
 scrollButton.addEventListener(
-"click",
-goToIntro
+    "click",
+    goToIntro
 );
+
+
+}
 
 /* =========================================================
 START → INTRO
@@ -787,39 +768,42 @@ MOUSE / TRACKPAD SCROLL
 
 let startScrollLocked = false;
 
+if (startScreen) {
+
+
 startScreen.addEventListener(
-"wheel",
-event => {
+    "wheel",
+    event => {
 
+        if (
+            !startScreen.classList.contains("active") ||
+            startScrollLocked
+        ) {
+            return;
+        }
 
-    if (
-        !startScreen.classList.contains("active") ||
-        startScrollLocked
-    ) {
-        return;
+        if (event.deltaY > 15) {
+
+            startScrollLocked = true;
+
+            goToIntro();
+
+            setTimeout(
+                () => {
+                    startScrollLocked = false;
+                },
+                700
+            );
+        }
+
+    },
+    {
+        passive: true
     }
-
-    if (event.deltaY > 15) {
-
-        startScrollLocked = true;
-
-        goToIntro();
-
-        setTimeout(
-            () => {
-                startScrollLocked = false;
-            },
-            700
-        );
-    }
-
-},
-{
-    passive: true
-}
-
-
 );
+
+
+}
 
 /* =========================================================
 START → INTRO
@@ -827,75 +811,74 @@ TOUCH / SWIPE
 ========================================================= */
 
 let touchStartY = 0;
-
 let touchStartX = 0;
 
-startScreen.addEventListener(
-"touchstart",
-event => {
+if (startScreen) {
 
-
-    if (!startScreen.classList.contains("active")) {
-        return;
-    }
-
-    const touch =
-        event.changedTouches[0];
-
-    touchStartY =
-        touch.clientY;
-
-    touchStartX =
-        touch.clientX;
-
-},
-{
-    passive: true
-}
-
-
-);
 
 startScreen.addEventListener(
-"touchend",
-event => {
+    "touchstart",
+    event => {
 
+        if (
+            !startScreen.classList.contains("active")
+        ) {
+            return;
+        }
 
-    if (!startScreen.classList.contains("active")) {
-        return;
+        const touch =
+            event.changedTouches[0];
+
+        touchStartY =
+            touch.clientY;
+
+        touchStartX =
+            touch.clientX;
+
+    },
+    {
+        passive: true
     }
-
-    const touch =
-        event.changedTouches[0];
-
-    const deltaY =
-        touch.clientY - touchStartY;
-
-    const deltaX =
-        touch.clientX - touchStartX;
-
-
-    /*
-        Only trigger if the gesture is clearly
-        a vertical swipe rather than a horizontal one.
-    */
-
-    if (
-        Math.abs(deltaY) > 45 &&
-        Math.abs(deltaY) > Math.abs(deltaX) &&
-        deltaY < 0
-    ) {
-
-        goToIntro();
-    }
-
-},
-{
-    passive: true
-}
-
-
 );
+
+
+startScreen.addEventListener(
+    "touchend",
+    event => {
+
+        if (
+            !startScreen.classList.contains("active")
+        ) {
+            return;
+        }
+
+        const touch =
+            event.changedTouches[0];
+
+        const deltaY =
+            touch.clientY - touchStartY;
+
+        const deltaX =
+            touch.clientX - touchStartX;
+
+        if (
+            Math.abs(deltaY) > 45 &&
+            Math.abs(deltaY) > Math.abs(deltaX) &&
+            deltaY < 0
+        ) {
+
+            goToIntro();
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+}
 
 /* =========================================================
 START QUIZ
@@ -910,7 +893,9 @@ if (
     audioContext &&
     audioContext.state === "suspended"
 ) {
-    audioContext.resume().catch(() => {});
+    audioContext
+        .resume()
+        .catch(() => {});
 }
 
 score = {
@@ -939,10 +924,16 @@ showQuestion();
 BEGIN READING
 ========================================================= */
 
+if (beginButton) {
+
+
 beginButton.addEventListener(
-"click",
-startQuiz
+    "click",
+    startQuiz
 );
+
+
+}
 
 /* =========================================================
 SHOW QUESTION
@@ -972,7 +963,6 @@ answerLabel.textContent =
     "Choose your axis";
 
 answersContainer.innerHTML = "";
-
 
 Object.entries(
     question.answers
@@ -1099,7 +1089,6 @@ playAnswerSound();
 answerLabel.textContent =
     "The typenteties have heard your answer";
 
-
 setTimeout(
     () => {
 
@@ -1121,7 +1110,7 @@ setTimeout(
     },
     400
 );
-```
+
 
 }
 
@@ -1184,7 +1173,6 @@ resultFontImage.style.animation =
 resultDescription.style.animation =
     "none";
 
-
 void resultFontImage.offsetWidth;
 
 
@@ -1201,17 +1189,20 @@ resultDescription.style.animation =
 RESTART
 ========================================================= */
 
+if (restartButton) {
+
+
 restartButton.addEventListener(
-"click",
-() => {
+    "click",
+    () => {
 
+        showScreen(startScreen);
 
-    showScreen(startScreen);
+    }
+);
+
 
 }
-
-
-);
 
 /* =========================================================
 RESULT ANIMATION
@@ -1222,70 +1213,71 @@ document.createElement("style");
 
 resultStyle.textContent = `
 
-
 @keyframes resultReveal {
 
-    0% {
-        opacity: 0;
 
-        transform:
-            scale(0.35)
-            rotate(-8deg);
+0% {
+    opacity: 0;
 
-        filter:
-            blur(18px)
-            brightness(2);
+    transform:
+        scale(0.35)
+        rotate(-8deg);
 
-        text-shadow:
-            0 0 80px
-            rgba(255,255,255,1);
-    }
+    filter:
+        blur(18px)
+        brightness(2);
 
-    45% {
-        opacity: 1;
+    text-shadow:
+        0 0 80px
+        rgba(255,255,255,1);
+}
 
-        transform:
-            scale(1.15)
-            rotate(3deg);
+45% {
+    opacity: 1;
 
-        filter:
-            blur(0)
-            brightness(1.6);
+    transform:
+        scale(1.15)
+        rotate(3deg);
 
-        text-shadow:
-            0 0 50px
-            rgba(220,150,255,0.9);
-    }
+    filter:
+        blur(0)
+        brightness(1.6);
 
-    75% {
-        transform:
-            scale(0.96)
-            rotate(-1deg);
-    }
+    text-shadow:
+        0 0 50px
+        rgba(220,150,255,0.9);
+}
 
-    100% {
-        opacity: 1;
+75% {
+    transform:
+        scale(0.96)
+        rotate(-1deg);
+}
 
-        transform:
-            scale(1)
-            rotate(0);
+100% {
+    opacity: 1;
 
-        filter:
-            blur(0)
-            brightness(1);
+    transform:
+        scale(1)
+        rotate(0);
 
-        text-shadow:
-            0 0 30px
-            rgba(230,180,255,0.35);
-    }
+    filter:
+        blur(0)
+        brightness(1);
+
+    text-shadow:
+        0 0 30px
+        rgba(230,180,255,0.35);
+}
+
+
 }
 
 #result-description {
-    opacity: 0;
+opacity: 0;
 }
 
-
-;
+`;
 
 document.head.appendChild(
 resultStyle
