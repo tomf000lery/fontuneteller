@@ -17,20 +17,20 @@ D: "Mono-spaced"
 {
 question: "What do you do when you walk into a room full of people you don’t know?",
 answers: {
-A: "Stick to the wall",
-B: "Take the initiative, start talking, take over the room, assert dominance.",
-C: "Spot someone interesting and go up to them",
-D: "Call your friend and ask what they’re doing. Then exit party and go meet them."
+A: "Stick to the wall, keep safe distance",
+B: "Take the initiative, start talking, say "what are those?" to a person if they try to interruot, take over the room, assert dominance.",
+C: "Leave immediately",
+D: "Go up to people one by one and introduce myself as a typeface designer and ask them if they need fonts."
 }
 },
 
 {
 question: "How do you react to rules?",
 answers: {
-A: "Rules exist for a reason",
+A: "Rules exist for a reason, must be followed. If it's the law it has to be right, right?",
 B: "I follow them if they make sense",
-C: "I like to push the boundaries",
-D: "I prefer to make my own"
+C: "I like to push the boundaries heuhue 🤪",
+D: "I do warraiwant"
 }
 },
 
