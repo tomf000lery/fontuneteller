@@ -18,7 +18,7 @@ D: "Mono-spaced"
 question: "What do you do when you walk into a room full of people you don’t know?",
 answers: {
 A: "Stick to the wall, keep safe distance",
-B: "Take the initiative, start talking, say "what are those?" to a person if they try to interruot, take over the room, assert dominance.",
+B: "Take the initiative, start talking, start break-dancing and shadow-boxing a person if they try to interrupt you, take over the room, assert dominance.",
 C: "Leave immediately",
 D: "Go up to people one by one and introduce myself as a typeface designer and ask them if they need fonts."
 }
