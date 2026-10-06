@@ -4,7 +4,7 @@ QUESTIONS
 
 const questions = [
 
-```
+
 {
     question: "How do you think others perceive you?",
     answers: {
@@ -214,7 +214,7 @@ const questions = [
         D: "Underground"
     }
 }
-```
+
 
 ];
 
@@ -224,7 +224,7 @@ TYPEFACES
 
 const typefaces = [
 
-```
+
 {
     name: "Areal",
     image: "areal.png",
@@ -302,7 +302,7 @@ const typefaces = [
     image: "amdal.png",
     description: "bold, expressive, capable of surviving several occupations"
 }
-```
+
 
 ];
 
@@ -380,7 +380,7 @@ let audioStarted = false;
 
 function startAmbientAudio() {
 
-```
+
 if (audioStarted) {
     return;
 }
@@ -515,7 +515,7 @@ try {
     );
 
 }
-```
+
 
 }
 
@@ -606,7 +606,7 @@ sparkleNotes.forEach(
 
     }
 );
-```
+
 
 }
 
@@ -616,7 +616,7 @@ RESULT GLITTER SFX
 
 function playResultSound() {
 
-```
+
 if (!audioContext) {
     return;
 }
@@ -692,7 +692,7 @@ notes.forEach(
 
     }
 );
-```
+
 
 }
 
@@ -702,7 +702,7 @@ SCREEN MANAGEMENT
 
 function showScreen(screen) {
 
-```
+
 if (!screen) {
     return;
 }
@@ -714,7 +714,7 @@ document
     });
 
 screen.classList.add("active");
-```
+
 
 }
 
@@ -724,7 +724,7 @@ SHUFFLE
 
 function shuffle(array) {
 
-```
+
 const copy = [...array];
 
 for (
@@ -749,7 +749,7 @@ for (
 }
 
 return copy;
-```
+
 
 }
 
@@ -760,7 +760,7 @@ CLICK ARROW
 
 function goToIntro() {
 
-```
+
 startAmbientAudio();
 
 if (
@@ -771,7 +771,7 @@ if (
 }
 
 showScreen(introScreen);
-```
+
 
 }
 
@@ -791,7 +791,7 @@ startScreen.addEventListener(
 "wheel",
 event => {
 
-```
+
     if (
         !startScreen.classList.contains("active") ||
         startScrollLocked
@@ -817,7 +817,7 @@ event => {
 {
     passive: true
 }
-```
+
 
 );
 
@@ -834,7 +834,7 @@ startScreen.addEventListener(
 "touchstart",
 event => {
 
-```
+
     if (!startScreen.classList.contains("active")) {
         return;
     }
@@ -852,7 +852,7 @@ event => {
 {
     passive: true
 }
-```
+
 
 );
 
@@ -860,7 +860,7 @@ startScreen.addEventListener(
 "touchend",
 event => {
 
-```
+
     if (!startScreen.classList.contains("active")) {
         return;
     }
@@ -893,7 +893,7 @@ event => {
 {
     passive: true
 }
-```
+
 
 );
 
@@ -903,7 +903,7 @@ START QUIZ
 
 function startQuiz() {
 
-```
+
 startAmbientAudio();
 
 if (
@@ -931,7 +931,7 @@ selectedQuestions =
 showScreen(quizScreen);
 
 showQuestion();
-```
+
 
 }
 
@@ -950,7 +950,7 @@ SHOW QUESTION
 
 function showQuestion() {
 
-```
+
 const question =
     selectedQuestions[currentQuestion];
 
@@ -1075,7 +1075,7 @@ Object.entries(
 
     }
 );
-```
+
 
 }
 
@@ -1085,7 +1085,7 @@ ANSWER QUESTION
 
 function answerQuestion(answer) {
 
-```
+
 if (answerLocked) {
     return;
 }
@@ -1131,7 +1131,7 @@ CALCULATE RESULT
 
 function calculateResult() {
 
-```
+
 const total =
     score.A * 1 +
     score.B * 2 +
@@ -1142,7 +1142,7 @@ const index =
     total % typefaces.length;
 
 return typefaces[index];
-```
+
 
 }
 
@@ -1152,7 +1152,7 @@ SHOW RESULT
 
 function showResult() {
 
-```
+
 const result =
     calculateResult();
 
@@ -1193,7 +1193,7 @@ resultFontImage.style.animation =
 
 resultDescription.style.animation =
     "fadeIn 1.5s ease 0.8s forwards, magicalWobble 6s ease-in-out 2.3s infinite";
-```
+
 
 }
 
@@ -1205,11 +1205,11 @@ restartButton.addEventListener(
 "click",
 () => {
 
-```
+
     showScreen(startScreen);
 
 }
-```
+
 
 );
 
@@ -1222,7 +1222,7 @@ document.createElement("style");
 
 resultStyle.textContent = `
 
-```
+
 @keyframes resultReveal {
 
     0% {
@@ -1283,9 +1283,9 @@ resultStyle.textContent = `
 #result-description {
     opacity: 0;
 }
-```
 
-`;
+
+;
 
 document.head.appendChild(
 resultStyle
